@@ -51,11 +51,11 @@ function initNavigation() {
     const viewSubtitle = document.getElementById('view-subtitle');
 
     const viewMeta = {
+        'telemetry': { title: '[ DIGITAL PREDICT ]', sub: 'BIOMETRIC_TELEMETRY_AND_TIMELINE_SYNC' },
         'overview': { title: '[ SYS_OVERVIEW ]', sub: 'PIPELINE_METRICS_AND_VALIDATION' },
         'priming': { title: '[ TARGET_AR ]', sub: 'TARGET_VS_CONTROL_DELTA' },
         'friction': { title: '[ FRICTION_MS ]', sub: 'Y: REL_LATENCY | X: ASSOCIATION_RATE' },
-        'audience': { title: '[ SEGMENTATION ]', sub: 'POLARIZATION_VS_AMBIVALENCE' },
-        'telemetry': { title: '[ STIMULUS_TELEMETRY ]', sub: 'LIVE_BIOMETRIC_HUD_AND_TIMELINE_SYNC' }
+        'audience': { title: '[ SEGMENTATION ]', sub: 'POLARIZATION_VS_AMBIVALENCE' }
     };
 
     navLinks.forEach(link => {

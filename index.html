@@ -24,7 +24,11 @@
             </div>
             
             <ul class="nav-links">
-                <li class="active" data-view="overview">
+                <li class="active" data-view="telemetry">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    [ DIGITAL PREDICT ]
+                </li>
+                <li data-view="overview">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                     [ SYS_OVERVIEW ]
                 </li>
@@ -40,10 +44,6 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     [ SEGMENTATION ]
                 </li>
-                <li data-view="telemetry">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                    [ TELEMETRY ]
-                </li>
             </ul>
         </nav>
 
@@ -51,8 +51,8 @@
         <main class="main-content">
             <header class="topbar glass-panel">
                 <div class="header-title">
-                    <h1 id="view-title">[ SYS_OVERVIEW ]</h1>
-                    <p id="view-subtitle">PIPELINE_METRICS_AND_VALIDATION</p>
+                    <h1 id="view-title">[ DIGITAL PREDICT ]</h1>
+                    <p id="view-subtitle">BIOMETRIC_TELEMETRY_AND_TIMELINE_SYNC</p>
                 </div>
                 <div class="user-profile">
                     <div class="status-indicator"></div>
@@ -64,7 +64,7 @@
             <div class="views-container">
                 
                 <!-- 1. Overview View -->
-                <div id="overview" class="view active">
+                <div id="overview" class="view">
                     <div class="validation-box">
                         <h4>Validación Metodológica (Criterio B1)</h4>
                         <p>El motor aplica el <strong>Criterio B1 (Exclusión de Sesgo de Lateralidad)</strong>. Se eliminan automáticamente los participantes (satisficers) que responden con la misma tecla más del 80% del tiempo. Esto previene falsos positivos y asegura que la métrica refleje el proceso cognitivo real y no un patrón motor automático.</p>
@@ -183,8 +183,8 @@
                     </div>
                 </div>
 
-                <!-- 5. Stimulus Telemetry View -->
-                <div id="telemetry" class="view">
+                <!-- 1. Digital Predict (Stimulus Telemetry View) -->
+                <div id="telemetry" class="view active">
                     <div class="validation-box">
                         <h4>Telemetría Biométrica Predictiva (Digital Predict Engine)</h4>
                         <p>Evaluación continua segundo a segundo del estímulo audiovisual (Comercial <strong>Hugo Sánchez</strong>, 03:05 min) mediante 4.461 frames procesados. Permite auditar la sincronía entre picos de atención visual, variaciones de carga cognitiva y la posterior facilitación/fricción en la prueba IAT.</p>
