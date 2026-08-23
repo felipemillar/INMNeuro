@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMNeuro Digital Predict | IAT Analytics</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar glass-panel">
+            <div class="brand">
+                <div class="logo-icon"></div>
+                <h2>IMNeuro</h2>
+                <span>Digital Predict</span>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="active" data-view="overview">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    [ SYS_OVERVIEW ]
+                </li>
+                <li data-view="priming">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    [ TARGET_AR ]
+                </li>
+                <li data-view="friction">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    [ FRICTION_MS ]
+                </li>
+                <li data-view="audience">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    [ SEGMENTATION ]
+                </li>
+                <li data-view="telemetry">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    [ TELEMETRY ]
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="topbar glass-panel">
+                <div class="header-title">
+                    <h1 id="view-title">[ SYS_OVERVIEW ]</h1>
+                    <p id="view-subtitle">PIPELINE_METRICS_AND_VALIDATION</p>
+                </div>
+                <div class="user-profile">
+                    <div class="status-indicator"></div>
+                    <span>DATA_ENGINE_V1.0</span>
+                </div>
+            </header>
+
+            <!-- Views Container -->
+            <div class="views-container">
+                
+                <!-- 1. Overview View -->
+                <div id="overview" class="view active">
+                    <div class="validation-box">
+                        <h4>Validación Metodológica (Criterio B1)</h4>
+                        <p>El motor aplica el <strong>Criterio B1 (Exclusión de Sesgo de Lateralidad)</strong>. Se eliminan automáticamente los participantes (satisficers) que responden con la misma tecla más del 80% del tiempo. Esto previene falsos positivos y asegura que la métrica refleje el proceso cognitivo real y no un patrón motor automático.</p>
+                    </div>
+                    <div class="kpi-grid">
+                        <div class="kpi-card glass-panel">
+                            <h3>[ VALID_N ]</h3>
+                            <div class="kpi-value" id="kpi-n">0</div>
+                            <p class="kpi-subtext">TOTAL_SUBJECTS</p>
+                        </div>
+                        <div class="kpi-card glass-panel">
+                            <h3>[ EXCLUSION_RATE ]</h3>
+                            <div class="kpi-value text-warning" id="kpi-exclusion">0%</div>
+                            <p class="kpi-subtext">B1_LATERAL_BIAS_REMOVED</p>
+                        </div>
+                        <div class="kpi-card glass-panel">
+                            <h3>[ EXCEL_MATCH ]</h3>
+                            <div class="kpi-value text-success" id="kpi-match">0%</div>
+                            <p class="kpi-subtext">IDENTITY_VALIDATED</p>
+                        </div>
+                    </div>
+                    
+                    <div class="charts-grid-2">
+                        <div class="chart-card glass-panel">
+                            <h3>[ AGE_DISTRIBUTION ]</h3>
+                            <div class="chart-container">
+                                <div id="ageDistributionChart" style="width:100%;height:100%;"></div>
+                            </div>
+                        </div>
+                        <div class="chart-card glass-panel">
+                            <h3>[ GROUP_COMPOSITION ]</h3>
+                            <div class="chart-container">
+                                <div id="groupCompositionChart" style="width:100%;height:100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Priming View -->
+                <div id="priming" class="view">
+                    <div class="validation-box">
+                        <h4>Fundamento Científico (Criterio A1)</h4>
+                        <p>Basado en el <strong>Criterio A1 (Especificidad del Priming en AR)</strong>. El "Spreading Activation" se mide puramente a través del <em>Association Rate (AR)</em> de los estímulos objetivos. La latencia no es un marcador primario del priming debido al efecto inespecífico del contexto general. Este gráfico aísla los atributos semánticos verdaderamente impactados por la intervención.</p>
+                    </div>
+                    <div class="chart-card glass-panel full-width">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                            <div>
+                                <h3>[ AR_SHIFT ]</h3>
+                                <p class="chart-description" style="margin-bottom:0;">TARGET_VS_CONTROL_DELTA</p>
+                            </div>
+                            <div class="priming-toggle-container">
+                                <span class="toggle-label">Control</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="primingToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="toggle-label">Priming</span>
+                            </div>
+                        </div>
+                        <div class="chart-container large">
+                            <div id="primingShiftChart" style="width:100%;height:100%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="primingInsightsContainer" style="margin-top: 24px;"></div>
+                </div>
+
+                <!-- 3. Friction View -->
+                <div id="friction" class="view">
+                    <div class="validation-box">
+                        <h4>Normalización Cognitiva (Criterio A2)</h4>
+                        <p>El <strong>Criterio A2 (Carga Cognitiva Relativa)</strong> establece que la velocidad bruta (ms) confunde la agilidad motora con el acceso léxico. Este gráfico proyecta la latencia normalizada (línea base individual = 1.0x) cruzada con el Association Rate, revelando la verdadera fricción cognitiva sin artefactos demográficos.</p>
+                    </div>
+                    <div class="chart-card glass-panel full-width">
+                        <h3>[ FRICTION_SCATTER ]</h3>
+                        <p class="chart-description">Y: REL_LATENCY | X: ASSOCIATION_RATE</p>
+                        <div class="chart-container large">
+                            <div id="frictionScatterChart" style="width:100%;height:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Audience View -->
+                <div id="audience" class="view">
+                    <div class="validation-box">
+                        <h4>Arquitectura de Segmentación</h4>
+                        <p>La segmentación clasifica a la muestra fusionando la valencia direccional (Association Rate) con la certeza cognitiva (Fricción). Identifica a los <strong>Polarizados</strong> (alta asociación, baja fricción), <strong>Ambivalentes</strong> (alta fricción o conflicto semántico) y <strong>Distantes</strong>, proporcionando un framework predictivo para el comportamiento del consumidor.</p>
+                    </div>
+                    <div class="charts-grid-2">
+                        <div class="chart-card glass-panel">
+                            <h3>[ AUDIENCE_SEGMENTS ]</h3>
+                            <p class="chart-description">POLARIZATION_VS_AMBIVALENCE</p>
+                            <div class="chart-container">
+                                <div id="audiencePieChart" style="width:100%;height:100%;"></div>
+                            </div>
+                        </div>
+                        <div class="chart-card glass-panel">
+                            <h3>[ SYSTEM_INSIGHTS ]</h3>
+                            <ul class="insights-list">
+                                <li>
+                                    <span class="insight-icon success"></span>
+                                    <div class="insight-text">
+                                        <strong>STRONG_POLARIZATION</strong>
+                                        TARGET: 'CONFIABLE' | +65% FAVORABLE
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="insight-icon warning"></span>
+                                    <div class="insight-text">
+                                        <strong>HIGH_AMBIVALENCE</strong>
+                                        TARGET: 'DIVERTIDO' | HIGH_LATENCY_DETECTED
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Stimulus Telemetry View -->
+                <div id="telemetry" class="view">
+                    <div class="validation-box">
+                        <h4>Telemetría Biométrica Predictiva (Digital Predict Engine)</h4>
+                        <p>Evaluación continua segundo a segundo del estímulo audiovisual (Comercial <strong>Hugo Sánchez</strong>, 03:05 min) mediante 4.461 frames procesados. Permite auditar la sincronía entre picos de atención visual, variaciones de carga cognitiva y la posterior facilitación/fricción en la prueba IAT.</p>
+                    </div>
+
+                    <!-- Split Screen: Video Player + Live HUD -->
+                    <div class="telemetry-split-container">
+                        <!-- Left Panel: Video Player & Layer Controls -->
+                        <div class="video-player-card glass-panel">
+                            <div class="video-header">
+                                <div>
+                                    <h3 class="panel-title">[ STIMULUS_PLAYER ]</h3>
+                                    <span class="video-sublabel">Hugo_Sanchez_Spot_3m05s</span>
+                                </div>
+                                <div class="layer-switcher">
+                                    <button class="layer-btn active" data-layer="clean">Original</button>
+                                    <button class="layer-btn" data-layer="heatmap">Heatmap</button>
+                                    <button class="layer-btn" data-layer="fogmap">Fogmap</button>
+                                </div>
+                            </div>
+                            
+                            <div class="video-wrapper">
+                                <video id="video-clean" class="layer-video active" src="assets/video/Hugo_Sanchez.mp4" playsinline controls preload="auto"></video>
+                                <video id="video-heatmap" class="layer-video" src="assets/video/Hugo_Sanchez_total_attention_heatmap.mp4" playsinline muted preload="auto"></video>
+                                <video id="video-fogmap" class="layer-video" src="assets/video/Hugo_Sanchez_total_attention_fogmap.mp4" playsinline muted preload="auto"></video>
+                            </div>
+
+                            <div class="video-footer-info">
+                                <div class="time-readout">
+                                    <span class="time-label">TIME:</span>
+                                    <span id="videoCurrentTime" class="mono-value">00:00.0</span> / <span id="videoTotalDuration" class="mono-muted">03:05.8</span>
+                                </div>
+                                <div class="frame-readout">
+                                    <span class="time-label">FRAME:</span>
+                                    <span id="videoCurrentFrame" class="mono-value">1</span> / <span class="mono-muted">4461</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Live HUD -->
+                        <div class="telemetry-hud-card glass-panel">
+                            <div class="hud-header">
+                                <h3 class="panel-title">[ REALTIME_BIOMETRIC_HUD ]</h3>
+                                <div class="nis-badge">
+                                    <span class="nis-label">DPS (DIGITAL PREDICT SCORE):</span>
+                                    <span id="hudNisScore" class="nis-score">-- <small>/10</small></span>
+                                    <span id="hudNisStatus" class="nis-status-pill status-neutral">--</span>
+                                </div>
+                            </div>
+
+                            <!-- Realtime Meters -->
+                            <div class="hud-meters-grid">
+                                <!-- Focus -->
+                                <div class="hud-meter-item">
+                                    <div class="meter-info">
+                                        <span class="meter-name">🎯 FOCUS (ATENCIÓN VISUAL)</span>
+                                        <span id="hudValFocus" class="meter-val">--</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div id="hudBarFocus" class="progress-fill fill-blue" style="width: 0%;"></div>
+                                        <div class="benchmark-range" style="left: 55.6%; width: 14.7%;" title="Rango Óptimo: 55.6% - 70.3%"></div>
+                                        <div id="avgPointerFocus" class="avg-pointer" style="left: 0%;" title="Promedio Acumulado"></div>
+                                    </div>
+                                    <div class="meter-footer">
+                                        <span class="meter-sub">Rango Óptimo: 55.6 - 70.3</span>
+                                        <span id="hudStatusFocus" class="meter-status status-neutral">--</span>
+                                    </div>
+                                </div>
+
+                                <!-- Cognitive Demand -->
+                                <div class="hud-meter-item">
+                                    <div class="meter-info">
+                                        <span class="meter-name">⚡ COGNITIVE DEMAND (CARGA)</span>
+                                        <span id="hudValDemand" class="meter-val">--</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div id="hudBarDemand" class="progress-fill fill-amber" style="width: 0%;"></div>
+                                        <div class="benchmark-range" style="left: 46.1%; width: 10.3%;" title="Rango Óptimo: 46.1% - 56.4%"></div>
+                                        <div id="avgPointerDemand" class="avg-pointer" style="left: 0%;" title="Promedio Acumulado"></div>
+                                    </div>
+                                    <div class="meter-footer">
+                                        <span class="meter-sub">Rango Óptimo: 46.1 - 56.4</span>
+                                        <span id="hudStatusDemand" class="meter-status status-neutral">--</span>
+                                    </div>
+                                </div>
+
+                                <!-- Engagement -->
+                                <div class="hud-meter-item">
+                                    <div class="meter-info">
+                                        <span class="meter-name">❤️ ENGAGEMENT (CONEXIÓN)</span>
+                                        <span id="hudValEngagement" class="meter-val">--</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div id="hudBarEngagement" class="progress-fill fill-emerald" style="width: 0%;"></div>
+                                        <div class="benchmark-range" style="left: 65.0%; width: 11.2%;" title="Rango Óptimo: 65.0% - 76.2%"></div>
+                                        <div id="avgPointerEngagement" class="avg-pointer" style="left: 0%;" title="Promedio Acumulado"></div>
+                                    </div>
+                                    <div class="meter-footer">
+                                        <span class="meter-sub">Rango Óptimo: 65.0 - 76.2</span>
+                                        <span id="hudStatusEngagement" class="meter-status status-neutral">--</span>
+                                    </div>
+                                </div>
+
+                                <!-- Memory -->
+                                <div class="hud-meter-item">
+                                    <div class="meter-info">
+                                        <span class="meter-name">🧠 MEMORY (RETENCIÓN)</span>
+                                        <span id="hudValMemory" class="meter-val">--</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div id="hudBarMemory" class="progress-fill fill-purple" style="width: 0%;"></div>
+                                        <div class="benchmark-range" style="left: 62.9%; width: 9.0%;" title="Rango Óptimo: 62.9% - 71.9%"></div>
+                                        <div id="avgPointerMemory" class="avg-pointer" style="left: 0%;" title="Promedio Acumulado"></div>
+                                    </div>
+                                    <div class="meter-footer">
+                                        <span class="meter-sub">Rango Óptimo: 62.9 - 71.9</span>
+                                        <span id="hudStatusMemory" class="meter-status status-neutral">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Panel: Full Timeline Curve Scrubbing -->
+                    <div class="chart-card glass-panel" style="margin-top: 24px;">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>[ CONTINUOUS_TELEMETRY_TIMELINE ]</h3>
+                                <p class="chart-description">TRAZADO PROGRESIVO EN VIVO | HAZ CLIC EN LA CURVA PARA NAVEGAR EL VIDEO</p>
+                            </div>
+                            <div class="channel-filter-group">
+                                <button class="channel-filter-btn active" data-channel="all">ALL (5)</button>
+                                <button class="channel-filter-btn" data-channel="focus"><span class="leg-dot blue"></span> Focus</button>
+                                <button class="channel-filter-btn" data-channel="demand"><span class="leg-dot amber"></span> Cognitive Demand</button>
+                                <button class="channel-filter-btn" data-channel="engagement"><span class="leg-dot emerald"></span> Engagement</button>
+                                <button class="channel-filter-btn" data-channel="memory"><span class="leg-dot purple"></span> Memory</button>
+                                <button class="channel-filter-btn" data-channel="dps"><span class="leg-dot rose"></span> DPS Score</button>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="height: 320px; position: relative;">
+                            <div id="telemetryTimelineChart" style="width:100%;height:100%;"></div>
+                        </div>
+
+                        <!-- Live Scene Diagnostic (Ubicado abajo del gráfico de Plotly) -->
+                        <div class="live-diagnostic-box" style="margin-top: 16px;">
+                            <span class="diag-title">DIAGNÓSTICO DIGITAL PREDICT:</span>
+                            <p id="liveDiagnosticText" class="diag-text">Inicia la reproducción para observar la telemetría en tiempo real.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- App Logic -->
+    <script src="js/telemetry.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
