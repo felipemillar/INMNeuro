@@ -4,7 +4,7 @@ Plataforma analítica y visor interactivo de telemetría biométrica y neurocogn
 
 ---
 
-## 🔬 Descripción General
+## Descripcion General
 
 El **INMNeuro Digital Predict Dashboard** permite reproducir y auditar piezas audiovisuales en sincronía frame a frame (60 fps) con sus modelos de atención visual y sus dimensiones neurobiológicas:
 
@@ -26,7 +26,7 @@ El **INMNeuro Digital Predict Dashboard** permite reproducir y auditar piezas au
 
 ---
 
-## 🛠️ Características Principales
+## Caracteristicas Principales
 
 - **Reproducción Multi-Capa con Cambio de Vista Instantáneo:**
   - `Original`: Comercial limpio en alta definición.
@@ -46,7 +46,7 @@ El **INMNeuro Digital Predict Dashboard** permite reproducir y auditar piezas au
 
 ---
 
-## 📂 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 INMNeuro/
@@ -71,7 +71,7 @@ INMNeuro/
 
 ---
 
-## 🚀 Ejecución en Local
+## Ejecucion en Local
 
 Puedes correr el dashboard con cualquier servidor HTTP estático:
 
@@ -87,12 +87,12 @@ Luego abre tu navegador en `http://localhost:8080`.
 
 ---
 
-## 📖 Documentación Científica
+## Documentacion Cientifica
 
 Para conocer el modelo matemático, la base neurobiológica y los intervalos normativos de referencia, consulta [docs/base_teorica_telemetria_biometrica.md](docs/base_teorica_telemetria_biometrica.md).
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 © 2026 INMNeuro. Todos los derechos reservados.

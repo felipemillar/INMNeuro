@@ -97,7 +97,7 @@ async function initTelemetryEngine() {
             return;
         }
         telemetryData = await response.json();
-        console.log(`✅ Telemetría cargada: ${telemetryData.meta.total_frames} frames`);
+        console.log(`Telemetría cargada: ${telemetryData.meta.total_frames} frames`);
 
         prepareFullTimeSeries();
         setupMultiVideoSync();
