@@ -28,21 +28,17 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                     [ DIGITAL PREDICT ]
                 </li>
-                <li data-view="overview">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                    [ SYS_OVERVIEW ]
+                <li data-view="eyetracking">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+                    [ EYE TRACKING ]
                 </li>
-                <li data-view="priming">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                    [ TARGET_AR ]
+                <li data-view="iat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l3-9 5 18 3-9h5"></path></svg>
+                    [ ASOCIACIONES IMPLÍCITAS ]
                 </li>
-                <li data-view="friction">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    [ FRICTION_MS ]
-                </li>
-                <li data-view="audience">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    [ SEGMENTATION ]
+                <li data-view="settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    [ AJUSTES ]
                 </li>
             </ul>
         </nav>
@@ -63,123 +59,173 @@
             <!-- Views Container -->
             <div class="views-container">
                 
-                <!-- 1. Overview View -->
-                <div id="overview" class="view">
+                <!-- 2. Eye Tracking View (Placeholder) -->
+                <div id="eyetracking" class="view">
                     <div class="validation-box">
-                        <h4>Validación Metodológica (Criterio B1)</h4>
-                        <p>El motor aplica el <strong>Criterio B1 (Exclusión de Sesgo de Lateralidad)</strong>. Se eliminan automáticamente los participantes (satisficers) que responden con la misma tecla más del 80% del tiempo. Esto previene falsos positivos y asegura que la métrica refleje el proceso cognitivo real y no un patrón motor automático.</p>
-                    </div>
-                    <div class="kpi-grid">
-                        <div class="kpi-card glass-panel">
-                            <h3>[ VALID_N ]</h3>
-                            <div class="kpi-value" id="kpi-n">0</div>
-                            <p class="kpi-subtext">TOTAL_SUBJECTS</p>
-                        </div>
-                        <div class="kpi-card glass-panel">
-                            <h3>[ EXCLUSION_RATE ]</h3>
-                            <div class="kpi-value text-warning" id="kpi-exclusion">0%</div>
-                            <p class="kpi-subtext">B1_LATERAL_BIAS_REMOVED</p>
-                        </div>
-                        <div class="kpi-card glass-panel">
-                            <h3>[ EXCEL_MATCH ]</h3>
-                            <div class="kpi-value text-success" id="kpi-match">0%</div>
-                            <p class="kpi-subtext">IDENTITY_VALIDATED</p>
-                        </div>
-                    </div>
-                    
-                    <div class="charts-grid-2">
-                        <div class="chart-card glass-panel">
-                            <h3>[ AGE_DISTRIBUTION ]</h3>
-                            <div class="chart-container">
-                                <div id="ageDistributionChart" style="width:100%;height:100%;"></div>
-                            </div>
-                        </div>
-                        <div class="chart-card glass-panel">
-                            <h3>[ GROUP_COMPOSITION ]</h3>
-                            <div class="chart-container">
-                                <div id="groupCompositionChart" style="width:100%;height:100%;"></div>
-                            </div>
-                        </div>
+                        <h4>Eye Tracking Analytics</h4>
+                        <p>Módulo de análisis visual para Ecommerce e Instagram (En desarrollo).</p>
                     </div>
                 </div>
 
-                <!-- 2. Priming View -->
-                <div id="priming" class="view">
+                <!-- 3. Asociaciones Implícitas (IAT) View -->
+                <div id="iat" class="view">
                     <div class="validation-box">
-                        <h4>Fundamento Científico (Criterio A1)</h4>
-                        <p>Basado en el <strong>Criterio A1 (Especificidad del Priming en AR)</strong>. El "Spreading Activation" se mide puramente a través del <em>Association Rate (AR)</em> de los estímulos objetivos. La latencia no es un marcador primario del priming debido al efecto inespecífico del contexto general. Este gráfico aísla los atributos semánticos verdaderamente impactados por la intervención.</p>
+                        <h4>Implicit Association Test (IAT) - Demo Charly vs Puma</h4>
+                        <p>Análisis del impacto cognitivo y percepción de marca midiendo tiempos de reacción. Los gráficos muestran cómo la exposición a contenido (Priming) modifica las asociaciones subconscientes de los consumidores frente al grupo Control.</p>
                     </div>
-                    <div class="chart-card glass-panel full-width">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                    
+                    <div class="kpi-grid">
+                        <div class="kpi-card glass-panel">
+                            <h3>[ LIFT_PROMEDIO ]</h3>
+                            <div class="kpi-value text-success">+22%</div>
+                            <p class="kpi-subtext">INCREMENTO_COGNITIVO_POST_PRIMING</p>
+                        </div>
+                        <div class="kpi-card glass-panel">
+                            <h3>[ TOP_GROWTH ]</h3>
+                            <div class="kpi-value">FUTBOL</div>
+                            <p class="kpi-subtext">LIFT: +28.6 PUNTOS (1.6 &rarr; 36.9)</p>
+                        </div>
+                        <div class="kpi-card glass-panel">
+                            <h3>[ KEY_ADVANTAGE ]</h3>
+                            <div class="kpi-value text-success">ECOLÓGICO</div>
+                            <p class="kpi-subtext">CHARLY 38.3 vs PUMA 22.0</p>
+                        </div>
+                    </div>
+
+                    <!-- Semantic Differential Analysis -->
+                    <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
+                        <div class="chart-header" style="display:flex; justify-content:space-between; align-items:flex-start;">
                             <div>
-                                <h3>[ AR_SHIFT ]</h3>
-                                <p class="chart-description" style="margin-bottom:0;">TARGET_VS_CONTROL_DELTA</p>
+                                <h3>[ AR_SHIFT ] DIFERENCIAL_SEMÁNTICO</h3>
+                                <p class="chart-description">TARGET_VS_CONTROL_DELTA</p>
                             </div>
                             <div class="priming-toggle-container">
-                                <span class="toggle-label">Control</span>
+                                <span class="toggle-label active">Control</span>
                                 <label class="toggle-switch">
-                                    <input type="checkbox" id="primingToggle">
+                                    <input type="checkbox" id="iatSemanticToggle">
                                     <span class="toggle-slider"></span>
                                 </label>
                                 <span class="toggle-label">Priming</span>
                             </div>
                         </div>
-                        <div class="chart-container large">
-                            <div id="primingShiftChart" style="width:100%;height:100%;"></div>
+                        <div class="chart-container large" style="height: 500px; margin-top:10px;">
+                            <div id="iatSemanticDumbbellChart" style="width:100%;height:100%;"></div>
                         </div>
                     </div>
-                    
-                    <div id="primingInsightsContainer" style="margin-top: 24px;"></div>
-                </div>
 
-                <!-- 3. Friction View -->
-                <div id="friction" class="view">
-                    <div class="validation-box">
-                        <h4>Normalización Cognitiva (Criterio A2)</h4>
-                        <p>El <strong>Criterio A2 (Carga Cognitiva Relativa)</strong> establece que la velocidad bruta (ms) confunde la agilidad motora con el acceso léxico. Este gráfico proyecta la latencia normalizada (línea base individual = 1.0x) cruzada con el Association Rate, revelando la verdadera fricción cognitiva sin artefactos demográficos.</p>
-                    </div>
-                    <div class="chart-card glass-panel full-width">
-                        <h3>[ FRICTION_SCATTER ]</h3>
-                        <p class="chart-description">Y: REL_LATENCY | X: ASSOCIATION_RATE</p>
-                        <div class="chart-container large">
-                            <div id="frictionScatterChart" style="width:100%;height:100%;"></div>
+                    <!-- Lift Table -->
+                    <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
+                        <h3>[ LIFT_ANALYSIS ] TABLA DE IMPACTO</h3>
+                        <p class="chart-description">INCREMENTO NUMÉRICO GENERADO POR EL ESTÍMULO (PRIMING) SOBRE EL GRUPO CONTROL</p>
+                        
+                        <div class="lift-table-container" style="margin-top: 20px;">
+                            <div class="lift-table">
+                                <!-- Headers -->
+                                <div class="lift-row lift-header">
+                                    <div class="lift-cell attr-col"></div>
+                                    <div class="lift-cell">Control</div>
+                                    <div class="lift-cell">Priming</div>
+                                    <div class="lift-cell">Lift</div>
+                                </div>
+                                
+                                <!-- Tecnológico -->
+                                <div class="lift-row above-avg">
+                                    <div class="lift-cell attr-col">Tecnológico</div>
+                                    <div class="lift-cell pill-control">29.3</div>
+                                    <div class="lift-cell pill-priming">51.4</div>
+                                    <div class="lift-cell pill-lift">22.1</div>
+                                </div>
+                                <!-- Barato -->
+                                <div class="lift-row">
+                                    <div class="lift-cell attr-col">Barato</div>
+                                    <div class="lift-cell pill-control">42.5</div>
+                                    <div class="lift-cell pill-priming">48.6</div>
+                                    <div class="lift-cell pill-lift">6.1</div>
+                                </div>
+                                <!-- Calidad -->
+                                <div class="lift-row">
+                                    <div class="lift-cell attr-col">Calidad</div>
+                                    <div class="lift-cell pill-control">42.7</div>
+                                    <div class="lift-cell pill-priming">52.4</div>
+                                    <div class="lift-cell pill-lift">9.7</div>
+                                </div>
+                                <!-- Futbol -->
+                                <div class="lift-row above-avg">
+                                    <div class="lift-cell attr-col">Futbol</div>
+                                    <div class="lift-cell pill-control">25.6</div>
+                                    <div class="lift-cell pill-priming">54.1</div>
+                                    <div class="lift-cell pill-lift">28.6</div>
+                                </div>
+                                <!-- Ecológico -->
+                                <div class="lift-row">
+                                    <div class="lift-cell attr-col">Ecológico</div>
+                                    <div class="lift-cell pill-control">31.2</div>
+                                    <div class="lift-cell pill-priming">49.0</div>
+                                    <div class="lift-cell pill-lift">17.9</div>
+                                </div>
+                                <!-- Variedad -->
+                                <div class="lift-row above-avg">
+                                    <div class="lift-cell attr-col">Variedad</div>
+                                    <div class="lift-cell pill-control">27.2</div>
+                                    <div class="lift-cell pill-priming">49.9</div>
+                                    <div class="lift-cell pill-lift">22.6</div>
+                                </div>
+                                <!-- Demanda -->
+                                <div class="lift-row">
+                                    <div class="lift-cell attr-col">Demanda</div>
+                                    <div class="lift-cell pill-control">9.0</div>
+                                    <div class="lift-cell pill-priming">24.0</div>
+                                    <div class="lift-cell pill-lift">15.0</div>
+                                </div>
+                                <!-- Premium -->
+                                <div class="lift-row">
+                                    <div class="lift-cell attr-col">Premium</div>
+                                    <div class="lift-cell pill-control">18.0</div>
+                                    <div class="lift-cell pill-priming">28.9</div>
+                                    <div class="lift-cell pill-lift">10.8</div>
+                                </div>
+                            </div>
+                            
+                            <div class="lift-annotation">
+                                <h2 class="lift-avg-title">Lift - 22%</h2>
+                                <p class="lift-avg-desc">Atributos que están por encima del promedio</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 4. Audience View -->
-                <div id="audience" class="view">
-                    <div class="validation-box">
-                        <h4>Arquitectura de Segmentación</h4>
-                        <p>La segmentación clasifica a la muestra fusionando la valencia direccional (Association Rate) con la certeza cognitiva (Fricción). Identifica a los <strong>Polarizados</strong> (alta asociación, baja fricción), <strong>Ambivalentes</strong> (alta fricción o conflicto semántico) y <strong>Distantes</strong>, proporcionando un framework predictivo para el comportamiento del consumidor.</p>
+                    <!-- Monadic Analysis -->
+                    <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
+                        <h3>[ ANÁLISIS_MONÁDICO: CHARLY LIFT ]</h3>
+                        <p class="chart-description">CONTROL (SIN ESTÍMULO) VS PRIMING (CON ESTÍMULO)</p>
+                        <div class="chart-container large" style="height: 450px;">
+                            <div id="iatMonadicChart" style="width:100%;height:100%;"></div>
+                        </div>
                     </div>
-                    <div class="charts-grid-2">
+
+                    <!-- Benchmark Analysis -->
+                    <div class="charts-grid-2" style="margin-top: 24px;">
                         <div class="chart-card glass-panel">
-                            <h3>[ AUDIENCE_SEGMENTS ]</h3>
-                            <p class="chart-description">POLARIZATION_VS_AMBIVALENCE</p>
-                            <div class="chart-container">
-                                <div id="audiencePieChart" style="width:100%;height:100%;"></div>
+                            <h3>[ BENCHMARK: CONTROL ]</h3>
+                            <p class="chart-description">CHARLY VS PUMA (SIN ESTÍMULO)</p>
+                            <div class="chart-container" style="height: 400px;">
+                                <div id="iatBenchmarkControlChart" style="width:100%;height:100%;"></div>
                             </div>
                         </div>
                         <div class="chart-card glass-panel">
-                            <h3>[ SYSTEM_INSIGHTS ]</h3>
-                            <ul class="insights-list">
-                                <li>
-                                    <span class="insight-icon success"></span>
-                                    <div class="insight-text">
-                                        <strong>STRONG_POLARIZATION</strong>
-                                        TARGET: 'CONFIABLE' | +65% FAVORABLE
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="insight-icon warning"></span>
-                                    <div class="insight-text">
-                                        <strong>HIGH_AMBIVALENCE</strong>
-                                        TARGET: 'DIVERTIDO' | HIGH_LATENCY_DETECTED
-                                    </div>
-                                </li>
-                            </ul>
+                            <h3>[ BENCHMARK: PRIMING ]</h3>
+                            <p class="chart-description">CHARLY VS PUMA (TRAS VER POSTS)</p>
+                            <div class="chart-container" style="height: 400px;">
+                                <div id="iatBenchmarkPrimingChart" style="width:100%;height:100%;"></div>
+                            </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- 4. Settings View (Placeholder) -->
+                <div id="settings" class="view">
+                    <div class="validation-box">
+                        <h4>Ajustes del Sistema</h4>
+                        <p>Configuración del panel (En desarrollo).</p>
                     </div>
                 </div>
 
@@ -308,8 +354,16 @@
                         </div>
                     </div>
 
+                    <!-- Timeline Connector (Cable Magnético Táctil) -->
+                    <div class="timeline-connector-container" id="timelineConnector">
+                        <div class="connector-track" id="connectorTrack">
+                            <div class="connector-fill" id="connectorFill"></div>
+                            <div class="connector-handle" id="connectorHandle"></div>
+                        </div>
+                    </div>
+
                     <!-- Bottom Panel: Full Timeline Curve Scrubbing -->
-                    <div class="chart-card glass-panel" style="margin-top: 24px;">
+                    <div class="chart-card glass-panel" style="margin-top: 12px;">
                         <div class="timeline-header">
                             <div>
                                 <h3>[ CONTINUOUS_TELEMETRY_TIMELINE ]</h3>
@@ -340,8 +394,8 @@
         </main>
     </div>
 
-    <!-- App Logic -->
-    <script src="js/telemetry.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/telemetry.js?v=11"></script>
+    <script src="js/iat_charts.js?v=11"></script>
+    <script src="js/app.js?v=11"></script>
 </body>
 </html>

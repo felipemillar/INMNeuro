@@ -103,6 +103,7 @@ async function initTelemetryEngine() {
         setupMultiVideoSync();
         setupLayerControls();
         setupChannelFilters();
+        setupTimelineConnector();
         initProgressiveTimelineChart();
     } catch (err) {
         console.error('Error al inicializar telemetría:', err);
@@ -908,4 +909,34 @@ function updateProgressiveTimeline(currentTime, force = false) {
         shapes: shapes,
         annotations: annotations
     }).catch(() => {});
+
+    // Actualizar barra magnética (Idea 7)
+    const maxDur = (telemetryData && telemetryData.meta) ? telemetryData.meta.duration_seconds : 185.8;
+    const progressPercent = Math.min(100, Math.max(0, (currentTime / maxDur) * 100));
+    const connectorFill = document.querySelector('.connector-fill');
+    const connectorHandle = document.querySelector('.connector-handle');
+    if (connectorFill) connectorFill.style.width = `${progressPercent}%`;
+    if (connectorHandle) connectorHandle.style.left = `${progressPercent}%`;
+}
+
+function setupTimelineConnector() {
+    const track = document.querySelector('.connector-track');
+    if (!track) return;
+    
+    track.addEventListener('click', (e) => {
+        const rect = track.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const percent = Math.min(Math.max(clickX / rect.width, 0), 1);
+        const maxDur = (telemetryData && telemetryData.meta) ? telemetryData.meta.duration_seconds : 185.8;
+        const targetTime = percent * maxDur;
+        
+        const { clean, heatmap, fogmap } = getLayerVideos();
+        if (clean) {
+            clean.currentTime = targetTime;
+            if (heatmap) heatmap.currentTime = targetTime;
+            if (fogmap) fogmap.currentTime = targetTime;
+            syncHUDWithVideo(targetTime);
+            updateProgressiveTimeline(targetTime, true);
+        }
+    });
 }

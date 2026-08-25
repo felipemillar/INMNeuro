@@ -52,6 +52,9 @@ function initNavigation() {
 
     const viewMeta = {
         'telemetry': { title: '[ DIGITAL PREDICT ]', sub: 'BIOMETRIC_TELEMETRY_AND_TIMELINE_SYNC' },
+        'eyetracking': { title: '[ EYE TRACKING ]', sub: 'MÓDULO DE ANÁLISIS VISUAL' },
+        'iat': { title: '[ ASOCIACIONES IMPLÍCITAS ]', sub: 'DEMO CHARLY VS PUMA' },
+        'settings': { title: '[ AJUSTES ]', sub: 'CONFIGURACIÓN DEL SISTEMA' },
         'overview': { title: '[ SYS_OVERVIEW ]', sub: 'PIPELINE_METRICS_AND_VALIDATION' },
         'priming': { title: '[ TARGET_AR ]', sub: 'TARGET_VS_CONTROL_DELTA' },
         'friction': { title: '[ FRICTION_MS ]', sub: 'Y: REL_LATENCY | X: ASSOCIATION_RATE' },
@@ -84,110 +87,120 @@ function initNavigation() {
 }
 
 function updateKPIs() {
-    document.getElementById('kpi-n').textContent = appData.overview.n_total;
-    document.getElementById('kpi-exclusion').textContent = appData.overview.exclusion_rate;
-    document.getElementById('kpi-match').textContent = appData.overview.excel_match_rate;
+    const kpiN = document.getElementById('kpi-n');
+    const kpiExcl = document.getElementById('kpi-exclusion');
+    const kpiMatch = document.getElementById('kpi-match');
+
+    if (kpiN) kpiN.textContent = appData.overview.n_total;
+    if (kpiExcl) kpiExcl.textContent = appData.overview.exclusion_rate;
+    if (kpiMatch) kpiMatch.textContent = appData.overview.excel_match_rate;
 }
 
 function initCharts() {
     // 1. Age Distribution (Treemap)
-    const ageLabels = Object.keys(appData.overview.demographics.age);
-    const ageCounts = Object.values(appData.overview.demographics.age);
-    
-    const ageData = [{
-        type: "treemap",
-        labels: ageLabels,
-        parents: ageLabels.map(() => 'Muestra'),
-        values: ageCounts,
-        textinfo: "label+value+percent parent",
-        marker: {
-            colors: ['#0f172a', '#3b82f6', '#10b981', '#94a3b8'],
-            line: { width: 2, color: '#ffffff' }
-        }
-    }];
-    Plotly.newPlot('ageDistributionChart', ageData, { ...layoutConfig, margin: {t:0, l:0, r:0, b:0} }, {displayModeBar: false});
+    if (document.getElementById('ageDistributionChart')) {
+        const ageLabels = Object.keys(appData.overview.demographics.age);
+        const ageCounts = Object.values(appData.overview.demographics.age);
+        
+        const ageData = [{
+            type: "treemap",
+            labels: ageLabels,
+            parents: ageLabels.map(() => 'Muestra'),
+            values: ageCounts,
+            textinfo: "label+value+percent parent",
+            marker: {
+                colors: ['#0f172a', '#3b82f6', '#10b981', '#94a3b8'],
+                line: { width: 2, color: '#ffffff' }
+            }
+        }];
+        Plotly.newPlot('ageDistributionChart', ageData, { ...layoutConfig, margin: {t:0, l:0, r:0, b:0} }, {displayModeBar: false});
+    }
 
     // 2. Group Composition (Stacked Horizontal Bar)
-    const groupLabels = Object.keys(appData.overview.demographics.groups);
-    const groupCounts = Object.values(appData.overview.demographics.groups);
-    
-    const groupDataObj = groupLabels.map((label, index) => ({
-        y: ['Grupos'], x: [groupCounts[index]],
-        name: label, type: 'bar', orientation: 'h',
-        marker: { color: index === 0 ? '#e2e8f0' : '#3b82f6', line: {width: 2, color: '#ffffff'} }
-    }));
-    
-    const groupLayout = { 
-        ...layoutConfig, 
-        barmode: 'stack', 
-        xaxis: { visible: false }, 
-        yaxis: { visible: false },
-        margin: {t:20, b:20, l:0, r:0},
-        showlegend: true,
-        legend: { orientation: 'h', y: 1.2 }
-    };
-    Plotly.newPlot('groupCompositionChart', groupDataObj, groupLayout, {displayModeBar: false});
+    if (document.getElementById('groupCompositionChart')) {
+        const groupLabels = Object.keys(appData.overview.demographics.groups);
+        const groupCounts = Object.values(appData.overview.demographics.groups);
+        
+        const groupDataObj = groupLabels.map((label, index) => ({
+            y: ['Grupos'], x: [groupCounts[index]],
+            name: label, type: 'bar', orientation: 'h',
+            marker: { color: index === 0 ? '#e2e8f0' : '#3b82f6', line: {width: 2, color: '#ffffff'} }
+        }));
+        
+        const groupLayout = { 
+            ...layoutConfig, 
+            barmode: 'stack', 
+            xaxis: { visible: false }, 
+            yaxis: { visible: false },
+            margin: {t:20, b:20, l:0, r:0},
+            showlegend: true,
+            legend: { orientation: 'h', y: 1.2 }
+        };
+        Plotly.newPlot('groupCompositionChart', groupDataObj, groupLayout, {displayModeBar: false});
+    }
 
     // 3. Priming Shift (Dumbbell Plot) - Animatable
-    const shiftData = [];
-    appData.priming.labels.forEach((label, i) => {
-        const c_ar = appData.priming.control_ar[i];
-        
-        // Trace 0,3,6...: Line connecting dots (Init: C_AR to C_AR, invisible)
-        shiftData.push({
-            x: [c_ar, c_ar],
-            y: [label, label],
-            mode: 'lines',
-            line: { color: 'rgba(203, 213, 225, 0)', width: 4 },
-            showlegend: false
+    if (document.getElementById('primingShiftChart')) {
+        const shiftData = [];
+        appData.priming.labels.forEach((label, i) => {
+            const c_ar = appData.priming.control_ar[i];
+            
+            // Trace 0,3,6...: Line connecting dots (Init: C_AR to C_AR, invisible)
+            shiftData.push({
+                x: [c_ar, c_ar],
+                y: [label, label],
+                mode: 'lines',
+                line: { color: 'rgba(203, 213, 225, 0)', width: 4 },
+                showlegend: false
+            });
+            
+            // Trace 1,4,7...: Control Dot (Init: Opacity 1.0)
+            shiftData.push({
+                x: [c_ar], y: [label],
+                mode: 'markers+text', name: i===0 ? 'Control' : '',
+                marker: { color: '#e2e8f0', size: 16, line: {color: '#94a3b8', width: 2}, opacity: 1.0 },
+                showlegend: i === 0, text: c_ar.toFixed(1)+'%', textposition: 'bottom center'
+            });
+            
+            // Trace 2,5,8...: Priming Dot (Init: at C_AR, Opacity 0)
+            shiftData.push({
+                x: [c_ar], y: [label],
+                mode: 'markers+text', name: i===0 ? 'Priming' : '',
+                marker: { color: '#0f172a', size: 16, opacity: 0 },
+                showlegend: i === 0, text: c_ar.toFixed(1)+'%', textposition: 'top center',
+                textfont: { color: 'rgba(0,0,0,0)' }
+            });
         });
         
-        // Trace 1,4,7...: Control Dot (Init: Opacity 1.0)
-        shiftData.push({
-            x: [c_ar], y: [label],
-            mode: 'markers+text', name: i===0 ? 'Control' : '',
-            marker: { color: '#e2e8f0', size: 16, line: {color: '#94a3b8', width: 2}, opacity: 1.0 },
-            showlegend: i === 0, text: c_ar.toFixed(1)+'%', textposition: 'bottom center'
-        });
-        
-        // Trace 2,5,8...: Priming Dot (Init: at C_AR, Opacity 0)
-        shiftData.push({
-            x: [c_ar], y: [label],
-            mode: 'markers+text', name: i===0 ? 'Priming' : '',
-            marker: { color: '#0f172a', size: 16, opacity: 0 },
-            showlegend: i === 0, text: c_ar.toFixed(1)+'%', textposition: 'top center',
-            textfont: { color: 'rgba(0,0,0,0)' }
-        });
-    });
-    
-    const shiftLayout = {
-        ...layoutConfig,
-        xaxis: { ...axisConfig, title: 'Association Rate (%)', range: [0, 100] },
-        yaxis: { ...axisConfig, automargin: true },
-        yaxis2: { 
-            ...axisConfig, 
-            automargin: true, 
-            overlaying: 'y', 
-            side: 'right',
-            tickvals: appData.priming.labels,
-            ticktext: appData.priming.labels.map(l => {
-                const ops = {
-                    'tecnologico': 'artesanal',
-                    'premium': 'común',
-                    'barato': 'caro',
-                    'futbol': 'maratón',
-                    'variedad': 'limitado',
-                    'oferta': 'demanda',
-                    'calidad': 'deficiencia',
-                    'ecologico': 'contaminante'
-                };
-                return ops[l] || l;
-            }),
-            showgrid: false
-        },
-        hovermode: 'closest'
-    };
-    Plotly.newPlot('primingShiftChart', shiftData, shiftLayout, {displayModeBar: false});
+        const shiftLayout = {
+            ...layoutConfig,
+            xaxis: { ...axisConfig, title: 'Association Rate (%)', range: [0, 100] },
+            yaxis: { ...axisConfig, automargin: true },
+            yaxis2: { 
+                ...axisConfig, 
+                automargin: true, 
+                overlaying: 'y', 
+                side: 'right',
+                tickvals: appData.priming.labels,
+                ticktext: appData.priming.labels.map(l => {
+                    const ops = {
+                        'tecnologico': 'artesanal',
+                        'premium': 'común',
+                        'barato': 'caro',
+                        'futbol': 'maratón',
+                        'variedad': 'limitado',
+                        'oferta': 'demanda',
+                        'calidad': 'deficiencia',
+                        'ecologico': 'contaminante'
+                    };
+                    return ops[l] || l;
+                }),
+                showgrid: false
+            },
+            hovermode: 'closest'
+        };
+        Plotly.newPlot('primingShiftChart', shiftData, shiftLayout, {displayModeBar: false});
+    }
 
     // 3.1 Priming Toggle Animation Logic
     const primingToggle = document.getElementById('primingToggle');
@@ -266,77 +279,81 @@ function initCharts() {
     }
 
     // 4. Friction Scatter
-    const scatterData = [
-        {
-            x: appData.friction.control.ar,
-            y: appData.friction.control.latency,
-            mode: 'markers',
-            type: 'scatter',
-            name: 'Control',
-            marker: { color: '#94a3b8', size: 12, opacity: 0.8, line: {width: 1, color: '#ffffff'} },
-            text: appData.friction.attributes,
-            hovertemplate: 'Atributo: %{text}<br>AR: %{x:.1f}%<br>Lat: %{y:.2f}x<extra></extra>'
-        },
-        {
-            x: appData.friction.priming.ar,
-            y: appData.friction.priming.latency,
-            mode: 'markers',
-            type: 'scatter',
-            name: 'Priming',
-            marker: { color: '#3b82f6', size: 12, opacity: 0.8, line: {width: 1, color: '#ffffff'} },
-            text: appData.friction.attributes,
-            hovertemplate: 'Atributo: %{text}<br>AR: %{x:.1f}%<br>Lat: %{y:.2f}x<extra></extra>'
-        }
-    ];
+    if (document.getElementById('frictionScatterChart')) {
+        const scatterData = [
+            {
+                x: appData.friction.control.ar,
+                y: appData.friction.control.latency,
+                mode: 'markers',
+                type: 'scatter',
+                name: 'Control',
+                marker: { color: '#94a3b8', size: 12, opacity: 0.8, line: {width: 1, color: '#ffffff'} },
+                text: appData.friction.attributes,
+                hovertemplate: 'Atributo: %{text}<br>AR: %{x:.1f}%<br>Lat: %{y:.2f}x<extra></extra>'
+            },
+            {
+                x: appData.friction.priming.ar,
+                y: appData.friction.priming.latency,
+                mode: 'markers',
+                type: 'scatter',
+                name: 'Priming',
+                marker: { color: '#3b82f6', size: 12, opacity: 0.8, line: {width: 1, color: '#ffffff'} },
+                text: appData.friction.attributes,
+                hovertemplate: 'Atributo: %{text}<br>AR: %{x:.1f}%<br>Lat: %{y:.2f}x<extra></extra>'
+            }
+        ];
 
-    const scatterLayout = {
-        ...layoutConfig,
-        showlegend: true,
-        xaxis: { ...axisConfig, title: 'Association Rate (%)', range: [0, 100] },
-        yaxis: { ...axisConfig, title: 'Rel. Latency (vs Baseline)' },
-        legend: { orientation: 'h', y: 1.1 }
-    };
-    Plotly.newPlot('frictionScatterChart', scatterData, scatterLayout, {displayModeBar: false});
+        const scatterLayout = {
+            ...layoutConfig,
+            showlegend: true,
+            xaxis: { ...axisConfig, title: 'Association Rate (%)', range: [0, 100] },
+            yaxis: { ...axisConfig, title: 'Rel. Latency (vs Baseline)' },
+            legend: { orientation: 'h', y: 1.1 }
+        };
+        Plotly.newPlot('frictionScatterChart', scatterData, scatterLayout, {displayModeBar: false});
+    }
 
     // 5. Audience Segments (Sunburst)
-    const c_vals = appData.audience.control.values;
-    const p_vals = appData.audience.priming.values;
-    const c_total = c_vals.reduce((a,b)=>a+b, 0);
-    const p_total = p_vals.reduce((a,b)=>a+b, 0);
-    const total = c_total + p_total;
-    
-    const audienceData = [{
-        type: "sunburst",
-        labels: [
-            'Audiencia Total', 
-            'Control', 'Priming', 
-            'C - Polarizado', 'C - Ambivalente', 'C - Distante',
-            'P - Polarizado', 'P - Ambivalente', 'P - Distante'
-        ],
-        parents: [
-            '', 
-            'Audiencia Total', 'Audiencia Total', 
-            'Control', 'Control', 'Control',
-            'Priming', 'Priming', 'Priming'
-        ],
-        values: [
-            total,
-            c_total, p_total,
-            c_vals[0], c_vals[1], c_vals[2],
-            p_vals[0], p_vals[1], p_vals[2]
-        ],
-        outsidetextfont: {size: 20, color: "#0f172a"},
-        leaf: {opacity: 0.6},
-        marker: {line: {width: 2}},
-        branchvalues: "total"
-    }];
+    if (document.getElementById('audiencePieChart')) {
+        const c_vals = appData.audience.control.values;
+        const p_vals = appData.audience.priming.values;
+        const c_total = c_vals.reduce((a,b)=>a+b, 0);
+        const p_total = p_vals.reduce((a,b)=>a+b, 0);
+        const total = c_total + p_total;
+        
+        const audienceData = [{
+            type: "sunburst",
+            labels: [
+                'Audiencia Total', 
+                'Control', 'Priming', 
+                'C - Polarizado', 'C - Ambivalente', 'C - Distante',
+                'P - Polarizado', 'P - Ambivalente', 'P - Distante'
+            ],
+            parents: [
+                '', 
+                'Audiencia Total', 'Audiencia Total', 
+                'Control', 'Control', 'Control',
+                'Priming', 'Priming', 'Priming'
+            ],
+            values: [
+                total,
+                c_total, p_total,
+                c_vals[0], c_vals[1], c_vals[2],
+                p_vals[0], p_vals[1], p_vals[2]
+            ],
+            outsidetextfont: {size: 20, color: "#0f172a"},
+            leaf: {opacity: 0.6},
+            marker: {line: {width: 2}},
+            branchvalues: "total"
+        }];
 
-    const audienceLayout = {
-        ...layoutConfig,
-        margin: {l: 0, r: 0, b: 0, t: 0},
-        sunburstcolorway: ["#e2e8f0", "#3b82f6"]
-    };
-    Plotly.newPlot('audiencePieChart', audienceData, audienceLayout, {displayModeBar: false});
+        const audienceLayout = {
+            ...layoutConfig,
+            margin: {l: 0, r: 0, b: 0, t: 0},
+            sunburstcolorway: ["#e2e8f0", "#3b82f6"]
+        };
+        Plotly.newPlot('audiencePieChart', audienceData, audienceLayout, {displayModeBar: false});
+    }
 
     // Render Insights Table
     renderPrimingInsights(appData);
