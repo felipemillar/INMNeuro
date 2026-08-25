@@ -31,7 +31,7 @@ function initIATCharts() {
     iatChartsInitialized = true;
 }
 
-// Configuración común de layout para radar (Light Tech Theme)
+// Configuración común de layout para radar (Light Tech Theme - Alta Legibilidad)
 const commonRadarLayout = {
     paper_bgcolor: 'transparent',
     plot_bgcolor: 'transparent',
@@ -43,11 +43,11 @@ const commonRadarLayout = {
             color: '#64748b',
             gridcolor: '#e2e8f0',
             linecolor: '#cbd5e1',
-            tickfont: { family: 'JetBrains Mono', size: 9, color: '#64748b' },
+            tickfont: { family: 'JetBrains Mono', size: 9.5, color: '#64748b' },
             angle: 90
         },
         angularaxis: {
-            tickfont: { family: 'Inter', size: 10, color: '#1e293b' },
+            tickfont: { family: 'Inter', size: 11.5, color: '#0f172a' },
             gridcolor: '#e2e8f0',
             linecolor: '#cbd5e1'
         },
@@ -55,13 +55,13 @@ const commonRadarLayout = {
     },
     showlegend: true,
     legend: {
-        font: { family: 'JetBrains Mono', size: 11, color: '#475569' },
+        font: { family: 'JetBrains Mono', size: 11, color: '#334155' },
         orientation: 'h',
-        y: -0.12,
+        y: -0.15,
         x: 0.5,
         xanchor: 'center'
     },
-    margin: { l: 30, r: 30, t: 20, b: 35 }
+    margin: { l: 50, r: 50, t: 50, b: 45 }
 };
 
 function renderMonadicChart() {
@@ -82,7 +82,7 @@ function renderMonadicChart() {
         fill: 'toself',
         name: 'Charly (Control)',
         line: { color: '#64748b', width: 2 },
-        marker: { size: 5, color: '#64748b' },
+        marker: { size: 6, color: '#64748b' },
         fillcolor: 'rgba(100, 116, 139, 0.15)'
     };
 
@@ -98,7 +98,10 @@ function renderMonadicChart() {
         fillcolor: 'rgba(37, 99, 235, 0.25)'
     };
 
-    Plotly.newPlot('iatMonadicChart', [traceControl, tracePriming], commonRadarLayout, { displayModeBar: false, responsive: true });
+    const layout = JSON.parse(JSON.stringify(commonRadarLayout));
+    layout.margin = { l: 50, r: 50, t: 50, b: 45 };
+
+    Plotly.newPlot('iatMonadicChart', [traceControl, tracePriming], layout, { displayModeBar: false, responsive: true });
 }
 
 function renderBenchmarkControlChart() {
@@ -136,7 +139,7 @@ function renderBenchmarkControlChart() {
     };
 
     const layout = JSON.parse(JSON.stringify(commonRadarLayout));
-    layout.margin = { l: 25, r: 25, t: 15, b: 30 };
+    layout.margin = { l: 50, r: 50, t: 50, b: 45 };
     
     Plotly.newPlot('iatBenchmarkControlChart', [traceCharly, tracePuma], layout, { displayModeBar: false, responsive: true });
 }
@@ -176,7 +179,7 @@ function renderBenchmarkPrimingChart() {
     };
 
     const layout = JSON.parse(JSON.stringify(commonRadarLayout));
-    layout.margin = { l: 25, r: 25, t: 15, b: 30 };
+    layout.margin = { l: 50, r: 50, t: 50, b: 45 };
     
     Plotly.newPlot('iatBenchmarkPrimingChart', [traceCharly, tracePuma], layout, { displayModeBar: false, responsive: true });
 }

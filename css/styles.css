@@ -1059,7 +1059,7 @@ input:checked + .toggle-slider:before {
 
 .benchmark-chart-pane {
     width: 100%;
-    min-height: 380px;
+    min-height: 420px;
 }
 
 .benchmark-table-pane {
