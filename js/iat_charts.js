@@ -31,7 +31,7 @@ function initIATCharts() {
     iatChartsInitialized = true;
 }
 
-// Configuración común de layout para radar
+// Configuración común de layout para radar (Light Tech Theme)
 const commonRadarLayout = {
     paper_bgcolor: 'transparent',
     plot_bgcolor: 'transparent',
@@ -39,33 +39,33 @@ const commonRadarLayout = {
         radialaxis: {
             visible: true,
             range: [0, 70],
+            dtick: 10,
             color: '#64748b',
-            gridcolor: 'rgba(255,255,255,0.1)',
-            tickfont: { family: 'JetBrains Mono', size: 9 },
+            gridcolor: '#e2e8f0',
+            linecolor: '#cbd5e1',
+            tickfont: { family: 'JetBrains Mono', size: 9, color: '#64748b' },
             angle: 90
         },
         angularaxis: {
-            tickfont: { family: 'JetBrains Mono', size: 10, color: '#f8fafc' },
-            gridcolor: 'rgba(255,255,255,0.1)',
-            linecolor: 'rgba(255,255,255,0.2)'
+            tickfont: { family: 'Inter', size: 10, color: '#1e293b' },
+            gridcolor: '#e2e8f0',
+            linecolor: '#cbd5e1'
         },
-        bgcolor: 'rgba(15, 23, 42, 0.4)'
+        bgcolor: 'rgba(248, 250, 252, 0.7)'
     },
     showlegend: true,
     legend: {
-        font: { family: 'JetBrains Mono', size: 11, color: '#94a3b8' },
+        font: { family: 'JetBrains Mono', size: 11, color: '#475569' },
         orientation: 'h',
-        y: -0.1,
+        y: -0.12,
         x: 0.5,
         xanchor: 'center'
     },
-    margin: { l: 40, r: 40, t: 30, b: 40 }
+    margin: { l: 30, r: 30, t: 20, b: 35 }
 };
 
 function renderMonadicChart() {
     const attributes = ['Tecnológico', 'Barato', 'Calidad', 'Futbol', 'Ecológico', 'Variedad', 'Demanda', 'Premium'];
-    
-    // Para cerrar el círculo en radar, se duplica el primer elemento al final
     const attrsClosed = [...attributes, attributes[0]];
     
     const controlVals = [29.3, 42.5, 42.7, 25.6, 31.2, 27.2, 9.0, 18.0];
@@ -76,22 +76,26 @@ function renderMonadicChart() {
 
     const traceControl = {
         type: 'scatterpolar',
+        mode: 'lines+markers',
         r: controlClosed,
         theta: attrsClosed,
         fill: 'toself',
-        name: 'Charly (Sin Estímulo)',
+        name: 'Charly (Control)',
         line: { color: '#64748b', width: 2 },
-        fillcolor: 'rgba(100, 116, 139, 0.2)'
+        marker: { size: 5, color: '#64748b' },
+        fillcolor: 'rgba(100, 116, 139, 0.15)'
     };
 
     const tracePriming = {
         type: 'scatterpolar',
+        mode: 'lines+markers',
         r: primingClosed,
         theta: attrsClosed,
         fill: 'toself',
         name: 'Charly (Post-Priming)',
         line: { color: '#2563eb', width: 2.5 },
-        fillcolor: 'rgba(37, 99, 235, 0.4)'
+        marker: { size: 6, color: '#2563eb' },
+        fillcolor: 'rgba(37, 99, 235, 0.25)'
     };
 
     Plotly.newPlot('iatMonadicChart', [traceControl, tracePriming], commonRadarLayout, { displayModeBar: false, responsive: true });
@@ -109,26 +113,30 @@ function renderBenchmarkControlChart() {
 
     const traceCharly = {
         type: 'scatterpolar',
+        mode: 'lines+markers',
         r: charlyClosed,
         theta: attrsClosed,
         fill: 'toself',
-        name: 'Charly (Control)',
-        line: { color: '#64748b', width: 2 },
-        fillcolor: 'rgba(100, 116, 139, 0.3)'
+        name: 'Charly',
+        line: { color: '#ea580c', width: 2.5 },
+        marker: { size: 6, color: '#ea580c' },
+        fillcolor: 'rgba(234, 88, 12, 0.15)'
     };
 
     const tracePuma = {
         type: 'scatterpolar',
+        mode: 'lines+markers',
         r: pumaClosed,
         theta: attrsClosed,
         fill: 'toself',
-        name: 'Puma (Control)',
-        line: { color: '#10b981', width: 2 },
-        fillcolor: 'rgba(16, 185, 129, 0.2)'
+        name: 'Puma',
+        line: { color: '#0284c7', width: 2.5 },
+        marker: { size: 6, color: '#0284c7' },
+        fillcolor: 'rgba(2, 132, 199, 0.15)'
     };
 
     const layout = JSON.parse(JSON.stringify(commonRadarLayout));
-    layout.margin = { l: 20, r: 20, t: 20, b: 30 };
+    layout.margin = { l: 25, r: 25, t: 15, b: 30 };
     
     Plotly.newPlot('iatBenchmarkControlChart', [traceCharly, tracePuma], layout, { displayModeBar: false, responsive: true });
 }
@@ -145,26 +153,30 @@ function renderBenchmarkPrimingChart() {
 
     const traceCharly = {
         type: 'scatterpolar',
+        mode: 'lines+markers',
         r: charlyClosed,
         theta: attrsClosed,
         fill: 'toself',
-        name: 'Charly (Priming)',
-        line: { color: '#2563eb', width: 2.5 },
-        fillcolor: 'rgba(37, 99, 235, 0.4)'
+        name: 'Charly',
+        line: { color: '#ea580c', width: 2.5 },
+        marker: { size: 6, color: '#ea580c' },
+        fillcolor: 'rgba(234, 88, 12, 0.15)'
     };
 
     const tracePuma = {
         type: 'scatterpolar',
+        mode: 'lines+markers',
         r: pumaClosed,
         theta: attrsClosed,
         fill: 'toself',
-        name: 'Puma (Priming)',
-        line: { color: '#10b981', width: 2 },
-        fillcolor: 'rgba(16, 185, 129, 0.2)'
+        name: 'Puma',
+        line: { color: '#0284c7', width: 2.5 },
+        marker: { size: 6, color: '#0284c7' },
+        fillcolor: 'rgba(2, 132, 199, 0.15)'
     };
 
     const layout = JSON.parse(JSON.stringify(commonRadarLayout));
-    layout.margin = { l: 20, r: 20, t: 20, b: 30 };
+    layout.margin = { l: 25, r: 25, t: 15, b: 30 };
     
     Plotly.newPlot('iatBenchmarkPrimingChart', [traceCharly, tracePuma], layout, { displayModeBar: false, responsive: true });
 }

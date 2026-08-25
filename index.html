@@ -11,7 +11,7 @@
     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css?v=12">
+    <link rel="stylesheet" href="css/styles.css?v=13">
 </head>
 <body>
     <div class="app-container">
@@ -212,19 +212,170 @@
                     </div>
 
                     <!-- Benchmark Analysis -->
-                    <div class="charts-grid-2" style="margin-top: 24px;">
-                        <div class="chart-card glass-panel">
-                            <h3>[ BENCHMARK: CONTROL ]</h3>
-                            <p class="chart-description">CHARLY VS PUMA (SIN ESTÍMULO)</p>
-                            <div class="chart-container" style="height: 400px;">
-                                <div id="iatBenchmarkControlChart" style="width:100%;height:100%;"></div>
+                    <!-- Card 1: Benchmark Control -->
+                    <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
+                        <div class="benchmark-header-wrap">
+                            <div>
+                                <h3>[ IAT BENCHMARK: CONTROL ] CHARLY VS PUMA</h3>
+                                <p class="chart-description">EVALUACIÓN COMPARATIVA EN GRUPO CONTROL (SIN ESTÍMULO)</p>
+                            </div>
+                            <div class="benchmark-tag">BENCHMARK SECTORIAL</div>
+                        </div>
+                        
+                        <div class="benchmark-insight-box">
+                            <p><strong>Hallazgo Clave:</strong> Puma supera en casi todas las dimensiones asociativas (comodidad, durabilidad, diseño y calidad). Charly supera a Puma exclusivamente en el atributo <strong>Ecológico (32.9 vs 22.6)</strong>, convirtiéndose en su principal vector de diferenciación natural.</p>
+                        </div>
+
+                        <div class="benchmark-layout-grid">
+                            <div class="benchmark-chart-pane">
+                                <div id="iatBenchmarkControlChart" style="width:100%;height:380px;"></div>
+                            </div>
+                            <div class="benchmark-table-pane">
+                                <div class="bm-table">
+                                    <div class="bm-row bm-header">
+                                        <div class="bm-cell attr-name">Atributo</div>
+                                        <div class="bm-cell brand-col charly-head">
+                                            <span class="bm-brand-dot charly"></span>CHARLY
+                                        </div>
+                                        <div class="bm-cell brand-col puma-head">
+                                            <span class="bm-brand-dot puma"></span>PUMA
+                                        </div>
+                                        <div class="bm-cell win-head">Líder</div>
+                                    </div>
+                                    <!-- Rows -->
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Comodidad</div>
+                                        <div class="bm-cell pill-bm-charly">20.8</div>
+                                        <div class="bm-cell pill-bm-puma">35.0</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Diseño</div>
+                                        <div class="bm-cell pill-bm-charly">17.1</div>
+                                        <div class="bm-cell pill-bm-puma">57.8</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Durabilidad</div>
+                                        <div class="bm-cell pill-bm-charly">20.5</div>
+                                        <div class="bm-cell pill-bm-puma">48.6</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                    <div class="bm-row charly-win-row">
+                                        <div class="bm-cell attr-name">Ecológico</div>
+                                        <div class="bm-cell pill-bm-charly highlight-win">32.9</div>
+                                        <div class="bm-cell pill-bm-puma">22.6</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge charly">Charly ★</span></div>
+                                    </div>
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Futbol</div>
+                                        <div class="bm-cell pill-bm-charly">19.0</div>
+                                        <div class="bm-cell pill-bm-puma">42.9</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Premium</div>
+                                        <div class="bm-cell pill-bm-charly">5.4</div>
+                                        <div class="bm-cell pill-bm-puma">66.3</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Rendimiento</div>
+                                        <div class="bm-cell pill-bm-charly">15.4</div>
+                                        <div class="bm-cell pill-bm-puma">49.3</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Tecnología</div>
+                                        <div class="bm-cell pill-bm-charly">15.9</div>
+                                        <div class="bm-cell pill-bm-puma">46.9</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="chart-card glass-panel">
-                            <h3>[ BENCHMARK: PRIMING ]</h3>
-                            <p class="chart-description">CHARLY VS PUMA (TRAS VER POSTS)</p>
-                            <div class="chart-container" style="height: 400px;">
-                                <div id="iatBenchmarkPrimingChart" style="width:100%;height:100%;"></div>
+                    </div>
+
+                    <!-- Card 2: Benchmark Priming -->
+                    <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
+                        <div class="benchmark-header-wrap">
+                            <div>
+                                <h3>[ IAT BENCHMARK: PRIMING ] CHARLY VS PUMA (POST-CAMPAÑA)</h3>
+                                <p class="chart-description">EVALUACIÓN COMPARATIVA TRAS EXPOSICIÓN A ESTÍMULOS DE MARCA</p>
+                            </div>
+                            <div class="benchmark-tag priming-tag">IMPACTO PRIMING</div>
+                        </div>
+                        
+                        <div class="benchmark-insight-box">
+                            <p><strong>Hallazgo Clave:</strong> Tras la exposición a la campaña, Puma lidera en diseño, tecnología y rendimiento, mientras que <strong>Charly consolida su ventaja en Ecológico (38.3 vs 22.0) y revierte el atributo Fútbol (35.1 vs 32.9)</strong> pasando a liderar la categoría futbolística.</p>
+                        </div>
+
+                        <div class="benchmark-layout-grid">
+                            <div class="benchmark-chart-pane">
+                                <div id="iatBenchmarkPrimingChart" style="width:100%;height:380px;"></div>
+                            </div>
+                            <div class="benchmark-table-pane">
+                                <div class="bm-table">
+                                    <div class="bm-row bm-header">
+                                        <div class="bm-cell attr-name">Atributo</div>
+                                        <div class="bm-cell brand-col charly-head">
+                                            <span class="bm-brand-dot charly"></span>CHARLY
+                                        </div>
+                                        <div class="bm-cell brand-col puma-head">
+                                            <span class="bm-brand-dot puma"></span>PUMA
+                                        </div>
+                                        <div class="bm-cell win-head">Líder</div>
+                                    </div>
+                                    <!-- Rows -->
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Comodidad</div>
+                                        <div class="bm-cell pill-bm-charly">29.6</div>
+                                        <div class="bm-cell pill-bm-puma">30.8</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Diseño</div>
+                                        <div class="bm-cell pill-bm-charly">23.6</div>
+                                        <div class="bm-cell pill-bm-puma">45.2</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Durabilidad</div>
+                                        <div class="bm-cell pill-bm-charly">26.3</div>
+                                        <div class="bm-cell pill-bm-puma">44.2</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                    <div class="bm-row charly-win-row">
+                                        <div class="bm-cell attr-name">Ecológico</div>
+                                        <div class="bm-cell pill-bm-charly highlight-win">38.3</div>
+                                        <div class="bm-cell pill-bm-puma">22.0</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge charly">Charly ★</span></div>
+                                    </div>
+                                    <div class="bm-row charly-win-row">
+                                        <div class="bm-cell attr-name">Futbol</div>
+                                        <div class="bm-cell pill-bm-charly highlight-win">35.1</div>
+                                        <div class="bm-cell pill-bm-puma">32.9</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge charly">Charly ★</span></div>
+                                    </div>
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Premium</div>
+                                        <div class="bm-cell pill-bm-charly">16.4</div>
+                                        <div class="bm-cell pill-bm-puma">56.7</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Rendimiento</div>
+                                        <div class="bm-cell pill-bm-charly">15.0</div>
+                                        <div class="bm-cell pill-bm-puma">52.5</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                    <div class="bm-row">
+                                        <div class="bm-cell attr-name">Tecnología</div>
+                                        <div class="bm-cell pill-bm-charly">29.7</div>
+                                        <div class="bm-cell pill-bm-puma">53.8</div>
+                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -403,8 +554,8 @@
         </main>
     </div>
 
-    <script src="js/telemetry.js?v=11"></script>
-    <script src="js/iat_charts.js?v=11"></script>
-    <script src="js/app.js?v=11"></script>
+    <script src="js/telemetry.js?v=13"></script>
+    <script src="js/iat_charts.js?v=13"></script>
+    <script src="js/app.js?v=13"></script>
 </body>
 </html>
