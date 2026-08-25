@@ -1189,3 +1189,49 @@ input:checked + .toggle-slider:before {
     border-radius: 6px;
 }
 
+/* Benchmark Interactive Toggle */
+.bm-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-base);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+}
+
+.bm-toggle-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.bm-toggle-label.active {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.bm-delta {
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-left: 6px;
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    display: inline-block;
+    animation: fadeIn 0.3s ease;
+}
+
+.bm-delta.pos {
+    color: #15803d;
+    background: rgba(34, 197, 94, 0.15);
+}
+
+.bm-delta.neg {
+    color: #b91c1c;
+    background: rgba(239, 68, 68, 0.15);
+}

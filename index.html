@@ -11,7 +11,7 @@
     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css?v=14">
+    <link rel="stylesheet" href="css/styles.css?v=15">
 </head>
 <body>
     <div class="app-container">
@@ -211,27 +211,35 @@
                         </div>
                     </div>
 
-                    <!-- Benchmark Analysis -->
-                    <!-- Card 1: Benchmark Control -->
+                    <!-- Unified Benchmark Analysis -->
                     <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
                         <div class="benchmark-header-wrap">
                             <div>
-                                <h3>[ IAT BENCHMARK: CONTROL ] CHARLY VS PUMA</h3>
-                                <p class="chart-description">EVALUACIÓN COMPARATIVA EN GRUPO CONTROL (SIN ESTÍMULO)</p>
+                                <h3>[ IAT BENCHMARK: INTERACTIVO ] CHARLY VS PUMA</h3>
+                                <p class="chart-description">ANÁLISIS COMPARATIVO SECTORIAL CON CONMUTACIÓN DINÁMICA DE ESTÍMULO</p>
                             </div>
-                            <div class="benchmark-tag">BENCHMARK SECTORIAL</div>
+                            <!-- Switch Toggle Control vs Priming -->
+                            <div class="bm-toggle-container">
+                                <span class="bm-toggle-label active" id="lblBmControl">Control</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="benchmarkToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="bm-toggle-label" id="lblBmPriming">Priming</span>
+                            </div>
                         </div>
                         
+                        <!-- Dynamic Insight Box -->
                         <div class="benchmark-insight-box">
-                            <p><strong>Hallazgo Clave:</strong> Puma supera en casi todas las dimensiones asociativas (comodidad, durabilidad, diseño y calidad). Charly supera a Puma exclusivamente en el atributo <strong>Ecológico (32.9 vs 22.6)</strong>, convirtiéndose en su principal vector de diferenciación natural.</p>
+                            <p id="benchmarkInsightText"><strong>Hallazgo Control (Sin Estímulo):</strong> Puma lidera en 7 de los 8 atributos (comodidad, durabilidad, diseño y calidad). Charly supera a Puma exclusivamente en el atributo <strong>Ecológico (32.9 vs 22.6)</strong>, convirtiéndose en su principal vector de diferenciación natural.</p>
                         </div>
 
                         <div class="benchmark-layout-grid">
                             <div class="benchmark-chart-pane">
-                                <div id="iatBenchmarkControlChart" style="width:100%;height:420px;"></div>
+                                <div id="iatUnifiedBenchmarkChart" style="width:100%;height:460px;"></div>
                             </div>
                             <div class="benchmark-table-pane">
-                                <div class="bm-table">
+                                <div class="bm-table" id="bmInteractiveTable">
                                     <div class="bm-row bm-header">
                                         <div class="bm-cell attr-name">Atributo</div>
                                         <div class="bm-cell brand-col charly-head">
@@ -242,138 +250,133 @@
                                         </div>
                                         <div class="bm-cell win-head">Líder</div>
                                     </div>
-                                    <!-- Rows -->
-                                    <div class="bm-row">
+                                    
+                                    <!-- Comodidad -->
+                                    <div class="bm-row" id="bmRow-0">
                                         <div class="bm-cell attr-name">Comodidad</div>
-                                        <div class="bm-cell pill-bm-charly">20.8</div>
-                                        <div class="bm-cell pill-bm-puma">35.0</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
-                                    </div>
-                                    <div class="bm-row">
-                                        <div class="bm-cell attr-name">Diseño</div>
-                                        <div class="bm-cell pill-bm-charly">17.1</div>
-                                        <div class="bm-cell pill-bm-puma">57.8</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
-                                    </div>
-                                    <div class="bm-row">
-                                        <div class="bm-cell attr-name">Durabilidad</div>
-                                        <div class="bm-cell pill-bm-charly">20.5</div>
-                                        <div class="bm-cell pill-bm-puma">48.6</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
-                                    </div>
-                                    <div class="bm-row charly-win-row">
-                                        <div class="bm-cell attr-name">Ecológico</div>
-                                        <div class="bm-cell pill-bm-charly highlight-win">32.9</div>
-                                        <div class="bm-cell pill-bm-puma">22.6</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge charly">Charly ★</span></div>
-                                    </div>
-                                    <div class="bm-row">
-                                        <div class="bm-cell attr-name">Futbol</div>
-                                        <div class="bm-cell pill-bm-charly">19.0</div>
-                                        <div class="bm-cell pill-bm-puma">42.9</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
-                                    </div>
-                                    <div class="bm-row">
-                                        <div class="bm-cell attr-name">Premium</div>
-                                        <div class="bm-cell pill-bm-charly">5.4</div>
-                                        <div class="bm-cell pill-bm-puma">66.3</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
-                                    </div>
-                                    <div class="bm-row">
-                                        <div class="bm-cell attr-name">Rendimiento</div>
-                                        <div class="bm-cell pill-bm-charly">15.4</div>
-                                        <div class="bm-cell pill-bm-puma">49.3</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
-                                    </div>
-                                    <div class="bm-row">
-                                        <div class="bm-cell attr-name">Tecnología</div>
-                                        <div class="bm-cell pill-bm-charly">15.9</div>
-                                        <div class="bm-cell pill-bm-puma">46.9</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Benchmark Priming -->
-                    <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
-                        <div class="benchmark-header-wrap">
-                            <div>
-                                <h3>[ IAT BENCHMARK: PRIMING ] CHARLY VS PUMA (POST-CAMPAÑA)</h3>
-                                <p class="chart-description">EVALUACIÓN COMPARATIVA TRAS EXPOSICIÓN A ESTÍMULOS DE MARCA</p>
-                            </div>
-                            <div class="benchmark-tag priming-tag">IMPACTO PRIMING</div>
-                        </div>
-                        
-                        <div class="benchmark-insight-box">
-                            <p><strong>Hallazgo Clave:</strong> Tras la exposición a la campaña, Puma lidera en diseño, tecnología y rendimiento, mientras que <strong>Charly consolida su ventaja en Ecológico (38.3 vs 22.0) y revierte el atributo Fútbol (35.1 vs 32.9)</strong> pasando a liderar la categoría futbolística.</p>
-                        </div>
-
-                        <div class="benchmark-layout-grid">
-                            <div class="benchmark-chart-pane">
-                                <div id="iatBenchmarkPrimingChart" style="width:100%;height:420px;"></div>
-                            </div>
-                            <div class="benchmark-table-pane">
-                                <div class="bm-table">
-                                    <div class="bm-row bm-header">
-                                        <div class="bm-cell attr-name">Atributo</div>
-                                        <div class="bm-cell brand-col charly-head">
-                                            <span class="bm-brand-dot charly"></span>CHARLY
+                                        <div class="bm-cell pill-bm-charly" id="bmCharly-0">
+                                            <span class="bm-val">20.8</span>
+                                            <span class="bm-delta" style="display:none;"></span>
                                         </div>
-                                        <div class="bm-cell brand-col puma-head">
-                                            <span class="bm-brand-dot puma"></span>PUMA
+                                        <div class="bm-cell pill-bm-puma" id="bmPuma-0">
+                                            <span class="bm-val">35.0</span>
+                                            <span class="bm-delta" style="display:none;"></span>
                                         </div>
-                                        <div class="bm-cell win-head">Líder</div>
+                                        <div class="bm-cell win-cell" id="bmLeader-0">
+                                            <span class="winner-badge puma">Puma</span>
+                                        </div>
                                     </div>
-                                    <!-- Rows -->
-                                    <div class="bm-row">
-                                        <div class="bm-cell attr-name">Comodidad</div>
-                                        <div class="bm-cell pill-bm-charly">29.6</div>
-                                        <div class="bm-cell pill-bm-puma">30.8</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
-                                    </div>
-                                    <div class="bm-row">
+                                    
+                                    <!-- Diseño -->
+                                    <div class="bm-row" id="bmRow-1">
                                         <div class="bm-cell attr-name">Diseño</div>
-                                        <div class="bm-cell pill-bm-charly">23.6</div>
-                                        <div class="bm-cell pill-bm-puma">45.2</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                        <div class="bm-cell pill-bm-charly" id="bmCharly-1">
+                                            <span class="bm-val">17.1</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell pill-bm-puma" id="bmPuma-1">
+                                            <span class="bm-val">57.8</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell win-cell" id="bmLeader-1">
+                                            <span class="winner-badge puma">Puma</span>
+                                        </div>
                                     </div>
-                                    <div class="bm-row">
+                                    
+                                    <!-- Durabilidad -->
+                                    <div class="bm-row" id="bmRow-2">
                                         <div class="bm-cell attr-name">Durabilidad</div>
-                                        <div class="bm-cell pill-bm-charly">26.3</div>
-                                        <div class="bm-cell pill-bm-puma">44.2</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                        <div class="bm-cell pill-bm-charly" id="bmCharly-2">
+                                            <span class="bm-val">20.5</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell pill-bm-puma" id="bmPuma-2">
+                                            <span class="bm-val">48.6</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell win-cell" id="bmLeader-2">
+                                            <span class="winner-badge puma">Puma</span>
+                                        </div>
                                     </div>
-                                    <div class="bm-row charly-win-row">
+                                    
+                                    <!-- Ecológico -->
+                                    <div class="bm-row charly-win-row" id="bmRow-3">
                                         <div class="bm-cell attr-name">Ecológico</div>
-                                        <div class="bm-cell pill-bm-charly highlight-win">38.3</div>
-                                        <div class="bm-cell pill-bm-puma">22.0</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge charly">Charly ★</span></div>
+                                        <div class="bm-cell pill-bm-charly highlight-win" id="bmCharly-3">
+                                            <span class="bm-val">32.9</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell pill-bm-puma" id="bmPuma-3">
+                                            <span class="bm-val">22.6</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell win-cell" id="bmLeader-3">
+                                            <span class="winner-badge charly">Charly ★</span>
+                                        </div>
                                     </div>
-                                    <div class="bm-row charly-win-row">
+                                    
+                                    <!-- Futbol -->
+                                    <div class="bm-row" id="bmRow-4">
                                         <div class="bm-cell attr-name">Futbol</div>
-                                        <div class="bm-cell pill-bm-charly highlight-win">35.1</div>
-                                        <div class="bm-cell pill-bm-puma">32.9</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge charly">Charly ★</span></div>
+                                        <div class="bm-cell pill-bm-charly" id="bmCharly-4">
+                                            <span class="bm-val">19.0</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell pill-bm-puma" id="bmPuma-4">
+                                            <span class="bm-val">42.9</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell win-cell" id="bmLeader-4">
+                                            <span class="winner-badge puma">Puma</span>
+                                        </div>
                                     </div>
-                                    <div class="bm-row">
+                                    
+                                    <!-- Premium -->
+                                    <div class="bm-row" id="bmRow-5">
                                         <div class="bm-cell attr-name">Premium</div>
-                                        <div class="bm-cell pill-bm-charly">16.4</div>
-                                        <div class="bm-cell pill-bm-puma">56.7</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                        <div class="bm-cell pill-bm-charly" id="bmCharly-5">
+                                            <span class="bm-val">5.4</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell pill-bm-puma" id="bmPuma-5">
+                                            <span class="bm-val">66.3</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell win-cell" id="bmLeader-5">
+                                            <span class="winner-badge puma">Puma</span>
+                                        </div>
                                     </div>
-                                    <div class="bm-row">
+                                    
+                                    <!-- Rendimiento -->
+                                    <div class="bm-row" id="bmRow-6">
                                         <div class="bm-cell attr-name">Rendimiento</div>
-                                        <div class="bm-cell pill-bm-charly">15.0</div>
-                                        <div class="bm-cell pill-bm-puma">52.5</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                        <div class="bm-cell pill-bm-charly" id="bmCharly-6">
+                                            <span class="bm-val">15.4</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell pill-bm-puma" id="bmPuma-6">
+                                            <span class="bm-val">49.3</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell win-cell" id="bmLeader-6">
+                                            <span class="winner-badge puma">Puma</span>
+                                        </div>
                                     </div>
-                                    <div class="bm-row">
+                                    
+                                    <!-- Tecnología -->
+                                    <div class="bm-row" id="bmRow-7">
                                         <div class="bm-cell attr-name">Tecnología</div>
-                                        <div class="bm-cell pill-bm-charly">29.7</div>
-                                        <div class="bm-cell pill-bm-puma">53.8</div>
-                                        <div class="bm-cell win-cell"><span class="winner-badge puma">Puma</span></div>
+                                        <div class="bm-cell pill-bm-charly" id="bmCharly-7">
+                                            <span class="bm-val">15.9</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell pill-bm-puma" id="bmPuma-7">
+                                            <span class="bm-val">46.9</span>
+                                            <span class="bm-delta" style="display:none;"></span>
+                                        </div>
+                                        <div class="bm-cell win-cell" id="bmLeader-7">
+                                            <span class="winner-badge puma">Puma</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -554,8 +557,8 @@
         </main>
     </div>
 
-    <script src="js/telemetry.js?v=14"></script>
-    <script src="js/iat_charts.js?v=14"></script>
-    <script src="js/app.js?v=14"></script>
+    <script src="js/telemetry.js?v=15"></script>
+    <script src="js/iat_charts.js?v=15"></script>
+    <script src="js/app.js?v=15"></script>
 </body>
 </html>

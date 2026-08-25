@@ -24,8 +24,7 @@ function initIATCharts() {
     if (!document.getElementById('iatMonadicChart')) return;
 
     renderMonadicChart();
-    renderBenchmarkControlChart();
-    renderBenchmarkPrimingChart();
+    initUnifiedBenchmark();
     renderSemanticDumbbellChart();
 
     iatChartsInitialized = true;
@@ -104,54 +103,46 @@ function renderMonadicChart() {
     Plotly.newPlot('iatMonadicChart', [traceControl, tracePriming], layout, { displayModeBar: false, responsive: true });
 }
 
-function renderBenchmarkControlChart() {
-    const attributes = ['Comodidad', 'Diseño', 'Durabilidad', 'Ecológico', 'Futbol', 'Premium', 'Rendimiento', 'Tecnología'];
-    const attrsClosed = [...attributes, attributes[0]];
-    
-    const charlyVals = [20.8, 17.1, 20.5, 32.9, 19.0, 5.4, 15.4, 15.9];
-    const charlyClosed = [...charlyVals, charlyVals[0]];
-    
-    const pumaVals = [35.0, 57.8, 48.6, 22.6, 42.9, 66.3, 49.3, 46.9];
-    const pumaClosed = [...pumaVals, pumaVals[0]];
+// ==========================================================================
+// UNIFIED BENCHMARK CONTROLLER (Radar Morphing + Number Ticker Odometers)
+// ==========================================================================
 
-    const traceCharly = {
-        type: 'scatterpolar',
-        mode: 'lines+markers',
-        r: charlyClosed,
-        theta: attrsClosed,
-        fill: 'toself',
-        name: 'Charly',
-        line: { color: '#ea580c', width: 2.5 },
-        marker: { size: 6, color: '#ea580c' },
-        fillcolor: 'rgba(234, 88, 12, 0.15)'
-    };
+const benchmarkData = {
+    attributes: ['Comodidad', 'Diseño', 'Durabilidad', 'Ecológico', 'Futbol', 'Premium', 'Rendimiento', 'Tecnología'],
+    control: {
+        charly: [20.8, 17.1, 20.5, 32.9, 19.0, 5.4, 15.4, 15.9],
+        puma:   [35.0, 57.8, 48.6, 22.6, 42.9, 66.3, 49.3, 46.9],
+        leaders: ['puma', 'puma', 'puma', 'charly', 'puma', 'puma', 'puma', 'puma'],
+        insight: "<strong>Hallazgo Control (Sin Estímulo):</strong> Puma lidera en 7 de los 8 atributos (comodidad, durabilidad, diseño y calidad). Charly supera a Puma exclusivamente en el atributo <strong>Ecológico (32.9 vs 22.6)</strong>, convirtiéndose en su principal vector de diferenciación natural."
+    },
+    priming: {
+        charly: [29.6, 23.6, 26.3, 38.3, 35.1, 16.4, 15.0, 29.7],
+        puma:   [30.8, 45.2, 44.2, 22.0, 32.9, 56.7, 52.5, 53.8],
+        deltasCharly: [8.8, 6.5, 5.8, 5.4, 16.1, 11.0, -0.4, 13.8],
+        deltasPuma:   [-4.2, -12.6, -4.4, -0.6, -10.0, -9.6, 3.2, 6.9],
+        leaders: ['puma', 'puma', 'puma', 'charly', 'charly', 'puma', 'puma', 'puma'],
+        insight: "<strong>Hallazgo Priming (Post-Campaña):</strong> Tras la exposición publicitaria, Puma mantiene liderazgo en diseño y tecnología, mientras que <strong>Charly consolida su ventaja en Ecológico (38.3 vs 22.0) y revierte el atributo Fútbol (35.1 vs 32.9)</strong> pasando a liderar la categoría deportiva."
+    }
+};
 
-    const tracePuma = {
-        type: 'scatterpolar',
-        mode: 'lines+markers',
-        r: pumaClosed,
-        theta: attrsClosed,
-        fill: 'toself',
-        name: 'Puma',
-        line: { color: '#0284c7', width: 2.5 },
-        marker: { size: 6, color: '#0284c7' },
-        fillcolor: 'rgba(2, 132, 199, 0.15)'
-    };
+let currentBenchmarkMode = 'control';
 
-    const layout = JSON.parse(JSON.stringify(commonRadarLayout));
-    layout.margin = { l: 50, r: 50, t: 50, b: 45 };
-    
-    Plotly.newPlot('iatBenchmarkControlChart', [traceCharly, tracePuma], layout, { displayModeBar: false, responsive: true });
+function initUnifiedBenchmark() {
+    renderUnifiedBenchmarkChart('control');
+    setupBenchmarkToggle();
 }
 
-function renderBenchmarkPrimingChart() {
-    const attributes = ['Comodidad', 'Diseño', 'Durabilidad', 'Ecológico', 'Futbol', 'Premium', 'Rendimiento', 'Tecnología'];
-    const attrsClosed = [...attributes, attributes[0]];
-    
-    const charlyVals = [29.6, 23.6, 26.3, 38.3, 35.1, 16.4, 15.0, 29.7];
+function renderUnifiedBenchmarkChart(mode) {
+    const targetElem = document.getElementById('iatUnifiedBenchmarkChart');
+    if (!targetElem) return;
+
+    const attrs = benchmarkData.attributes;
+    const attrsClosed = [...attrs, attrs[0]];
+
+    const charlyVals = benchmarkData[mode].charly;
     const charlyClosed = [...charlyVals, charlyVals[0]];
-    
-    const pumaVals = [30.8, 45.2, 44.2, 22.0, 32.9, 56.7, 52.5, 53.8];
+
+    const pumaVals = benchmarkData[mode].puma;
     const pumaClosed = [...pumaVals, pumaVals[0]];
 
     const traceCharly = {
@@ -163,7 +154,7 @@ function renderBenchmarkPrimingChart() {
         name: 'Charly',
         line: { color: '#ea580c', width: 2.5 },
         marker: { size: 6, color: '#ea580c' },
-        fillcolor: 'rgba(234, 88, 12, 0.15)'
+        fillcolor: 'rgba(234, 88, 12, 0.18)'
     };
 
     const tracePuma = {
@@ -175,13 +166,167 @@ function renderBenchmarkPrimingChart() {
         name: 'Puma',
         line: { color: '#0284c7', width: 2.5 },
         marker: { size: 6, color: '#0284c7' },
-        fillcolor: 'rgba(2, 132, 199, 0.15)'
+        fillcolor: 'rgba(2, 132, 199, 0.18)'
     };
 
     const layout = JSON.parse(JSON.stringify(commonRadarLayout));
-    layout.margin = { l: 50, r: 50, t: 50, b: 45 };
-    
-    Plotly.newPlot('iatBenchmarkPrimingChart', [traceCharly, tracePuma], layout, { displayModeBar: false, responsive: true });
+    layout.margin = { l: 55, r: 55, t: 55, b: 45 };
+
+    if (!targetElem._plotlyGeo && !targetElem.data) {
+        Plotly.newPlot('iatUnifiedBenchmarkChart', [traceCharly, tracePuma], layout, { displayModeBar: false, responsive: true });
+    } else {
+        Plotly.animate('iatUnifiedBenchmarkChart', {
+            data: [{ r: charlyClosed }, { r: pumaClosed }]
+        }, {
+            transition: { duration: 600, easing: 'cubic-in-out' },
+            frame: { duration: 600, redraw: false }
+        });
+    }
+}
+
+// Odómetro / Ticker para números animados
+function animateNumberTicker(elem, startVal, endVal, duration, deltaStr = null, deltaClass = 'pos') {
+    const startTime = performance.now();
+    const valElem = elem.querySelector('.bm-val');
+    const deltaElem = elem.querySelector('.bm-delta');
+
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const currentVal = startVal + (endVal - startVal) * easeProgress;
+        
+        if (valElem) {
+            valElem.textContent = currentVal.toFixed(1);
+        }
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        } else {
+            if (valElem) valElem.textContent = endVal.toFixed(1);
+            if (deltaElem) {
+                if (deltaStr) {
+                    deltaElem.textContent = deltaStr;
+                    deltaElem.className = 'bm-delta ' + deltaClass;
+                    deltaElem.style.display = 'inline-block';
+                } else {
+                    deltaElem.style.display = 'none';
+                }
+            }
+        }
+    }
+    requestAnimationFrame(update);
+}
+
+function updateBenchmarkTable(fromMode, toMode) {
+    const fromCharly = benchmarkData[fromMode].charly;
+    const toCharly = benchmarkData[toMode].charly;
+    const fromPuma = benchmarkData[fromMode].puma;
+    const toPuma = benchmarkData[toMode].puma;
+    const leaders = benchmarkData[toMode].leaders;
+    const isPriming = (toMode === 'priming');
+
+    // Insight text
+    const insightElem = document.getElementById('benchmarkInsightText');
+    if (insightElem) {
+        insightElem.style.opacity = '0.3';
+        insightElem.style.transition = 'opacity 0.2s ease';
+        setTimeout(() => {
+            insightElem.innerHTML = benchmarkData[toMode].insight;
+            insightElem.style.opacity = '1';
+        }, 200);
+    }
+
+    benchmarkData.attributes.forEach((_, i) => {
+        const charlyElem = document.getElementById(`bmCharly-${i}`);
+        const pumaElem = document.getElementById(`bmPuma-${i}`);
+        const leaderElem = document.getElementById(`bmLeader-${i}`);
+        const rowElem = document.getElementById(`bmRow-${i}`);
+
+        // Charly delta
+        let charlyDeltaStr = null;
+        let charlyDeltaClass = 'pos';
+        if (isPriming) {
+            const deltaVal = benchmarkData.priming.deltasCharly[i];
+            charlyDeltaStr = `(${deltaVal > 0 ? '+' : ''}${deltaVal.toFixed(1)})`;
+            charlyDeltaClass = deltaVal >= 0 ? 'pos' : 'neg';
+        }
+
+        // Puma delta
+        let pumaDeltaStr = null;
+        let pumaDeltaClass = 'pos';
+        if (isPriming) {
+            const deltaVal = benchmarkData.priming.deltasPuma[i];
+            pumaDeltaStr = `(${deltaVal > 0 ? '+' : ''}${deltaVal.toFixed(1)})`;
+            pumaDeltaClass = deltaVal >= 0 ? 'pos' : 'neg';
+        }
+
+        if (charlyElem) {
+            animateNumberTicker(charlyElem, fromCharly[i], toCharly[i], 600, charlyDeltaStr, charlyDeltaClass);
+        }
+        if (pumaElem) {
+            animateNumberTicker(pumaElem, fromPuma[i], toPuma[i], 600, pumaDeltaStr, pumaDeltaClass);
+        }
+
+        // Leader badge & Row highlights
+        if (leaderElem) {
+            const leader = leaders[i];
+            if (leader === 'charly') {
+                leaderElem.innerHTML = `<span class="winner-badge charly">Charly ★</span>`;
+                if (charlyElem) charlyElem.classList.add('highlight-win');
+                if (rowElem) rowElem.classList.add('charly-win-row');
+            } else {
+                leaderElem.innerHTML = `<span class="winner-badge puma">Puma</span>`;
+                if (charlyElem) charlyElem.classList.remove('highlight-win');
+                if (rowElem) rowElem.classList.remove('charly-win-row');
+            }
+        }
+    });
+}
+
+function setupBenchmarkToggle() {
+    const toggle = document.getElementById('benchmarkToggle');
+    const lblControl = document.getElementById('lblBmControl');
+    const lblPriming = document.getElementById('lblBmPriming');
+
+    if (!toggle) return;
+
+    toggle.addEventListener('change', (e) => {
+        const newMode = e.target.checked ? 'priming' : 'control';
+        const prevMode = currentBenchmarkMode;
+        if (newMode === prevMode) return;
+
+        currentBenchmarkMode = newMode;
+
+        if (newMode === 'priming') {
+            lblControl.classList.remove('active');
+            lblPriming.classList.add('active');
+        } else {
+            lblPriming.classList.remove('active');
+            lblControl.classList.add('active');
+        }
+
+        renderUnifiedBenchmarkChart(newMode);
+        updateBenchmarkTable(prevMode, newMode);
+    });
+
+    if (lblControl) {
+        lblControl.addEventListener('click', () => {
+            if (toggle.checked) {
+                toggle.checked = false;
+                toggle.dispatchEvent(new Event('change'));
+            }
+        });
+    }
+
+    if (lblPriming) {
+        lblPriming.addEventListener('click', () => {
+            if (!toggle.checked) {
+                toggle.checked = true;
+                toggle.dispatchEvent(new Event('change'));
+            }
+        });
+    }
 }
 
 function renderSemanticDumbbellChart() {
