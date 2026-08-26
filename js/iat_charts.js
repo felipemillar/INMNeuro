@@ -372,7 +372,7 @@ function renderSemanticDumbbellChart() {
 
     const shiftData = [];
     
-    // Dummy invisible trace to force yaxis2 (right poles) to render
+    // Trace 0: Dummy invisible trace to force yaxis2 (right poles) to render
     shiftData.push({
         x: Array(leftPoles.length).fill(50),
         y: yVals,
@@ -382,9 +382,44 @@ function renderSemanticDumbbellChart() {
         showlegend: false,
         hoverinfo: 'none'
     });
+
+    // Trace 1: Legend item - Control
+    shiftData.push({
+        x: [null],
+        y: [null],
+        mode: 'markers',
+        name: 'Control (Sin Estímulo)',
+        marker: { color: '#64748b', size: 14, line: { color: '#0f172a', width: 2 } },
+        showlegend: true
+    });
+
+    // Trace 2: Legend item - Priming Positivo (Hacia la Izquierda)
+    shiftData.push({
+        x: [null],
+        y: [null],
+        mode: 'lines+markers',
+        name: 'Priming (+) Desplazamiento a Favor (Izquierda)',
+        line: { color: 'rgba(37, 99, 235, 0.7)', width: 6 },
+        marker: { color: '#2563eb', size: 14, line: { color: '#ffffff', width: 2 } },
+        showlegend: true
+    });
+
+    // Trace 3: Legend item - Priming Negativo (Hacia la Derecha)
+    shiftData.push({
+        x: [null],
+        y: [null],
+        mode: 'lines+markers',
+        name: 'Priming (-) Desplazamiento en Contra (Derecha)',
+        line: { color: 'rgba(239, 68, 68, 0.7)', width: 6 },
+        marker: { color: '#ef4444', size: 14, line: { color: '#ffffff', width: 2 } },
+        showlegend: true
+    });
     
     for (let i = 0; i < leftPoles.length; i++) {
         const c_val = controlVals[i];
+        const p_val = primingVals[i];
+        const isPositiveShift = p_val >= c_val;
+        const initialDotColor = isPositiveShift ? '#2563eb' : '#ef4444';
         
         // Halo trace (Init: from 0 to c_val)
         shiftData.push({
@@ -396,7 +431,7 @@ function renderSemanticDumbbellChart() {
             hoverinfo: 'none'
         });
 
-        // Trace 0,3,6...: Line connecting dots (Init: C_VAL to C_VAL, invisible)
+        // Trace for Shift Line connecting dots (Init: C_VAL to C_VAL, invisible)
         shiftData.push({
             x: [c_val, c_val],
             y: [yVals[i], yVals[i]],
@@ -406,38 +441,42 @@ function renderSemanticDumbbellChart() {
             hoverinfo: 'none'
         });
         
-        // Trace 1,4,7...: Control Dot (Init: Opacity 1.0)
+        // Trace for Control Dot (Init: Opacity 1.0)
         shiftData.push({
             x: [c_val], y: [yVals[i]],
-            mode: 'markers+text', name: i===0 ? 'Control (Sin Estímulo)' : '',
-            marker: { color: '#64748b', size: 16, line: {color: '#0f172a', width: 2}, opacity: 1.0 },
-            showlegend: i === 0, text: c_val.toFixed(1), textposition: 'bottom center',
+            mode: 'markers+text',
+            showlegend: false,
+            marker: { color: '#64748b', size: 16, line: { color: '#0f172a', width: 2 }, opacity: 1.0 },
+            text: c_val.toFixed(1),
+            textposition: 'bottom center',
             textfont: { family: 'JetBrains Mono', color: '#475569', size: 10 },
             hoverinfo: 'text',
             hovertext: `${leftPoles[i]} vs ${rightPoles[i]}<br>Control: ${c_val.toFixed(1)}`
         });
         
-        // Trace 2,5,8...: Priming Dot (Init: at C_VAL, Opacity 0)
+        // Trace for Priming Dot (Init: at C_VAL, Opacity 0)
         shiftData.push({
             x: [c_val], y: [yVals[i]],
-            mode: 'markers+text', name: i===0 ? 'Priming (Post-Estímulo)' : '',
-            marker: { color: '#2563eb', size: 16, opacity: 0, line: { color: '#ffffff', width: 2 } },
-            showlegend: i === 0, text: c_val.toFixed(1), textposition: 'top center',
+            mode: 'markers+text',
+            showlegend: false,
+            marker: { color: initialDotColor, size: 16, opacity: 0, line: { color: '#ffffff', width: 2 } },
+            text: c_val.toFixed(1),
+            textposition: 'top center',
             textfont: { color: 'rgba(0,0,0,0)' },
             hoverinfo: 'text',
-            hovertext: `${leftPoles[i]} vs ${rightPoles[i]}<br>Priming: ${primingVals[i].toFixed(1)}`
+            hovertext: `${leftPoles[i]} vs ${rightPoles[i]}<br>Priming: ${p_val.toFixed(1)} (${isPositiveShift ? '+' : ''}${(p_val - c_val).toFixed(1)})`
         });
     }
 
     const layout = {
         paper_bgcolor: 'transparent',
         plot_bgcolor: 'transparent',
-        margin: { l: 150, r: 150, t: 30, b: 50 },
+        margin: { l: 150, r: 150, t: 30, b: 60 },
         showlegend: true,
         legend: {
-            font: { family: 'JetBrains Mono', size: 11, color: '#475569' },
+            font: { family: 'JetBrains Mono', size: 10.5, color: '#475569' },
             orientation: 'h',
-            y: -0.1,
+            y: -0.14,
             x: 0.5,
             xanchor: 'center'
         },
@@ -454,14 +493,14 @@ function renderSemanticDumbbellChart() {
         yaxis: {
             tickvals: yVals,
             ticktext: leftPoles,
-            tickfont: { family: 'JetBrains Mono', color: '#334155', size: 11 }, // Darker font
+            tickfont: { family: 'JetBrains Mono', color: '#334155', size: 11 },
             showgrid: false,
             zeroline: false
         },
         yaxis2: {
             tickvals: yVals,
             ticktext: rightPoles,
-            tickfont: { family: 'JetBrains Mono', color: '#334155', size: 11 }, // Darker font
+            tickfont: { family: 'JetBrains Mono', color: '#334155', size: 11 },
             overlaying: 'y',
             side: 'right',
             showgrid: false,
@@ -494,44 +533,50 @@ function renderSemanticDumbbellChart() {
             for (let i = 0; i < leftPoles.length; i++) {
                 const c_val = controlVals[i];
                 const p_val = primingVals[i];
+                const isPositiveShift = p_val >= c_val;
                 
-                // +1 is for the dummy trace we added at index 0
-                // Now each attribute has 4 traces (Halo, Line, Control, Priming)
-                const baseIdx = (i * 4) + 1;
+                // Color azul para variaciones positivas (hacia la izquierda), rojo para negativas (hacia la derecha)
+                const lineColor = isPositiveShift ? 'rgba(37, 99, 235, 0.45)' : 'rgba(239, 68, 68, 0.45)';
+                const dotColor = isPositiveShift ? '#2563eb' : '#ef4444';
+                const textFontColor = isPositiveShift ? '#2563eb' : '#dc2626';
+                
+                // 4 dummy traces at indices 0, 1, 2, 3 (yaxis2 dummy + 3 legend dummies)
+                // Each attribute has 4 traces: Halo(0), Line(1), Control(2), Priming(3)
+                const baseIdx = 4 + (i * 4);
                 
                 if (isPrimingOn) {
-                    // Update Line (Halo from Control to Priming)
-                    updateFrames.push({ x: [c_val, p_val], line: {color: 'rgba(37, 99, 235, 0.4)', width: 14} });
-                    traceIndices.push(baseIdx + 1); // +1 to skip the zero-halo trace which is at baseIdx
+                    // Update Shift Line (Halo connecting Control to Priming)
+                    updateFrames.push({ x: [c_val, p_val], line: { color: lineColor, width: 14 } });
+                    traceIndices.push(baseIdx + 1);
                     
                     // Update Control Dot (Ghost)
-                    updateFrames.push({ marker: {opacity: 0.3, size: 16, color: '#64748b', line: {color: 'rgba(15,23,42,0.3)', width: 2}} });
+                    updateFrames.push({ marker: { opacity: 0.35, size: 16, color: '#64748b', line: { color: 'rgba(15,23,42,0.3)', width: 2 } } });
                     traceIndices.push(baseIdx + 2);
                     
-                    // Update Priming Dot
+                    // Update Priming Dot with custom color (Blue for positive, Red for negative)
                     updateFrames.push({ 
                         x: [p_val], 
-                        marker: {opacity: 1.0, size: 16, color: '#2563eb', line: {color: '#ffffff', width: 2}}, 
+                        marker: { opacity: 1.0, size: 16, color: dotColor, line: { color: '#ffffff', width: 2 } }, 
                         text: [p_val.toFixed(1)],
-                        textfont: { family: 'JetBrains Mono', color: '#60a5fa', size: 10 }
+                        textfont: { family: 'JetBrains Mono', color: textFontColor, size: 10.5 }
                     });
                     traceIndices.push(baseIdx + 3);
                     
                 } else {
-                    // Revert Line
-                    updateFrames.push({ x: [c_val, c_val], line: {color: 'rgba(0, 0, 0, 0)', width: 4} });
+                    // Revert Shift Line
+                    updateFrames.push({ x: [c_val, c_val], line: { color: 'rgba(0, 0, 0, 0)', width: 4 } });
                     traceIndices.push(baseIdx + 1);
                     
                     // Revert Control Dot
-                    updateFrames.push({ marker: {opacity: 1.0, size: 16, color: '#64748b', line: {color: '#0f172a', width: 2}} });
+                    updateFrames.push({ marker: { opacity: 1.0, size: 16, color: '#64748b', line: { color: '#0f172a', width: 2 } } });
                     traceIndices.push(baseIdx + 2);
                     
                     // Revert Priming Dot
                     updateFrames.push({ 
                         x: [c_val], 
-                        marker: {opacity: 0, size: 16, color: '#2563eb', line: {color: '#ffffff', width: 2}}, 
+                        marker: { opacity: 0, size: 16, color: dotColor, line: { color: '#ffffff', width: 2 } }, 
                         text: [c_val.toFixed(1)],
-                        textfont: {color: 'rgba(0,0,0,0)'}
+                        textfont: { color: 'rgba(0,0,0,0)' }
                     });
                     traceIndices.push(baseIdx + 3);
                 }
@@ -547,3 +592,4 @@ function renderSemanticDumbbellChart() {
         });
     }
 }
+
