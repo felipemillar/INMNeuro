@@ -753,7 +753,7 @@ input:checked + .toggle-slider:before {
 
 .fill-blue { background: #2563eb; }
 .fill-amber { background: #d97706; }
-.fill-emerald { background: #059669; }
+.fill-emerald, .fill-green { background: #059669; }
 .fill-purple { background: #7c3aed; }
 
 .benchmark-range {
