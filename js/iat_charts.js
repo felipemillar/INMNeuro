@@ -458,15 +458,15 @@ function renderSemanticDumbbellChart() {
             hovertext: `${leftPoles[i]} vs ${rightPoles[i]}<br>Control: ${c_val.toFixed(1)}`
         });
         
-        // Trace for Priming Dot (Init: at C_VAL, Opacity 0)
+        // Trace for Priming Dot (Init: at C_VAL, Opacity 0, No text in Control mode)
         shiftData.push({
             x: [c_val], y: [yVals[i]],
             mode: 'markers+text',
             showlegend: false,
             marker: { color: shiftColor, size: 16, opacity: 0, line: { color: '#ffffff', width: 2 } },
-            text: [c_val.toFixed(1)],
+            text: [''],
             textposition: 'top center',
-            textfont: { family: 'JetBrains Mono', color: shiftTextColor, size: 10.5 },
+            textfont: { family: 'JetBrains Mono', color: 'rgba(0,0,0,0)', size: 10.5 },
             hoverinfo: 'text',
             hovertext: `${leftPoles[i]} vs ${rightPoles[i]}<br>Priming: ${p_val.toFixed(1)} (${isPositiveShift ? '+' : ''}${(p_val - c_val).toFixed(1)})`
         });
@@ -599,12 +599,17 @@ function animateSemanticDumbbellChart(isPrimingOn, duration = 650) {
                 // Control Dot (Fade in back to 1.0)
                 controlTrace.marker.opacity = 0.35 + (0.65 * ease);
                 
-                // Priming Dot (Fade out back to 0)
+                // Priming Dot (Fade out back to 0 and remove text)
                 primingTrace.x = [currentX];
                 primingTrace.marker.opacity = 1.0 - ease;
                 primingTrace.marker.color = dotColor;
-                primingTrace.text = [currentX.toFixed(1)];
-                primingTrace.textfont.color = textFontColor;
+                if (progress >= 1) {
+                    primingTrace.text = [''];
+                    primingTrace.textfont.color = 'rgba(0,0,0,0)';
+                } else {
+                    primingTrace.text = [currentX.toFixed(1)];
+                    primingTrace.textfont.color = textFontColor;
+                }
             }
         }
 
