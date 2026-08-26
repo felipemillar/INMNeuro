@@ -21,9 +21,8 @@ function initIATCharts() {
     if (iatChartsInitialized) return;
     
     // Solo inicializar si los contenedores existen
-    if (!document.getElementById('iatMonadicChart')) return;
+    if (!document.getElementById('iatUnifiedBenchmarkChart')) return;
 
-    renderMonadicChart();
     initUnifiedBenchmark();
     renderSemanticDumbbellChart();
 
@@ -62,46 +61,6 @@ const commonRadarLayout = {
     },
     margin: { l: 50, r: 50, t: 50, b: 45 }
 };
-
-function renderMonadicChart() {
-    const attributes = ['Tecnológico', 'Barato', 'Calidad', 'Futbol', 'Ecológico', 'Variedad', 'Demanda', 'Premium'];
-    const attrsClosed = [...attributes, attributes[0]];
-    
-    const controlVals = [29.3, 42.5, 42.7, 25.6, 31.2, 27.2, 9.0, 18.0];
-    const controlClosed = [...controlVals, controlVals[0]];
-    
-    const primingVals = [51.4, 48.6, 52.4, 54.1, 49.0, 49.9, 24.0, 28.9];
-    const primingClosed = [...primingVals, primingVals[0]];
-
-    const traceControl = {
-        type: 'scatterpolar',
-        mode: 'lines+markers',
-        r: controlClosed,
-        theta: attrsClosed,
-        fill: 'toself',
-        name: 'Charly (Control)',
-        line: { color: '#64748b', width: 2 },
-        marker: { size: 6, color: '#64748b' },
-        fillcolor: 'rgba(100, 116, 139, 0.15)'
-    };
-
-    const tracePriming = {
-        type: 'scatterpolar',
-        mode: 'lines+markers',
-        r: primingClosed,
-        theta: attrsClosed,
-        fill: 'toself',
-        name: 'Charly (Post-Priming)',
-        line: { color: '#2563eb', width: 2.5 },
-        marker: { size: 6, color: '#2563eb' },
-        fillcolor: 'rgba(37, 99, 235, 0.25)'
-    };
-
-    const layout = JSON.parse(JSON.stringify(commonRadarLayout));
-    layout.margin = { l: 50, r: 50, t: 50, b: 45 };
-
-    Plotly.newPlot('iatMonadicChart', [traceControl, tracePriming], layout, { displayModeBar: false, responsive: true });
-}
 
 // ==========================================================================
 // UNIFIED BENCHMARK CONTROLLER (Radar Morphing + Number Ticker Odometers)
