@@ -60,6 +60,7 @@ function initNavigation() {
         'eyetracking': { title: '[ EYE TRACKING ]', sub: 'MÓDULO DE ANÁLISIS VISUAL' },
         'iat': { title: '[ ASOCIACIONES IMPLÍCITAS ]', sub: 'DEMO CHARLY VS PUMA' },
         'paradigma': { title: '[ PARADIGMA CHARLY ]', sub: 'ESTUDIO MULTI-MARCA & SHELF TEST GÓNDOLA (67 SLIDES)' },
+        'identidad': { title: '[ IDENTIDAD VISUAL ]', sub: 'BRANDGUARD™ & BRAND BOOK AUDIT' },
         'settings': { title: '[ AJUSTES ]', sub: 'CONFIGURACIÓN DEL SISTEMA' },
         'overview': { title: '[ SYS_OVERVIEW ]', sub: 'PIPELINE_METRICS_AND_VALIDATION' },
         'priming': { title: '[ TARGET_AR ]', sub: 'TARGET_VS_CONTROL_DELTA' },
@@ -97,6 +98,11 @@ function initNavigation() {
                     if (document.getElementById('paradigmMacroChart')) Plotly.Plots.resize('paradigmMacroChart');
                     if (document.getElementById('paradigmKChart')) Plotly.Plots.resize('paradigmKChart');
                     if (document.getElementById('paradigmDonutChart')) Plotly.Plots.resize('paradigmDonutChart');
+                }, 80);
+            }
+            if (targetView === 'identidad') {
+                setTimeout(() => {
+                    if (typeof initIdentidadModule === 'function') initIdentidadModule();
                 }, 80);
             }
         });
