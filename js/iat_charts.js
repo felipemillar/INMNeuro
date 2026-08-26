@@ -132,6 +132,48 @@ function initUnifiedBenchmark() {
     setupBenchmarkToggle();
 }
 
+let currentRadarAnimation = null;
+
+function animateRadarChart(fromMode, toMode, duration = 600) {
+    const targetElem = document.getElementById('iatUnifiedBenchmarkChart');
+    if (!targetElem || !targetElem.data || targetElem.data.length < 2) return;
+
+    const fromCharly = benchmarkData[fromMode].charly;
+    const toCharly = benchmarkData[toMode].charly;
+    const fromPuma = benchmarkData[fromMode].puma;
+    const toPuma = benchmarkData[toMode].puma;
+
+    const startTime = performance.now();
+
+    if (currentRadarAnimation) {
+        cancelAnimationFrame(currentRadarAnimation);
+    }
+
+    function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+
+        const currentCharly = fromCharly.map((v, i) => v + (toCharly[i] - v) * ease);
+        const currentPuma = fromPuma.map((v, i) => v + (toPuma[i] - v) * ease);
+
+        const charlyClosed = [...currentCharly, currentCharly[0]];
+        const pumaClosed = [...currentPuma, currentPuma[0]];
+
+        targetElem.data[0].r = charlyClosed;
+        targetElem.data[1].r = pumaClosed;
+        Plotly.redraw('iatUnifiedBenchmarkChart');
+
+        if (progress < 1) {
+            currentRadarAnimation = requestAnimationFrame(step);
+        } else {
+            currentRadarAnimation = null;
+        }
+    }
+
+    currentRadarAnimation = requestAnimationFrame(step);
+}
+
 function renderUnifiedBenchmarkChart(mode) {
     const targetElem = document.getElementById('iatUnifiedBenchmarkChart');
     if (!targetElem) return;
@@ -172,16 +214,7 @@ function renderUnifiedBenchmarkChart(mode) {
     const layout = JSON.parse(JSON.stringify(commonRadarLayout));
     layout.margin = { l: 55, r: 55, t: 55, b: 45 };
 
-    if (!targetElem._plotlyGeo && !targetElem.data) {
-        Plotly.newPlot('iatUnifiedBenchmarkChart', [traceCharly, tracePuma], layout, { displayModeBar: false, responsive: true });
-    } else {
-        Plotly.animate('iatUnifiedBenchmarkChart', {
-            data: [{ r: charlyClosed }, { r: pumaClosed }]
-        }, {
-            transition: { duration: 600, easing: 'cubic-in-out' },
-            frame: { duration: 600, redraw: false }
-        });
-    }
+    Plotly.newPlot('iatUnifiedBenchmarkChart', [traceCharly, tracePuma], layout, { displayModeBar: false, responsive: true });
 }
 
 // Odómetro / Ticker para números animados
@@ -306,7 +339,7 @@ function setupBenchmarkToggle() {
             lblControl.classList.add('active');
         }
 
-        renderUnifiedBenchmarkChart(newMode);
+        animateRadarChart(prevMode, newMode, 600);
         updateBenchmarkTable(prevMode, newMode);
     });
 
