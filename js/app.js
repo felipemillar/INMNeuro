@@ -36,7 +36,7 @@ async function fetchDataAndInitialize() {
             const chartIds = [
                 'ageDistributionChart', 'groupCompositionChart', 'primingShiftChart', 
                 'frictionScatterChart', 'audiencePieChart', 'telemetryTimelineChart',
-                'iatUnifiedBenchmarkChart', 'paradigmMacroChart', 'paradigmDonutChart'
+                'iatUnifiedBenchmarkChart', 'paradigmMacroChart', 'paradigmKChart', 'paradigmDonutChart'
             ];
             chartIds.forEach(id => {
                 if (document.getElementById(id) && typeof Plotly !== 'undefined') Plotly.Plots.resize(id);
@@ -87,6 +87,7 @@ function initNavigation() {
                 setTimeout(() => {
                     if (typeof initParadigmaCharts === 'function') initParadigmaCharts();
                     if (document.getElementById('paradigmMacroChart')) Plotly.Plots.resize('paradigmMacroChart');
+                    if (document.getElementById('paradigmKChart')) Plotly.Plots.resize('paradigmKChart');
                     if (document.getElementById('paradigmDonutChart')) Plotly.Plots.resize('paradigmDonutChart');
                 }, 80);
             }
