@@ -366,13 +366,13 @@ function setupParadigmPills() {
     });
 }
 
-// 3. Selección y Renderizado del Paradigma Específico
+// 3. Selección y Renderizado del Paradigma Específico con Transiciones Minimalistas
 function selectParadigm(paradigmKey) {
     const data = PARADIGMA_DATABASE[paradigmKey];
     if (!data) return;
     activeParadigmId = paradigmKey;
 
-    // Actualizar encabezados y síntesis
+    // Actualizar encabezados y síntesis con micro-animación
     const titleElem = document.getElementById('paradigmActiveTitle');
     const tagElem = document.getElementById('paradigmActiveTag');
     const conclusionElem = document.getElementById('paradigmActiveConclusion');
@@ -381,43 +381,72 @@ function selectParadigm(paradigmKey) {
     if (titleElem) titleElem.textContent = `[ PARADIGMA: ${data.title.toUpperCase()} ]`;
     if (tagElem) {
         tagElem.textContent = data.tag;
-        tagElem.className = 'paradigm-badge-status ' + (data.isPositive ? 'positive' : 'negative');
+        tagElem.className = 'paradigm-badge-status ' + (data.isPositive ? 'positive' : 'negative') + ' badge-animate';
     }
-    if (conclusionElem) conclusionElem.innerHTML = data.conclusion;
+    if (conclusionElem) {
+        conclusionElem.style.opacity = '0';
+        setTimeout(() => {
+            conclusionElem.innerHTML = data.conclusion;
+            conclusionElem.style.transition = 'opacity 0.25s ease';
+            conclusionElem.style.opacity = '1';
+        }, 80);
+    }
     if (rankingElem) rankingElem.textContent = data.initialRankingCharly;
 
-    // Actualizar Funnel
+    // Actualizar Funnel con micro-animación suave
     const fViewed = document.getElementById('funnelViewed');
     const fPickup = document.getElementById('funnelPickup');
     const fCart = document.getElementById('funnelCart');
     const fTime = document.getElementById('funnelTime');
 
-    if (fViewed) fViewed.textContent = data.shopperFunnel.viewed;
-    if (fPickup) fPickup.textContent = data.shopperFunnel.pickup;
-    if (fCart) fCart.textContent = data.shopperFunnel.cart;
-    if (fTime) fTime.textContent = data.shopperFunnel.avgTime;
+    [fViewed, fPickup, fCart, fTime].forEach(elem => {
+        if (elem) {
+            elem.style.transform = 'scale(0.92)';
+            elem.style.opacity = '0.4';
+        }
+    });
 
-    // Render Donut Chart
+    setTimeout(() => {
+        if (fViewed) fViewed.textContent = data.shopperFunnel.viewed;
+        if (fPickup) fPickup.textContent = data.shopperFunnel.pickup;
+        if (fCart) fCart.textContent = data.shopperFunnel.cart;
+        if (fTime) fTime.textContent = data.shopperFunnel.avgTime;
+
+        [fViewed, fPickup, fCart, fTime].forEach(elem => {
+            if (elem) {
+                elem.style.transition = 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)';
+                elem.style.transform = 'scale(1)';
+                elem.style.opacity = '1';
+            }
+        });
+    }, 60);
+
+    // Render Donut Chart con transición morphing fluida
     renderParadigmDonut(data.donutData);
 
-    // Render Leaderboard Table
+    // Render Leaderboard Table con efecto cascada (staggered)
     renderParadigmTable(data.leaderboard);
 }
 
-// 4. Donut Chart de Participación de Mente (Share of Mind)
+// 4. Donut Chart de Participación de Mente (Share of Mind) con Morphing Dinámico
 function renderParadigmDonut(donutData) {
+    const donutDiv = document.getElementById('paradigmDonutChart');
+    if (!donutDiv) return;
+
     const trace = {
         labels: donutData.labels,
         values: donutData.values,
         type: 'pie',
         hole: 0.58,
+        sort: false,
+        direction: 'clockwise',
         marker: {
             colors: donutData.colors,
-            line: { color: '#ffffff', width: 2 }
+            line: { color: '#ffffff', width: 2.5 }
         },
         textinfo: 'label+percent',
         textposition: 'outside',
-        textfont: { family: 'JetBrains Mono', size: 10, color: '#1e293b' },
+        textfont: { family: 'JetBrains Mono, monospace', size: 11.5, color: '#0f172a' },
         hoverinfo: 'label+value+percent'
     };
 
@@ -425,21 +454,38 @@ function renderParadigmDonut(donutData) {
         paper_bgcolor: 'transparent',
         plot_bgcolor: 'transparent',
         showlegend: false,
-        margin: { l: 25, r: 25, t: 25, b: 25 }
+        margin: { l: 30, r: 30, t: 30, b: 30 }
     };
 
-    Plotly.newPlot('paradigmDonutChart', [trace], layout, { displayModeBar: false, responsive: true });
+    if (donutDiv.data && donutDiv.data.length > 0) {
+        Plotly.animate('paradigmDonutChart', {
+            data: [trace],
+            layout: layout
+        }, {
+            transition: {
+                duration: 420,
+                easing: 'cubic-in-out'
+            },
+            frame: {
+                duration: 420,
+                redraw: true
+            }
+        });
+    } else {
+        Plotly.newPlot('paradigmDonutChart', [trace], layout, { displayModeBar: false, responsive: true });
+    }
 }
 
-// 5. Tabla Leaderboard de 5 Marcas
+// 5. Tabla Leaderboard de 5 Marcas con Transición Escalonada (Staggered Gliding)
 function renderParadigmTable(leaderboard) {
     const tbody = document.getElementById('paradigmLeaderboardBody');
     if (!tbody) return;
 
     tbody.innerHTML = '';
 
-    leaderboard.forEach(row => {
+    leaderboard.forEach((row, idx) => {
         const tr = document.createElement('tr');
+        tr.style.animationDelay = `${idx * 45}ms`;
         if (row.isCharly) {
             tr.className = 'charly-highlight-row';
         }
