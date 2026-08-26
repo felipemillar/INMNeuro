@@ -33,9 +33,13 @@ async function fetchDataAndInitialize() {
         
         // Resize handling for Plotly
         window.addEventListener('resize', () => {
-            const chartIds = ['ageDistributionChart', 'groupCompositionChart', 'primingShiftChart', 'frictionScatterChart', 'audiencePieChart', 'telemetryTimelineChart'];
+            const chartIds = [
+                'ageDistributionChart', 'groupCompositionChart', 'primingShiftChart', 
+                'frictionScatterChart', 'audiencePieChart', 'telemetryTimelineChart',
+                'iatUnifiedBenchmarkChart', 'paradigmMacroChart', 'paradigmDonutChart'
+            ];
             chartIds.forEach(id => {
-                if (document.getElementById(id)) Plotly.Plots.resize(id);
+                if (document.getElementById(id) && typeof Plotly !== 'undefined') Plotly.Plots.resize(id);
             });
         });
     } catch (error) {
@@ -54,6 +58,7 @@ function initNavigation() {
         'telemetry': { title: '[ DIGITAL PREDICT ]', sub: 'BIOMETRIC_TELEMETRY_AND_TIMELINE_SYNC' },
         'eyetracking': { title: '[ EYE TRACKING ]', sub: 'MÓDULO DE ANÁLISIS VISUAL' },
         'iat': { title: '[ ASOCIACIONES IMPLÍCITAS ]', sub: 'DEMO CHARLY VS PUMA' },
+        'paradigma': { title: '[ PARADIGMA CHARLY ]', sub: 'ESTUDIO MULTI-MARCA & SHELF TEST GÓNDOLA (67 SLIDES)' },
         'settings': { title: '[ AJUSTES ]', sub: 'CONFIGURACIÓN DEL SISTEMA' },
         'overview': { title: '[ SYS_OVERVIEW ]', sub: 'PIPELINE_METRICS_AND_VALIDATION' },
         'priming': { title: '[ TARGET_AR ]', sub: 'TARGET_VS_CONTROL_DELTA' },
@@ -68,19 +73,22 @@ function initNavigation() {
 
             const targetView = link.getAttribute('data-view');
             views.forEach(v => v.classList.remove('active'));
-            document.getElementById(targetView).classList.add('active');
+            const targetElem = document.getElementById(targetView);
+            if (targetElem) targetElem.classList.add('active');
 
-            viewTitle.textContent = viewMeta[targetView].title;
-            viewSubtitle.textContent = viewMeta[targetView].sub;
+            if (viewMeta[targetView]) {
+                viewTitle.textContent = viewMeta[targetView].title;
+                viewSubtitle.textContent = viewMeta[targetView].sub;
+            }
             
-            // Plotly sometimes needs a redraw when becoming visible
+            // Plotly redraw when becoming visible
             window.dispatchEvent(new Event('resize'));
-            if (targetView === 'telemetry' && typeof Plotly !== 'undefined') {
+            if (targetView === 'paradigma') {
                 setTimeout(() => {
-                    if (document.getElementById('telemetryTimelineChart')) {
-                        Plotly.Plots.resize('telemetryTimelineChart');
-                    }
-                }, 50);
+                    if (typeof initParadigmaCharts === 'function') initParadigmaCharts();
+                    if (document.getElementById('paradigmMacroChart')) Plotly.Plots.resize('paradigmMacroChart');
+                    if (document.getElementById('paradigmDonutChart')) Plotly.Plots.resize('paradigmDonutChart');
+                }, 80);
             }
         });
     });

@@ -11,7 +11,7 @@
     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css?v=16">
+    <link rel="stylesheet" href="css/styles.css?v=17">
 </head>
 <body>
     <div class="app-container">
@@ -35,6 +35,10 @@
                 <li data-view="iat">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l3-9 5 18 3-9h5"></path></svg>
                     [ ASOCIACIONES IMPLÍCITAS ]
+                </li>
+                <li data-view="paradigma">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    [ PARADIGMA CHARLY ]
                 </li>
                 <li data-view="settings">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
@@ -384,7 +388,189 @@
                     </div>
                 </div>
 
-                <!-- 4. Settings View (Placeholder) -->
+                <!-- 4. Paradigma Charly View (Multi-Brand Study - 67 Slides) -->
+                <div id="paradigma" class="view">
+                    <!-- Study Context Box -->
+                    <div class="validation-box" style="border-left-color: var(--accent-secondary);">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap;">
+                            <div>
+                                <h4>Estudio de Paradigmas de Marca: Charly vs. Competidores Globales</h4>
+                                <p>Evaluación cruzada de <strong>60 participantes (México, 30 Julio 2026)</strong> integrando <strong>IAT/IRT (Tiempos de Reacción Implícitos)</strong> y <strong>Eye Tracking en Góndola Simulada (Shelf Test)</strong> para medir cuota mental y conversión real frente a <strong>Nike, Adidas, Puma y Asics</strong>.</p>
+                            </div>
+                            <span class="benchmark-tag priming-tag" style="font-size: 0.75rem;">67 DIAPOSITIVAS PROCESADAS</span>
+                        </div>
+                    </div>
+
+                    <!-- Macro KPI Grid -->
+                    <div class="kpi-grid" style="margin-top: 20px;">
+                        <div class="kpi-card glass-panel">
+                            <div class="kpi-header">
+                                <span class="kpi-title">ASOCIACIONES GANADAS</span>
+                                <span class="kpi-badge badge-pass">2 / 8</span>
+                            </div>
+                            <div class="kpi-value text-green">25.0%</div>
+                            <div class="kpi-subtext">Líder en <strong>Económicos</strong> (1º) y <strong>Ecológico</strong> (2º)</div>
+                        </div>
+
+                        <div class="kpi-card glass-panel">
+                            <div class="kpi-header">
+                                <span class="kpi-title">PUNTAJE MÁXIMO (ECONÓMICOS)</span>
+                                <span class="kpi-badge badge-pass">60.3 PTS</span>
+                            </div>
+                            <div class="kpi-value text-amber">60.3</div>
+                            <div class="kpi-subtext">65% de compras de góndola / 57% cuota mental</div>
+                        </div>
+
+                        <div class="kpi-card glass-panel">
+                            <div class="kpi-header">
+                                <span class="kpi-title">VECTOR DIFERENCIAL (ECOLÓGICO)</span>
+                                <span class="kpi-badge badge-pass">HIDDEN GEM</span>
+                            </div>
+                            <div class="kpi-value text-blue">30.4</div>
+                            <div class="kpi-subtext">Supera a Nike, Adidas y Puma (30% compras)</div>
+                        </div>
+
+                        <div class="kpi-card glass-panel">
+                            <div class="kpi-header">
+                                <span class="kpi-title">PUNTOS CIEGOS (ASPIRACIONAL)</span>
+                                <span class="kpi-badge badge-warn">6 ATRIBUTOS</span>
+                            </div>
+                            <div class="kpi-value" style="color: #ef4444;">6 / 8</div>
+                            <div class="kpi-subtext">Dominio total de Nike/Adidas en Premium y Tech</div>
+                        </div>
+                    </div>
+
+                    <!-- Macro Comparison Chart -->
+                    <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
+                        <div class="benchmark-header-wrap">
+                            <div>
+                                <h3>[ PANORAMA MACRO: CHARLY VS LÍDER POR ATRIBUTO ]</h3>
+                                <p class="chart-description">SHELF SCORE COMPUESTO (60% COMPRA + 25% PICKUP + 15% VAI™)</p>
+                            </div>
+                            <span class="benchmark-tag">BENCHMARK PENTAGONAL</span>
+                        </div>
+                        <div class="chart-container" style="height: 340px;">
+                            <div id="paradigmMacroChart" style="width:100%;height:100%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Deep-Dive Explorer Section -->
+                    <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
+                        <div class="benchmark-header-wrap">
+                            <div>
+                                <h3 id="paradigmActiveTitle">[ PARADIGMA: ECONÓMICOS / ACCESIBILIDAD ]</h3>
+                                <p class="chart-description">EXPLORACIÓN DETALLADA DE GÓNDOLA Y ATENCIÓN VISUAL EYE TRACKING</p>
+                            </div>
+                            <span id="paradigmActiveTag" class="paradigm-badge-status positive">1º LUGAR ABSOLUTO (DOMINANCIA)</span>
+                        </div>
+
+                        <!-- Paradigm Pill Selector (8 Pills) -->
+                        <div class="paradigm-pill-selector">
+                            <button class="paradigm-pill-btn active" data-paradigm="economicos">Económicos ★</button>
+                            <button class="paradigm-pill-btn" data-paradigm="ecologico">Ecológico ★</button>
+                            <button class="paradigm-pill-btn" data-paradigm="premium">Premium</button>
+                            <button class="paradigm-pill-btn" data-paradigm="tecnologia">Tecnología</button>
+                            <button class="paradigm-pill-btn" data-paradigm="futbol">Fútbol</button>
+                            <button class="paradigm-pill-btn" data-paradigm="diseno">Diseño</button>
+                            <button class="paradigm-pill-btn" data-paradigm="comodidad">Comodidad</button>
+                            <button class="paradigm-pill-btn" data-paradigm="durabilidad">Durabilidad</button>
+                        </div>
+
+                        <!-- Active Conclusion Banner -->
+                        <div class="benchmark-insight-box" style="margin-top: 16px;">
+                            <p id="paradigmActiveConclusion">El concepto de ECONÓMICOS <strong>SÍ</strong> se asocia de forma contundente e indiscutida a CHARLY. Representa más de la mitad (57%) de la cuota mental del estudio y el 65% de las compras efectivas en góndola.</p>
+                        </div>
+
+                        <!-- 2-Column Grid: Donut + Funnel (Left) vs Leaderboard (Right) -->
+                        <div class="paradigm-drilldown-grid">
+                            <!-- Left: Donut + Funnel -->
+                            <div class="paradigm-left-pane">
+                                <div class="sub-card-header">
+                                    <span class="sub-card-title">CUOTA MENTAL (SHARE OF MIND)</span>
+                                    <span class="ranking-pill" id="paradigmActiveRanking">1º Lugar (5/5)</span>
+                                </div>
+                                <div style="height: 250px;">
+                                    <div id="paradigmDonutChart" style="width:100%;height:100%;"></div>
+                                </div>
+
+                                <div class="shopper-funnel-box" style="margin-top: 16px;">
+                                    <span class="funnel-title">EMBUDO DE CONVERSIÓN EN GÓNDOLA (SHOPPER FUNNEL)</span>
+                                    <div class="funnel-steps">
+                                        <div class="funnel-step">
+                                            <span class="f-lbl">Vieron Góndola</span>
+                                            <span class="f-val" id="funnelViewed">100%</span>
+                                        </div>
+                                        <span class="f-arrow">→</span>
+                                        <div class="funnel-step">
+                                            <span class="f-lbl">Pickup (Tomaron)</span>
+                                            <span class="f-val" id="funnelPickup">97%</span>
+                                        </div>
+                                        <span class="f-arrow">→</span>
+                                        <div class="funnel-step">
+                                            <span class="f-lbl">Al Carrito</span>
+                                            <span class="f-val" id="funnelCart">97%</span>
+                                        </div>
+                                    </div>
+                                    <div class="funnel-footer">
+                                        <span>Tiempo medio de compra: <strong id="funnelTime">4.2s</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Leaderboard Table -->
+                            <div class="paradigm-right-pane">
+                                <div class="sub-card-header">
+                                    <span class="sub-card-title">LEADERBOARD DE PRODUCTO EN GÓNDOLA (5 MARCAS)</span>
+                                    <span class="formula-pill">Score = 60% Compra + 25% Pickup + 15% VAI</span>
+                                </div>
+                                <div class="table-responsive" style="margin-top: 10px;">
+                                    <table class="paradigm-leaderboard-table">
+                                        <thead>
+                                            <tr>
+                                                <th>POS</th>
+                                                <th>MARCA</th>
+                                                <th>SCORE</th>
+                                                <th>COMPRA %</th>
+                                                <th>PICKUP %</th>
+                                                <th>VAI™ %</th>
+                                                <th>COEF. K</th>
+                                                <th>ROL CONDUCTUAL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="paradigmLeaderboardBody">
+                                            <!-- Injected dynamically by JS -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Strategic Takeaways & Neuro-Recommendation -->
+                    <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
+                        <div class="benchmark-header-wrap">
+                            <div>
+                                <h3>[ DICTAMEN ESTRATÉGICO DE NEUROMARKETING ]</h3>
+                                <p class="chart-description">RECOMENDACIONES PARA EL POSICIONAMIENTO Y CAMPAÑAS DE CHARLY</p>
+                            </div>
+                            <span class="benchmark-tag priming-tag">SÍNTESIS CONSULTIVA</span>
+                        </div>
+                        <div class="neuro-insights-grid">
+                            <div class="neuro-rec-box">
+                                <div class="rec-icon text-green">★</div>
+                                <h4>Fortaleza Base: "Sostenibilidad Accesible"</h4>
+                                <p>Charly domina indiscutiblemente la percepción de <strong>Precio/Accesibilidad (Score 60.3)</strong> y tiene alta credibilidad en <strong>Ecológico (30.4)</strong>. La estrategia óptima es comunicar calzado sustentable a precio democrático, un territorio donde las marcas premium globales tienen fricción.</p>
+                            </div>
+                            <div class="neuro-rec-box">
+                                <div class="rec-icon text-amber">⚡</div>
+                                <h4>Fricción en Performance y Calidad Percibida</h4>
+                                <p>En atributos de desempeño (Fútbol, Durabilidad, Tecnología), Charly sufre de un <strong>punto ciego (Shelf Blind Spot)</strong>. Los comerciales de alta intensidad (como el caso Hugo Sánchez) logran activar priming positivo temporal (+16.1 pts en Fútbol), pero se requiere una narrativa continuada de innovación técnica para instalarse en el top of mind.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Settings View (Placeholder) -->
                 <div id="settings" class="view">
                     <div class="validation-box">
                         <h4>Ajustes del Sistema</h4>
@@ -557,8 +743,9 @@
         </main>
     </div>
 
-    <script src="js/telemetry.js?v=16"></script>
-    <script src="js/iat_charts.js?v=16"></script>
-    <script src="js/app.js?v=16"></script>
+    <script src="js/telemetry.js?v=17"></script>
+    <script src="js/iat_charts.js?v=17"></script>
+    <script src="js/paradigma_charts.js?v=17"></script>
+    <script src="js/app.js?v=17"></script>
 </body>
 </html>

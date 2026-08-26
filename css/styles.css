@@ -1235,3 +1235,355 @@ input:checked + .toggle-slider:before {
     color: #b91c1c;
     background: rgba(239, 68, 68, 0.15);
 }
+
+/* ==========================================================================
+   PARADIGMA CHARLY MULTI-BRAND & SHELF TEST STYLES
+   ========================================================================== */
+
+.paradigm-badge-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.paradigm-badge-status.positive {
+    background: rgba(16, 185, 129, 0.12);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.paradigm-badge-status.negative {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.paradigm-pill-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.paradigm-pill-btn {
+    background: var(--bg-base);
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.paradigm-pill-btn:hover {
+    color: var(--text-primary);
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+}
+
+.paradigm-pill-btn.active {
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
+}
+
+.paradigm-drilldown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+    .paradigm-drilldown-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.paradigm-left-pane,
+.paradigm-right-pane {
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.sub-card-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
+}
+
+.ranking-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: rgba(234, 88, 12, 0.12);
+    color: #ea580c;
+    padding: 3px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(234, 88, 12, 0.25);
+}
+
+.formula-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    background: var(--bg-base);
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--glass-border);
+}
+
+/* Shopper Funnel */
+.shopper-funnel-box {
+    background: var(--bg-base);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 14px;
+}
+
+.funnel-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.funnel-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.funnel-step {
+    background: #ffffff;
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    padding: 8px 10px;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.f-lbl {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.f-val {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.f-arrow {
+    color: var(--text-muted);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.funnel-footer {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.funnel-footer strong {
+    color: #0f172a;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Leaderboard Table */
+.paradigm-leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+}
+
+.paradigm-leaderboard-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: left;
+    padding: 10px 8px;
+    border-bottom: 2px solid var(--glass-border);
+    background: rgba(241, 245, 249, 0.5);
+}
+
+.paradigm-leaderboard-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--glass-border);
+    vertical-align: middle;
+}
+
+.paradigm-leaderboard-table tr:hover {
+    background: rgba(248, 250, 252, 0.8);
+}
+
+.paradigm-leaderboard-table tr.charly-highlight-row {
+    background: rgba(234, 88, 12, 0.05);
+    border-left: 3px solid #ea580c;
+}
+
+.col-rank {
+    width: 45px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-muted);
+}
+
+.col-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.92rem;
+    color: #0f172a;
+}
+
+.col-metric {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: #334155;
+}
+
+/* Brand Badges */
+.brand-badge {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+}
+
+.brand-badge.charly {
+    background: rgba(234, 88, 12, 0.12);
+    color: #ea580c;
+    border: 1px solid rgba(234, 88, 12, 0.3);
+}
+
+.brand-badge.nike {
+    background: rgba(15, 23, 42, 0.1);
+    color: #0f172a;
+    border: 1px solid rgba(15, 23, 42, 0.2);
+}
+
+.brand-badge.adidas {
+    background: rgba(59, 130, 246, 0.1);
+    color: #1d4ed8;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.brand-badge.puma {
+    background: rgba(2, 132, 199, 0.1);
+    color: #0284c7;
+    border: 1px solid rgba(2, 132, 199, 0.25);
+}
+
+.brand-badge.asics {
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+/* Behavioral Role Pills */
+.role-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 12px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.role-pill.role-gem {
+    background: rgba(16, 185, 129, 0.12);
+    color: #047857;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.role-pill.role-trap {
+    background: rgba(245, 158, 11, 0.12);
+    color: #b45309;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.role-pill.role-worst {
+    background: rgba(239, 68, 68, 0.1);
+    color: #b91c1c;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.role-pill.role-neutral {
+    background: var(--bg-base);
+    color: var(--text-muted);
+    border: 1px solid var(--glass-border);
+}
+
+/* Neuro Recommendations */
+.neuro-insights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+    .neuro-insights-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.neuro-rec-box {
+    background: var(--bg-base);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 16px;
+    position: relative;
+}
+
+.rec-icon {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+}
+
+.neuro-rec-box h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.neuro-rec-box p {
+    font-size: 0.83rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
