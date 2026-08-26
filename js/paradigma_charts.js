@@ -217,11 +217,11 @@ function renderParadigmMacroChart() {
         type: 'bar',
         marker: {
             color: charlyScores.map((val, idx) => idx < 2 ? '#ea580c' : 'rgba(234, 88, 12, 0.45)'),
-            line: { color: '#ea580c', width: 1.5 }
+            line: { color: '#ea580c', width: 2 }
         },
         text: charlyScores.map(v => v.toFixed(1)),
         textposition: 'outside',
-        textfont: { family: 'JetBrains Mono', size: 10, color: '#ea580c' }
+        textfont: { family: 'JetBrains Mono, monospace', size: 13, color: '#ea580c' }
     };
 
     const traceLeader = {
@@ -231,12 +231,12 @@ function renderParadigmMacroChart() {
         type: 'bar',
         marker: {
             color: 'rgba(30, 41, 59, 0.15)',
-            line: { color: '#64748b', width: 1 }
+            line: { color: '#64748b', width: 1.5 }
         },
         text: leaderNames,
         textposition: 'inside',
         insidetextanchor: 'middle',
-        textfont: { family: 'Inter', size: 9, color: '#334155' }
+        textfont: { family: 'Inter, sans-serif', size: 11.5, color: '#0f172a' }
     };
 
     const layout = {
@@ -247,26 +247,26 @@ function renderParadigmMacroChart() {
         bargroupgap: 0.1,
         showlegend: true,
         legend: {
-            font: { family: 'JetBrains Mono', size: 11, color: '#475569' },
+            font: { family: 'Inter, sans-serif', size: 12.5, color: '#334155' },
             orientation: 'h',
-            y: 1.15,
+            y: 1.16,
             x: 0.5,
             xanchor: 'center'
         },
         xaxis: {
-            tickfont: { family: 'Inter', size: 11, color: '#0f172a' },
+            tickfont: { family: 'Inter, sans-serif', size: 13, color: '#0f172a' },
             gridcolor: '#e2e8f0',
             linecolor: '#cbd5e1'
         },
         yaxis: {
-            title: { text: 'Shelf Score Compuesto (0–100)', font: { family: 'Inter', size: 10, color: '#64748b' } },
-            range: [0, 70],
+            title: { text: 'Shelf Score Compuesto (0–100)', font: { family: 'Inter, sans-serif', size: 12, color: '#475569' } },
+            range: [0, 72],
             dtick: 10,
-            tickfont: { family: 'JetBrains Mono', size: 10, color: '#64748b' },
+            tickfont: { family: 'JetBrains Mono, monospace', size: 11.5, color: '#64748b' },
             gridcolor: '#e2e8f0',
             linecolor: '#cbd5e1'
         },
-        margin: { l: 45, r: 25, t: 30, b: 40 }
+        margin: { l: 55, r: 35, t: 40, b: 50 }
     };
 
     Plotly.newPlot('paradigmMacroChart', [traceCharly, traceLeader], layout, { displayModeBar: false, responsive: true });
@@ -276,16 +276,16 @@ function renderParadigmMacroChart() {
 function renderAttentionKChart() {
     if (!document.getElementById('paradigmKChart')) return;
 
-    // Paradigmas ordenados de menor a mayor para que el más positivo quede arriba
+    // Paradigmas ordenados de menor a mayor (en Plotly vertical) para que los positivos (Económicos y Ecológico) queden en la cima
     const categories = [
-        'Comodidad',
-        'Diseño',
-        'Fútbol',
-        'Durabilidad',
-        'Premium',
-        'Tecnología',
-        'Ecológico ★',
-        'Económicos ★'
+        'Comodidad / Confort',
+        'Diseño / Estética',
+        'Fútbol / Performance',
+        'Durabilidad / Resistencia',
+        'Premium / Exclusividad',
+        'Tecnología / Innovación',
+        'Ecológico / Sostenibilidad ★',
+        'Económicos / Accesibilidad ★'
     ];
 
     const kValues = [-0.42, -0.41, -0.16, -0.13, -0.10, -0.02, 0.01, 0.02];
@@ -306,7 +306,7 @@ function renderAttentionKChart() {
         },
         text: textLabels,
         textposition: 'outside',
-        textfont: { family: 'JetBrains Mono', size: 11, color: colors }
+        textfont: { family: 'JetBrains Mono, monospace', size: 13, color: colors }
     };
 
     const layout = {
@@ -314,40 +314,40 @@ function renderAttentionKChart() {
         plot_bgcolor: 'transparent',
         showlegend: false,
         xaxis: {
-            title: { text: 'Coeficiente K de Charly (Calidad Atencional)', font: { family: 'Inter', size: 10, color: '#64748b' } },
-            range: [-0.55, 0.15],
+            title: { text: 'Coeficiente K de Charly (Calidad Atencional)', font: { family: 'Inter, sans-serif', size: 12, color: '#475569' } },
+            range: [-0.60, 0.18],
             dtick: 0.1,
-            tickfont: { family: 'JetBrains Mono', size: 10, color: '#64748b' },
+            tickfont: { family: 'JetBrains Mono, monospace', size: 11.5, color: '#64748b' },
             gridcolor: '#e2e8f0',
             zeroline: true,
             zerolinecolor: '#0f172a',
             zerolinewidth: 2
         },
         yaxis: {
-            tickfont: { family: 'Inter', size: 11, color: '#0f172a' },
+            tickfont: { family: 'Inter, sans-serif', size: 12.5, color: '#0f172a' },
             gridcolor: '#f1f5f9'
         },
         annotations: [
             {
-                x: -0.30,
-                y: 7.2,
+                x: -0.32,
+                y: 7.3,
                 xref: 'x',
                 yref: 'y',
                 text: '🔴 ZONA DE DESCARTE ACTIVO (K < 0)',
                 showarrow: false,
-                font: { family: 'JetBrains Mono', size: 9, color: '#dc2626' }
+                font: { family: 'JetBrains Mono, monospace', size: 11.5, color: '#dc2626' }
             },
             {
-                x: 0.06,
-                y: 7.2,
+                x: 0.07,
+                y: 7.3,
                 xref: 'x',
                 yref: 'y',
                 text: '🟢 INTENCIÓN DE COMPRA (K > 0)',
                 showarrow: false,
-                font: { family: 'JetBrains Mono', size: 9, color: '#059669' }
+                font: { family: 'JetBrains Mono, monospace', size: 11.5, color: '#059669' }
             }
         ],
-        margin: { l: 110, r: 40, t: 30, b: 40 }
+        margin: { l: 230, r: 60, t: 40, b: 50 }
     };
 
     Plotly.newPlot('paradigmKChart', [trace], layout, { displayModeBar: false, responsive: true });

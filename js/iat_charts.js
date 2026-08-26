@@ -41,11 +41,11 @@ const commonRadarLayout = {
             color: '#64748b',
             gridcolor: '#e2e8f0',
             linecolor: '#cbd5e1',
-            tickfont: { family: 'JetBrains Mono', size: 9.5, color: '#64748b' },
+            tickfont: { family: 'JetBrains Mono, monospace', size: 10.5, color: '#64748b' },
             angle: 90
         },
         angularaxis: {
-            tickfont: { family: 'Inter', size: 11.5, color: '#0f172a' },
+            tickfont: { family: 'Inter, sans-serif', size: 13, color: '#0f172a' },
             gridcolor: '#e2e8f0',
             linecolor: '#cbd5e1'
         },
@@ -53,7 +53,7 @@ const commonRadarLayout = {
     },
     showlegend: true,
     legend: {
-        font: { family: 'JetBrains Mono', size: 11, color: '#334155' },
+        font: { family: 'Inter, sans-serif', size: 12, color: '#334155' },
         orientation: 'h',
         y: -0.15,
         x: 0.5,
@@ -412,7 +412,7 @@ function renderSemanticDumbbellChart() {
             marker: { color: '#64748b', size: 16, line: { color: '#0f172a', width: 2 }, opacity: 1.0 },
             text: [c_val.toFixed(1)],
             textposition: 'bottom center',
-            textfont: { family: 'JetBrains Mono', color: '#475569', size: 10 },
+            textfont: { family: 'JetBrains Mono, monospace', color: '#475569', size: 12 },
             hoverinfo: 'text',
             hovertext: `${leftPoles[i]} vs ${rightPoles[i]}<br>Control: ${c_val.toFixed(1)}`
         });
@@ -425,7 +425,7 @@ function renderSemanticDumbbellChart() {
             marker: { color: shiftColor, size: 16, opacity: 0, line: { color: '#ffffff', width: 2 } },
             text: [''],
             textposition: 'top center',
-            textfont: { family: 'JetBrains Mono', color: 'rgba(0,0,0,0)', size: 10.5 },
+            textfont: { family: 'JetBrains Mono, monospace', color: 'rgba(0,0,0,0)', size: 12.5 },
             hoverinfo: 'text',
             hovertext: `${leftPoles[i]} vs ${rightPoles[i]}<br>Priming: ${p_val.toFixed(1)} (${isPositiveShift ? '+' : ''}${(p_val - c_val).toFixed(1)})`
         });
@@ -434,12 +434,12 @@ function renderSemanticDumbbellChart() {
     const layout = {
         paper_bgcolor: 'transparent',
         plot_bgcolor: 'transparent',
-        margin: { l: 150, r: 150, t: 30, b: 60 },
+        margin: { l: 170, r: 170, t: 30, b: 65 },
         showlegend: true,
         legend: {
-            font: { family: 'JetBrains Mono', size: 10.5, color: '#475569' },
+            font: { family: 'Inter, sans-serif', size: 12, color: '#334155' },
             orientation: 'h',
-            y: -0.14,
+            y: -0.15,
             x: 0.5,
             xanchor: 'center'
         },
@@ -450,20 +450,20 @@ function renderSemanticDumbbellChart() {
             zeroline: true,
             zerolinecolor: '#334155',
             zerolinewidth: 2,
-            tickfont: { family: 'JetBrains Mono', color: '#475569' },
-            title: { text: 'Puntaje IAT (Fuerza de Asociación)', font: { family: 'JetBrains Mono', color: '#475569', size: 10 } }
+            tickfont: { family: 'JetBrains Mono, monospace', color: '#475569', size: 11 },
+            title: { text: 'Puntaje IAT (Fuerza de Asociación)', font: { family: 'Inter, sans-serif', color: '#475569', size: 11.5 } }
         },
         yaxis: {
             tickvals: yVals,
             ticktext: leftPoles,
-            tickfont: { family: 'JetBrains Mono', color: '#334155', size: 11 },
+            tickfont: { family: 'Inter, sans-serif', color: '#0f172a', size: 13 },
             showgrid: false,
             zeroline: false
         },
         yaxis2: {
             tickvals: yVals,
             ticktext: rightPoles,
-            tickfont: { family: 'JetBrains Mono', color: '#334155', size: 11 },
+            tickfont: { family: 'Inter, sans-serif', color: '#0f172a', size: 13 },
             overlaying: 'y',
             side: 'right',
             showgrid: false,
