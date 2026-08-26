@@ -312,15 +312,15 @@ function updateDimensionDetailPanel() {
             </div>
             <div class="detail-grid">
                 <div class="detail-item">
-                    <span class="detail-label">📋 REGLA DEL BRAND BOOK</span>
+                    <span class="detail-label">REGLA DEL BRAND BOOK</span>
                     <p class="detail-value">${dim.technicalRule}</p>
                 </div>
                 <div class="detail-item">
-                    <span class="detail-label">🧠 HALLAZGO BIOMÉTRICO (INMNEURO)</span>
+                    <span class="detail-label">HALLAZGO BIOMÉTRICO (INMNEURO)</span>
                     <p class="detail-value">${dim.biometricInsight}</p>
                 </div>
                 <div class="detail-item full-width">
-                    <span class="detail-label">📐 ESPECIFICACIÓN TÉCNICA</span>
+                    <span class="detail-label">ESPECIFICACIÓN TÉCNICA</span>
                     <p class="detail-value highlight font-mono">${dim.brandBookSpec}</p>
                 </div>
             </div>

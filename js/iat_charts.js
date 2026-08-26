@@ -264,7 +264,7 @@ function updateBenchmarkTable(fromMode, toMode) {
         if (leaderElem) {
             const leader = leaders[i];
             if (leader === 'charly') {
-                leaderElem.innerHTML = `<span class="winner-badge charly">Charly ★</span>`;
+                leaderElem.innerHTML = `<span class="winner-badge charly">Charly</span>`;
                 if (charlyElem) charlyElem.classList.add('highlight-win');
                 if (rowElem) rowElem.classList.add('charly-win-row');
             } else {

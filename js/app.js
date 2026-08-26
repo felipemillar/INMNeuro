@@ -56,16 +56,15 @@ function initNavigation() {
     const viewSubtitle = document.getElementById('view-subtitle');
 
     const viewMeta = {
-        'telemetry': { title: '[ DIGITAL PREDICT ]', sub: 'BIOMETRIC_TELEMETRY_AND_TIMELINE_SYNC' },
-        'eyetracking': { title: '[ EYE TRACKING ]', sub: 'MÓDULO DE ANÁLISIS VISUAL' },
-        'iat': { title: '[ ASOCIACIONES IMPLÍCITAS ]', sub: 'DEMO CHARLY VS PUMA' },
-        'paradigma': { title: '[ PARADIGMA CHARLY ]', sub: 'ESTUDIO MULTI-MARCA & SHELF TEST GÓNDOLA (67 SLIDES)' },
-        'identidad': { title: '[ IDENTIDAD VISUAL ]', sub: 'BRANDGUARD™ & BRAND BOOK AUDIT' },
-        'settings': { title: '[ AJUSTES ]', sub: 'CONFIGURACIÓN DEL SISTEMA' },
-        'overview': { title: '[ SYS_OVERVIEW ]', sub: 'PIPELINE_METRICS_AND_VALIDATION' },
-        'priming': { title: '[ TARGET_AR ]', sub: 'TARGET_VS_CONTROL_DELTA' },
-        'friction': { title: '[ FRICTION_MS ]', sub: 'Y: REL_LATENCY | X: ASSOCIATION_RATE' },
-        'audience': { title: '[ SEGMENTATION ]', sub: 'POLARIZATION_VS_AMBIVALENCE' }
+        'telemetry': { title: 'DIGITAL PREDICT', sub: 'Telemetría Biométrica & Sincronía de Video' },
+        'iat': { title: 'ASOCIACIONES IMPLÍCITAS', sub: 'Charly vs Puma — Estudio Comparativo' },
+        'paradigma': { title: 'PARADIGMA DE MARCA', sub: 'Estudio Multi-Marca & Shelf Test' },
+        'identidad': { title: 'IDENTIDAD VISUAL', sub: 'BrandGuard™ & Brand Book Audit' },
+        'settings': { title: 'AJUSTES', sub: 'Configuración del Sistema' },
+        'overview': { title: 'RESUMEN GENERAL', sub: 'Métricas del Pipeline y Validación' },
+        'priming': { title: 'TARGET AR', sub: 'Delta Target vs Control' },
+        'friction': { title: 'FRICCIÓN', sub: 'Latencia Relativa vs Tasa de Asociación' },
+        'audience': { title: 'SEGMENTACIÓN', sub: 'Polarización vs Ambivalencia' }
     };
 
     navLinks.forEach(link => {

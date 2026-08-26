@@ -25,7 +25,7 @@ const PARADIGMA_DATABASE = {
         isPositive: true,
         tag: '1º LUGAR ABSOLUTO (DOMINANCIA)',
         initialRankingCharly: '1º Lugar (Puntaje 5/5)',
-        conclusion: 'El concepto de ECONÓMICOS **SÍ** se asocia de forma contundente e indiscutida a CHARLY. Representa más de la mitad (57%) de la cuota mental del estudio y el 65% de las compras efectivas en góndola.',
+        conclusion: 'El concepto de ECONÓMICOS <strong>SÍ</strong> se asocia de forma contundente e indiscutida a CHARLY. Representa más de la mitad (57%) de la cuota mental del estudio y el 65% de las compras efectivas en góndola.',
         shopperFunnel: { viewed: '100%', pickup: '97%', cart: '97%', avgTime: '4.2s' },
         donutData: {
             labels: ['Charly', 'Asics', 'Puma', 'Adidas', 'Nike'],
@@ -46,7 +46,7 @@ const PARADIGMA_DATABASE = {
         isPositive: true,
         tag: '2º LUGAR (VECTOR DIFERENCIAL)',
         initialRankingCharly: '2º Lugar (Puntaje 4/5)',
-        conclusion: 'El concepto de ECOLÓGICO **SÍ** se asocia a CHARLY. Registra su segundo mayor volumen de intención de compra (30%) y es catalogada como "Hidden Gem" y "Obvious Choice", superando a Nike, Adidas y Puma.',
+        conclusion: 'El concepto de ECOLÓGICO <strong>SÍ</strong> se asocia a CHARLY. Registra su segundo mayor volumen de intención de compra (30%) y es catalogada como "Hidden Gem" y "Obvious Choice", superando a Nike, Adidas y Puma.',
         shopperFunnel: { viewed: '100%', pickup: '91%', cart: '91%', avgTime: '5.1s' },
         donutData: {
             labels: ['Asics', 'Charly', 'Nike', 'Adidas', 'Puma'],
@@ -67,7 +67,7 @@ const PARADIGMA_DATABASE = {
         isPositive: false,
         tag: 'PUNTO CIEGO',
         initialRankingCharly: '5º Lugar (Puntaje 1/5)',
-        conclusion: 'El concepto de PREMIUM **NO** se asocia a la marca CHARLY (Score 6.8 vs Nike 46.6). Nike lidera el 47% de compras y 37% de participación de mente.',
+        conclusion: 'El concepto de PREMIUM <strong>NO</strong> se asocia a la marca CHARLY (Score 6.8 vs Nike 46.6). Nike lidera el 47% de compras y 37% de participación de mente.',
         shopperFunnel: { viewed: '100%', pickup: '87%', cart: '97%', avgTime: '5.1s' },
         donutData: {
             labels: ['Nike', 'Asics', 'Adidas', 'Puma', 'Charly'],
@@ -88,7 +88,7 @@ const PARADIGMA_DATABASE = {
         isPositive: false,
         tag: 'PUNTO CIEGO',
         initialRankingCharly: '5º Lugar (Puntaje 1/5)',
-        conclusion: 'El concepto de TECNOLOGÍA **NO** se asocia a la marca CHARLY (Score 7.0 vs Nike 45.3). Nike y Asics concentran el 63% de la recordación.',
+        conclusion: 'El concepto de TECNOLOGÍA <strong>NO</strong> se asocia a la marca CHARLY (Score 7.0 vs Nike 45.3). Nike y Asics concentran el 63% de la recordación.',
         shopperFunnel: { viewed: '100%', pickup: '98%', cart: '97%', avgTime: '5.1s' },
         donutData: {
             labels: ['Nike', 'Asics', 'Adidas', 'Puma', 'Charly'],
@@ -109,7 +109,7 @@ const PARADIGMA_DATABASE = {
         isPositive: false,
         tag: 'PUNTO CIEGO',
         initialRankingCharly: '4º Lugar (Puntaje 2/5)',
-        conclusion: 'El concepto de FÚTBOL **NO** se asocia a CHARLY en la prueba basal de góndola (Score 5.6 vs Adidas 49.5 y Nike 30.0). Adidas monopoliza el 53% de compras.',
+        conclusion: 'El concepto de FÚTBOL <strong>NO</strong> se asocia a CHARLY en la prueba basal de góndola (Score 5.6 vs Adidas 49.5 y Nike 30.0). Adidas monopoliza el 53% de compras.',
         shopperFunnel: { viewed: '100%', pickup: '98%', cart: '97%', avgTime: '4.5s' },
         donutData: {
             labels: ['Adidas', 'Nike', 'Puma', 'Charly'],
@@ -130,7 +130,7 @@ const PARADIGMA_DATABASE = {
         isPositive: false,
         tag: 'PUNTO CIEGO',
         initialRankingCharly: '5º Lugar (Puntaje 1/5)',
-        conclusion: 'El concepto de DISEÑO **NO** se asocia a CHARLY (Score 5.1 vs Adidas 47.7 y Nike 33.1).',
+        conclusion: 'El concepto de DISEÑO <strong>NO</strong> se asocia a CHARLY (Score 5.1 vs Adidas 47.7 y Nike 33.1).',
         shopperFunnel: { viewed: '100%', pickup: '97%', cart: '96%', avgTime: '3.9s' },
         donutData: {
             labels: ['Adidas', 'Nike', 'Puma', 'Asics', 'Charly'],
@@ -151,7 +151,7 @@ const PARADIGMA_DATABASE = {
         isPositive: false,
         tag: 'PUNTO CIEGO',
         initialRankingCharly: '5º Lugar (Puntaje 1/5)',
-        conclusion: 'El concepto de COMODIDAD **NO** se asocia prioritariamente a CHARLY (Score 11.4 vs Adidas 32.0). No obstante, es el atributo negativo donde Charly obtiene su mayor volumen de participación (11% dona / 17% compra).',
+        conclusion: 'El concepto de COMODIDAD <strong>NO</strong> se asocia prioritariamente a CHARLY (Score 11.4 vs Adidas 32.0). No obstante, es el atributo negativo donde Charly obtiene su mayor volumen de participación (11% dona / 17% compra).',
         shopperFunnel: { viewed: '100%', pickup: '100%', cart: '100%', avgTime: '3.3s' },
         donutData: {
             labels: ['Adidas', 'Nike', 'Puma', 'Asics', 'Charly'],
@@ -172,7 +172,7 @@ const PARADIGMA_DATABASE = {
         isPositive: false,
         tag: 'PUNTO CIEGO',
         initialRankingCharly: '5º Lugar (Puntaje 1/5)',
-        conclusion: 'El concepto de DURABILIDAD **NO** se asocia a CHARLY (Score 5.5 vs Adidas 39.9 y Nike 29.7).',
+        conclusion: 'El concepto de DURABILIDAD <strong>NO</strong> se asocia a CHARLY (Score 5.5 vs Adidas 39.9 y Nike 29.7).',
         shopperFunnel: { viewed: '100%', pickup: '98%', cart: '98%', avgTime: '4.2s' },
         donutData: {
             labels: ['Adidas', 'Nike', 'Puma', 'Asics', 'Charly'],
@@ -284,8 +284,8 @@ function renderAttentionKChart() {
         'Durabilidad / Resistencia',
         'Premium / Exclusividad',
         'Tecnología / Innovación',
-        'Ecológico / Sostenibilidad ★',
-        'Económicos / Accesibilidad ★'
+        'Ecológico / Sostenibilidad',
+        'Económicos / Accesibilidad'
     ];
 
     const kValues = [-0.42, -0.41, -0.16, -0.13, -0.10, -0.02, 0.01, 0.02];
@@ -333,7 +333,7 @@ function renderAttentionKChart() {
                 y: 1.08,
                 xref: 'x',
                 yref: 'paper',
-                text: '🔴 ZONA DE DESCARTE ACTIVO (K < 0)',
+                text: 'ZONA DE DESCARTE ACTIVO (K < 0)',
                 showarrow: false,
                 font: { family: 'JetBrains Mono, monospace', size: 12, color: '#dc2626' }
             },
@@ -342,7 +342,7 @@ function renderAttentionKChart() {
                 y: 1.08,
                 xref: 'x',
                 yref: 'paper',
-                text: '🟢 INTENCIÓN DE COMPRA (K > 0)',
+                text: 'INTENCIÓN DE COMPRA (K > 0)',
                 showarrow: false,
                 font: { family: 'JetBrains Mono, monospace', size: 12, color: '#059669' }
             }
@@ -378,7 +378,7 @@ function selectParadigm(paradigmKey) {
     const conclusionElem = document.getElementById('paradigmActiveConclusion');
     const rankingElem = document.getElementById('paradigmActiveRanking');
 
-    if (titleElem) titleElem.textContent = `[ PARADIGMA: ${data.title.toUpperCase()} ]`;
+    if (titleElem) titleElem.textContent = `Paradigma: ${data.title}`;
     if (tagElem) {
         tagElem.textContent = data.tag;
         tagElem.className = 'paradigm-badge-status ' + (data.isPositive ? 'positive' : 'negative') + ' badge-animate';

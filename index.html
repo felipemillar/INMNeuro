@@ -11,90 +11,130 @@
     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css?v=17">
+    <link rel="stylesheet" href="css/styles.css?v=28">
 </head>
 <body>
     <div class="app-container">
         <!-- Sidebar Navigation -->
-        <nav class="sidebar glass-panel">
+        <nav class="sidebar">
             <div class="brand">
-                <div class="logo-icon"></div>
-                <h2>IMNeuro</h2>
-                <span>Digital Predict</span>
+                <img src="assets/logos/charly_logo_color.png" alt="Charly Neurolab">
             </div>
             
             <ul class="nav-links">
                 <li class="active" data-view="telemetry">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                    [ DIGITAL PREDICT ]
-                </li>
-                <li data-view="eyetracking">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
-                    [ EYE TRACKING ]
+                    DIGITAL PREDICT
                 </li>
                 <li data-view="iat">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l3-9 5 18 3-9h5"></path></svg>
-                    [ ASOCIACIONES IMPLÍCITAS ]
+                    ASOCIACIONES IMPLÍCITAS
                 </li>
                 <li data-view="paradigma">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                    [ PARADIGMA CHARLY ]
+                    PARADIGMA DE MARCA
                 </li>
                 <li data-view="identidad">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                    [ IDENTIDAD VISUAL ]
+                    IDENTIDAD VISUAL
                 </li>
                 <li data-view="settings">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                    [ AJUSTES ]
+                    AJUSTES
                 </li>
             </ul>
+
+            <div class="sidebar-version-badge">
+                <span>DATA_ENGINE_v1.0</span>
+            </div>
         </nav>
 
         <!-- Main Content Area -->
         <main class="main-content">
-            <header class="topbar glass-panel">
+            <header class="topbar">
                 <div class="header-title">
-                    <h1 id="view-title">[ DIGITAL PREDICT ]</h1>
-                    <p id="view-subtitle">BIOMETRIC_TELEMETRY_AND_TIMELINE_SYNC</p>
+                    <h1 id="view-title">DIGITAL PREDICT</h1>
+                    <p id="view-subtitle">Telemetría Biométrica & Sincronía de Video</p>
                 </div>
-                <div class="user-profile">
-                    <div class="status-indicator"></div>
-                    <span>DATA_ENGINE_V1.0</span>
-                </div>
+                <img src="assets/logos/charly_logo_color.png" alt="Charly Neurolab" class="topbar-logo">
             </header>
 
             <!-- Views Container -->
             <div class="views-container">
                 
-                <!-- 2. Eye Tracking View (Placeholder) -->
-                <div id="eyetracking" class="view">
-                    <div class="validation-box">
-                        <h4>Eye Tracking Analytics</h4>
-                        <p>Módulo de análisis visual para Ecommerce e Instagram (En desarrollo).</p>
-                    </div>
-                </div>
+
 
                 <!-- 3. Asociaciones Implícitas (IAT) View -->
                 <div id="iat" class="view">
                     <div class="validation-box">
-                        <h4>Implicit Association Test (IAT) - Demo Charly vs Puma</h4>
+                        <h4>Test de Asociaciones Implícitas (IAT) — Charly vs Puma</h4>
                         <p>Análisis del impacto cognitivo y percepción de marca midiendo tiempos de reacción. Los gráficos muestran cómo la exposición a contenido (Priming) modifica las asociaciones subconscientes de los consumidores frente al grupo Control.</p>
                     </div>
+
+                    <!-- Executive Insights Panel -->
+                    <details class="exec-insights-panel">
+                        <summary>
+                            INSIGHTS EJECUTIVOS — MAPA DE PERCEPCIÓN DE MARCA
+                            <span class="insights-badge badge-ok">LIFT +22%</span>
+                        </summary>
+                        <div class="exec-insights-body">
+                            <div class="insights-score-row">
+                                <div class="insights-score-big">+22%</div>
+                                <div>
+                                    <div class="insights-score-label">Lift Promedio Post-Estímulo</div>
+                                    <div class="insights-score-status" style="color:#059669">El spot SÍ mueve la aguja — retorno cognitivo medible</div>
+                                </div>
+                            </div>
+
+                            <table class="insights-mini-table">
+                                <thead><tr><th>Atributo</th><th>Charly</th><th>Puma</th><th>Líder</th><th>Brecha</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>Ecológico</strong></td><td class="val-ok">32.9</td><td>22.6</td><td class="val-ok">Charly </td><td class="val-ok">+10.3</td></tr>
+                                    <tr><td>Comodidad</td><td>20.8</td><td>35.0</td><td>Puma</td><td class="val-bad">-14.2</td></tr>
+                                    <tr><td>Diseño</td><td>17.1</td><td>57.8</td><td>Puma</td><td class="val-bad">-40.7</td></tr>
+                                    <tr><td>Premium</td><td>5.4</td><td>66.3</td><td>Puma</td><td class="val-bad">-60.9</td></tr>
+                                </tbody>
+                            </table>
+
+                            <div class="insights-findings">
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>Fútbol: mayor crecimiento absoluto</strong> (+35.3 pts). El spot Hugo Sánchez activó fuertemente esta asociación, de 1.6 a 36.9 pts.</div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>Ecológico: territorio blindado.</strong> Único atributo donde Charly supera a Puma con y sin estímulo. Pilar de comunicación permanente.</div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>Premium y Calidad retrocedieron</strong> (-3.0 y -5.0 pts). El tono del spot es más "popular" que "aspiracional", lo que erosiona percepción premium.</div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>Diseño: brecha más grande</strong> (-40.7 pts vs Puma). Requiere intervención de producto, no solo comunicación publicitaria.</div>
+                                </div>
+                            </div>
+
+                            <div class="insights-verdict">
+                                <div class="insights-verdict-label">Veredicto</div>
+                                El comercial es <strong>efectivo para Fútbol y Ecológico</strong>, pero no mejora la percepción Premium. Recomendación: mantener Ecológico + Fútbol como ejes, crear pieza separada con tono aspiracional para Premium, e intervenir producto para Diseño.
+                            </div>
+                        </div>
+                    </details>
                     
                     <div class="kpi-grid">
                         <div class="kpi-card glass-panel">
-                            <h3>[ LIFT_PROMEDIO ]</h3>
+                            <h3>LIFT PROMEDIO</h3>
                             <div class="kpi-value text-success">+22%</div>
-                            <p class="kpi-subtext">INCREMENTO_COGNITIVO_POST_PRIMING</p>
+                            <p class="kpi-subtext">Incremento cognitivo post-estímulo</p>
                         </div>
                         <div class="kpi-card glass-panel">
-                            <h3>[ TOP_GROWTH ]</h3>
+                            <h3>MAYOR CRECIMIENTO</h3>
                             <div class="kpi-value">FUTBOL</div>
                             <p class="kpi-subtext">LIFT: +28.6 PUNTOS (1.6 &rarr; 36.9)</p>
                         </div>
                         <div class="kpi-card glass-panel">
-                            <h3>[ KEY_ADVANTAGE ]</h3>
+                            <h3>VENTAJA CLAVE</h3>
                             <div class="kpi-value text-success">ECOLÓGICO</div>
                             <p class="kpi-subtext">CHARLY 38.3 vs PUMA 22.0</p>
                         </div>
@@ -104,8 +144,8 @@
                     <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
                         <div class="chart-header" style="display:flex; justify-content:space-between; align-items:flex-start;">
                             <div>
-                                <h3>[ AR_SHIFT ] DIFERENCIAL_SEMÁNTICO</h3>
-                                <p class="chart-description">TARGET_VS_CONTROL_DELTA</p>
+                                <h3>Diferencial Semántico (AR Shift)</h3>
+                                <p class="chart-description">Delta entre grupo Target vs Control</p>
                             </div>
                             <div class="priming-toggle-container">
                                 <span class="toggle-label active">Control</span>
@@ -123,16 +163,16 @@
 
                     <!-- Lift Table -->
                     <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
-                        <h3>[ LIFT_ANALYSIS ] TABLA DE IMPACTO</h3>
-                        <p class="chart-description">INCREMENTO NUMÉRICO GENERADO POR EL ESTÍMULO (PRIMING) SOBRE EL GRUPO CONTROL</p>
+                        <h3>Tabla de Impacto (Lift)</h3>
+                        <p class="chart-description">Incremento numérico generado por el estímulo sobre el grupo control</p>
                         
                         <div class="lift-table-container" style="margin-top: 20px;">
                             <div class="lift-table">
                                 <!-- Headers -->
                                 <div class="lift-row lift-header">
                                     <div class="lift-cell attr-col" style="justify-content: flex-end;">Polo Izquierdo (+)</div>
-                                    <div class="lift-cell">🔵 Control</div>
-                                    <div class="lift-cell">⚪ Priming</div>
+                                    <div class="lift-cell">Control</div>
+                                    <div class="lift-cell">Priming</div>
                                     <div class="lift-cell">Shift (Δ)</div>
                                     <div class="lift-cell attr-col">Polo Derecho (-)</div>
                                 </div>
@@ -214,8 +254,8 @@
                     <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
                         <div class="benchmark-header-wrap">
                             <div>
-                                <h3>[ IAT BENCHMARK: INTERACTIVO ] CHARLY VS PUMA</h3>
-                                <p class="chart-description">ANÁLISIS COMPARATIVO SECTORIAL CON CONMUTACIÓN DINÁMICA DE ESTÍMULO</p>
+                                <h3>Benchmark IAT: Charly vs Puma</h3>
+                                <p class="chart-description">Análisis comparativo con conmutación dinámica de estímulo</p>
                             </div>
                             <!-- Switch Toggle Control vs Priming -->
                             <div class="bm-toggle-container">
@@ -310,7 +350,7 @@
                                             <span class="bm-delta" style="display:none;"></span>
                                         </div>
                                         <div class="bm-cell win-cell" id="bmLeader-3">
-                                            <span class="winner-badge charly">Charly ★</span>
+                                            <span class="winner-badge charly">Charly</span>
                                         </div>
                                     </div>
                                     
@@ -383,7 +423,7 @@
                     </div>
                 </div>
 
-                <!-- 4. Paradigma Charly View (Multi-Brand Study - 67 Slides) -->
+                <!-- 4. Paradigma Charly View (Multi-Brand Study) -->
                 <div id="paradigma" class="view">
                     <!-- Study Context Box -->
                     <div class="validation-box" style="border-left-color: var(--accent-secondary);">
@@ -392,12 +432,11 @@
                                 <h4>Estudio de Paradigmas de Marca: Charly vs. Competidores Globales</h4>
                                 <p>Evaluación cruzada de <strong>60 participantes (México, 30 Julio 2026)</strong> integrando <strong>IAT/IRT (Tiempos de Reacción Implícitos)</strong> y <strong>Eye Tracking en Góndola Simulada (Shelf Test)</strong> para medir cuota mental y conversión real frente a <strong>Nike, Adidas, Puma y Asics</strong>.</p>
                             </div>
-                            <span class="benchmark-tag priming-tag" style="font-size: 0.75rem;">67 DIAPOSITIVAS PROCESADAS</span>
                         </div>
 
                         <!-- Methodology & Metrics Collapsible Glossary -->
                         <details class="methodology-glossary">
-                            <summary>📖 Glosario de Métricas y Metodología (Primera Presentación)</summary>
+                            <summary>Glosario de Métricas y Metodología</summary>
                             <div class="glossary-grid">
                                 <div class="glossary-item">
                                     <div class="glossary-term"><span class="text-blue">●</span> VAI™ (Índice de Atención Visual)</div>
@@ -427,7 +466,56 @@
                         </details>
                     </div>
 
-                    <!-- Macro KPI Grid -->
+                    <!-- Executive Insights Panel -->
+                    <details class="exec-insights-panel">
+                        <summary>
+                            INSIGHTS EJECUTIVOS — ESTUDIO DE GÓNDOLA COMPETITIVO
+                            <span class="insights-badge badge-warn">2 / 8 ATRIBUTOS</span>
+                        </summary>
+                        <div class="exec-insights-body">
+                            <div class="insights-score-row">
+                                <div class="insights-score-big">2/8</div>
+                                <div>
+                                    <div class="insights-score-label">Atributos donde Charly es líder</div>
+                                    <div class="insights-score-status" style="color:#b45309">Domina en Económicos y Ecológico — pierde en 6 categorías</div>
+                                </div>
+                            </div>
+
+                            <table class="insights-mini-table">
+                                <thead><tr><th>Atributo</th><th>Posición</th><th>Rol</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>Económicos</strong></td><td class="val-ok">1º Lugar (60.3 pts)</td><td>Dominancia — 57% cuota mental</td></tr>
+                                    <tr><td><strong>Ecológico</strong></td><td class="val-ok">2º Lugar (Hidden Gem)</td><td>Supera a Nike, Adidas y Puma</td></tr>
+                                    <tr><td>Comodidad</td><td class="val-warn">3º</td><td>Puente hacia premium</td></tr>
+                                    <tr><td>Premium / Diseño</td><td class="val-bad">5º (último)</td><td>No compite — brecha máxima</td></tr>
+                                </tbody>
+                            </table>
+
+                            <div class="insights-findings">
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>Doble Motor: Precio + Verde.</strong> El consumidor compra Charly por económico Y lo percibe como ambientalmente responsable. Territorio fértil para campañas masivas.</div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>Fricción en deportes.</strong> En alto rendimiento, la decisión se traslada a marcas globales. Necesita avales de atletas y tecnología visible en producto.</div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>Comodidad: llave para subir de nivel.</strong> El confort es el puente natural para salir de la etiqueta "marca solo económica". Facilitar prueba en exhibición física.</div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>El rival real: Asics, no Nike/Adidas.</strong> El competidor directo en la mente del consumidor reflexivo es Asics, donde Charly ya gana en precio-valor.</div>
+                                </div>
+                            </div>
+
+                            <div class="insights-verdict">
+                                <div class="insights-verdict-label">Veredicto</div>
+                                Charly domina en <strong>Precio y Ecológico</strong> pero es invisible en 6 atributos. Estrategia: <strong>blindar</strong> Económicos + Ecológico, <strong>atacar</strong> Comodidad (puente a premium), <strong>pelear</strong> Fútbol (en crecimiento), e <strong>ignorar</strong> Premium y Diseño (requieren innovación de producto).
+                            </div>
+                        </div>
+                    </details>
                     <div class="kpi-grid" style="margin-top: 20px;">
                         <div class="kpi-card glass-panel">
                             <div class="kpi-header">
@@ -470,8 +558,8 @@
                     <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
                         <div class="benchmark-header-wrap">
                             <div>
-                                <h3>[ PANORAMA MACRO: CHARLY VS LÍDER POR ATRIBUTO ]</h3>
-                                <p class="chart-description">SHELF SCORE COMPUESTO (60% COMPRA + 25% PICKUP + 15% VAI™)</p>
+                                <h3>Panorama Macro: Charly vs Líder por Atributo</h3>
+                                <p class="chart-description">Shelf Score compuesto (60% Compra + 25% Pickup + 15% VAI™)</p>
                             </div>
                             <span class="benchmark-tag">BENCHMARK PENTAGONAL</span>
                         </div>
@@ -484,8 +572,8 @@
                     <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
                         <div class="benchmark-header-wrap">
                             <div>
-                                <h3>[ DIAGNÓSTICO ATENCIONAL: COEFICIENTE K DE CHARLY ]</h3>
-                                <p class="chart-description">CALIDAD DE ATENCIÓN VISUAL EN GÓNDOLA — INTENCIÓN DE COMPRA (+) VS DESCARTE ACTIVO (-)</p>
+                                <h3>Diagnóstico Atencional: Coeficiente K</h3>
+                                <p class="chart-description">Calidad de atención visual en góndola — Intención de compra (+) vs Descarte activo (-)</p>
                             </div>
                             <span class="benchmark-tag">CALIDAD ATENCIONAL</span>
                         </div>
@@ -498,16 +586,16 @@
                     <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
                         <div class="benchmark-header-wrap">
                             <div>
-                                <h3 id="paradigmActiveTitle">[ PARADIGMA: ECONÓMICOS / ACCESIBILIDAD ]</h3>
-                                <p class="chart-description">EXPLORACIÓN DETALLADA DE GÓNDOLA Y ATENCIÓN VISUAL EYE TRACKING</p>
+                                <h3 id="paradigmActiveTitle">Paradigma: Económicos / Accesibilidad</h3>
+                                <p class="chart-description">Exploración detallada de góndola y atención visual Eye Tracking</p>
                             </div>
                             <span id="paradigmActiveTag" class="paradigm-badge-status positive">1º LUGAR ABSOLUTO (DOMINANCIA)</span>
                         </div>
 
                         <!-- Paradigm Pill Selector (8 Pills) -->
                         <div class="paradigm-pill-selector">
-                            <button class="paradigm-pill-btn active" data-paradigm="economicos">Económicos ★</button>
-                            <button class="paradigm-pill-btn" data-paradigm="ecologico">Ecológico ★</button>
+                            <button class="paradigm-pill-btn active" data-paradigm="economicos">Económicos</button>
+                            <button class="paradigm-pill-btn" data-paradigm="ecologico">Ecológico</button>
                             <button class="paradigm-pill-btn" data-paradigm="premium">Premium</button>
                             <button class="paradigm-pill-btn" data-paradigm="tecnologia">Tecnología</button>
                             <button class="paradigm-pill-btn" data-paradigm="futbol">Fútbol</button>
@@ -590,29 +678,29 @@
                     <div class="chart-card glass-panel full-width" style="margin-top: 24px;">
                         <div class="benchmark-header-wrap">
                             <div>
-                                <h3>[ DICTAMEN ESTRATÉGICO DE NEUROMARKETING ]</h3>
-                                <p class="chart-description">RECOMENDACIONES PARA EL POSICIONAMIENTO Y CAMPAÑAS DE CHARLY</p>
+                                <h3>Dictamen Estratégico de Neuromarketing</h3>
+                                <p class="chart-description">Recomendaciones para el posicionamiento y campañas de Charly</p>
                             </div>
                             <span class="benchmark-tag priming-tag">SÍNTESIS CONSULTIVA</span>
                         </div>
                         <div class="neuro-insights-grid">
                             <div class="neuro-rec-box">
-                                <div class="rec-icon text-green">★</div>
+                                <div class="rec-icon text-green">1</div>
                                 <h4>El Doble Motor: Precio Imbatible + Opción Verde</h4>
                                 <p>El consumidor no solo compra Charly por ser la opción más económica de la repisa, sino que la percibe como una <strong>marca ambientalmente responsable</strong>. Es el territorio más fértil para campañas masivas con retorno inmediato.</p>
                             </div>
                             <div class="neuro-rec-box">
-                                <div class="rec-icon text-amber">⚡</div>
+                                <div class="rec-icon text-amber">2</div>
                                 <h4>Fricción en Deportes: Necesidad de Demostrar Ingeniería</h4>
                                 <p>En categorías de alto rendimiento, la decisión de compra se traslada de inmediato a marcas globales. Para competir en fútbol y durabilidad, se requiere <strong>respaldar los modelos con avales de atletas y tecnología visible</strong> en el producto.</p>
                             </div>
                             <div class="neuro-rec-box">
-                                <div class="rec-icon text-blue">🔍</div>
+                                <div class="rec-icon text-blue">3</div>
                                 <h4>Comodidad: La Llave para Subir de Nivel</h4>
                                 <p>El confort es el <strong>puente natural para salir de la etiqueta de 'marca solo económica'</strong>. Si se destaca y facilita la prueba de comodidad en exhibición física, la tasa de compra sube de manera automática.</p>
                             </div>
                             <div class="neuro-rec-box">
-                                <div class="rec-icon text-amber">🎯</div>
+                                <div class="rec-icon text-amber">4</div>
                                 <h4>El Rival Real a Vencer: Asics, no los Gigantes Globales</h4>
                                 <p>La batalla de Charly no es competir de frente contra el marketing masivo de Nike o Adidas. <strong>El competidor directo en la mente del consumidor reflexivo es Asics</strong>, donde Charly ya demuestra ganarle con creces en relación precio-valor.</p>
                             </div>
@@ -623,6 +711,50 @@
                 <!-- 4. Identidad Visual (BrandGuard / Brand Book) View -->
                 <div id="identidad" class="view">
                     <div class="brandguard-container">
+                        <!-- Executive Insights Panel -->
+                        <details class="exec-insights-panel">
+                            <summary>
+                                INSIGHTS EJECUTIVOS — AUDITORÍA DE COHERENCIA DE MARCA
+                                <span class="insights-badge badge-ok">BRANDGUARD 89%</span>
+                            </summary>
+                            <div class="exec-insights-body">
+                                <div class="insights-score-row">
+                                    <div class="insights-score-big">89%</div>
+                                    <div>
+                                        <div class="insights-score-label">BrandGuard Score — Alineación con Brand Book</div>
+                                        <div class="insights-score-status" style="color:#059669">Alineación alta — La pieza SÍ construye memoria de marca (92%)</div>
+                                    </div>
+                                </div>
+
+                                <table class="insights-mini-table">
+                                    <thead><tr><th>Dimensión</th><th>Estado</th><th>Observación</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Logo</td><td class="val-ok">Presente</td><td>Consistente a lo largo del spot</td></tr>
+                                        <tr><td>Paleta de colores</td><td class="val-ok">Coherente</td><td>Colores corporativos mantenidos</td></tr>
+                                        <tr><td>Tipografía</td><td class="val-ok">Alineada</td><td>Fuentes según manual de marca</td></tr>
+                                        <tr><td>Composición</td><td class="val-warn">Oportunidad</td><td>Firma se pierde en picos de acción</td></tr>
+                                        <tr><td>Tono / Mood</td><td class="val-ok">Coherente</td><td>Consistente con posicionamiento</td></tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="insights-findings">
+                                    <div class="insight-item">
+                                        <span class="insight-icon"></span>
+                                        <div class="insight-text"><strong>Logo, paleta y códigos visuales consistentes.</strong> La pieza es reconocible como "Charly" desde el primer segundo. Cumple con brand book.</div>
+                                    </div>
+                                    <div class="insight-item">
+                                        <span class="insight-icon"></span>
+                                        <div class="insight-text"><strong>Firma de marca se diluye en acción deportiva.</strong> Los momentos de mayor atención son donde la marca debería estar más presente, pero se pierde.</div>
+                                    </div>
+                                </div>
+
+                                <div class="insights-verdict">
+                                    <div class="insights-verdict-label">Veredicto</div>
+                                    Alta coherencia visual. Acción correctiva: <strong>insertar watermark sutil durante los 3 picos de atención</strong>, reforzar cierre con producto en primer plano + logo animado. No reducir la acción deportiva (genera el mayor engagement), sino superponer elementos de marca.
+                                </div>
+                            </div>
+                        </details>
+
                         <!-- Header Card -->
                         <div class="brandguard-header">
                             <div class="brandguard-header-left">
@@ -699,9 +831,60 @@
                 <!-- 1. Digital Predict (Stimulus Telemetry View) -->
                 <div id="telemetry" class="view active">
                     <div class="validation-box">
-                        <h4>Telemetría Biométrica Predictiva (Digital Predict Engine)</h4>
+                        <h4>Telemetría Biométrica Predictiva</h4>
                         <p>Evaluación continua segundo a segundo del estímulo audiovisual (Comercial <strong>Hugo Sánchez</strong>, 03:05 min) mediante 4.461 frames procesados. Permite auditar la sincronía entre picos de atención visual, variaciones de carga cognitiva y la posterior facilitación/fricción en la prueba IAT.</p>
                     </div>
+
+                    <!-- Executive Insights Panel -->
+                    <details class="exec-insights-panel">
+                        <summary>
+                            INSIGHTS EJECUTIVOS — DIAGNÓSTICO DE EFECTIVIDAD PUBLICITARIA
+                            <span class="insights-badge badge-warn">DPS 5.4 / 10</span>
+                        </summary>
+                        <div class="exec-insights-body">
+                            <div class="insights-score-row">
+                                <div class="insights-score-big">5.4<small style="font-size:0.5em;color:var(--text-muted)">/10</small></div>
+                                <div>
+                                    <div class="insights-score-label">Score de Predicción Digital (DPS)</div>
+                                    <div class="insights-score-status" style="color:#b45309">Aceptable — no alcanza la zona óptima (≥ 7.0)</div>
+                                </div>
+                            </div>
+
+                            <table class="insights-mini-table">
+                                <thead><tr><th>Métrica</th><th>Valor</th><th>Benchmark</th><th>Estado</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Atención Visual</td><td>46.3 pts</td><td>55.6 — 70.3</td><td class="val-bad">Bajo</td></tr>
+                                    <tr><td>Carga Cognitiva</td><td>38.3 pts</td><td>46.1 — 56.4</td><td class="val-bad">Bajo</td></tr>
+                                    <tr><td>Engagement Emocional</td><td>42.2 pts</td><td>65.0 — 76.2</td><td class="val-bad">Bajo</td></tr>
+                                    <tr><td>Codificación en Memoria</td><td>55.6 pts</td><td>62.9 — 71.9</td><td class="val-warn">Cercano</td></tr>
+                                </tbody>
+                            </table>
+
+                            <div class="insights-findings">
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>Engagement emocional insuficiente</strong> (42.2 vs norma 65.0). El consumidor "ve" pero no "siente" el spot. Área de mejora más urgente.</div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>Atención visual baja</strong> (46.3 vs norma 55.6). La mirada se dispersa en elementos no clave. Heatmap y fogmap revelan las zonas exactas.</div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>Memoria cerca del umbral</strong> (55.6 vs norma 62.9). A solo 7 puntos del rango óptimo — ajustes en el cierre podrían cruzar al verde.</div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-icon"></span>
+                                    <div class="insight-text"><strong>DPS 5.4: funcional pero no excepcional.</strong> Supera el umbral mínimo (5.0) pero queda lejos del óptimo (7.0). Hay margen de mejora significativo.</div>
+                                </div>
+                            </div>
+
+                            <div class="insights-verdict">
+                                <div class="insights-verdict-label">Veredicto</div>
+                                El spot Hugo Sánchez es <strong>funcional pero no excepcional</strong>. Se recomienda re-edición enfocada en: aumentar engagement emocional en el primer tercio (0:00-1:00), reforzar firma de marca en los 3 picos de mayor atención, y reducir los valles atencionales.
+                            </div>
+                        </div>
+                    </details>
 
                     <!-- Split Screen: Video Player + Live HUD -->
                     <div class="telemetry-split-container">
@@ -709,8 +892,8 @@
                         <div class="video-player-card glass-panel">
                             <div class="video-header">
                                 <div>
-                                    <h3 class="panel-title">[ STIMULUS_PLAYER ]</h3>
-                                    <span class="video-sublabel">Hugo_Sanchez_Spot_3m05s</span>
+                                    <h3 class="panel-title">Reproductor de Estímulo</h3>
+                                    <span class="video-sublabel">Spot Hugo Sánchez — 3:05 min</span>
                                 </div>
                                 <div class="layer-switcher">
                                     <button class="layer-btn active" data-layer="clean">Original</button>
@@ -740,9 +923,9 @@
                         <!-- Right Panel: Live HUD -->
                         <div class="telemetry-hud-card glass-panel">
                             <div class="hud-header">
-                                <h3 class="panel-title">[ REALTIME_BIOMETRIC_HUD ]</h3>
+                                <h3 class="panel-title">Panel Biométrico en Vivo</h3>
                                 <div class="nis-badge">
-                                    <span class="nis-label">DPS (DIGITAL PREDICT SCORE):</span>
+                                    <span class="nis-label">Score de Predicción Digital (DPS):</span>
                                     <span id="hudNisScore" class="nis-score">-- <small>/10</small></span>
                                     <span id="hudNisStatus" class="nis-status-pill status-neutral">--</span>
                                 </div>
@@ -753,7 +936,7 @@
                                 <!-- Focus -->
                                 <div class="hud-meter-item">
                                     <div class="meter-info">
-                                        <span class="meter-name">FOCUS (ATENCIÓN VISUAL)</span>
+                                        <span class="meter-name">Atención Visual</span>
                                         <span id="hudValFocus" class="meter-val">--</span>
                                     </div>
                                     <div class="progress-track">
@@ -770,7 +953,7 @@
                                 <!-- Cognitive Demand -->
                                 <div class="hud-meter-item">
                                     <div class="meter-info">
-                                        <span class="meter-name">COGNITIVE DEMAND (CARGA COGNITIVA)</span>
+                                        <span class="meter-name">Carga Cognitiva</span>
                                         <span id="hudValDemand" class="meter-val">--</span>
                                     </div>
                                     <div class="progress-track">
@@ -787,7 +970,7 @@
                                 <!-- Engagement -->
                                 <div class="hud-meter-item">
                                     <div class="meter-info">
-                                        <span class="meter-name">ENGAGEMENT (INVOLUCRAMIENTO AFECTIVO)</span>
+                                        <span class="meter-name">Engagement Emocional</span>
                                         <span id="hudValEngagement" class="meter-val">--</span>
                                     </div>
                                     <div class="progress-track">
@@ -804,7 +987,7 @@
                                 <!-- Memory -->
                                 <div class="hud-meter-item">
                                     <div class="meter-info">
-                                        <span class="meter-name">MEMORY (CODIFICACIÓN MNÉMICA)</span>
+                                        <span class="meter-name">Codificación en Memoria</span>
                                         <span id="hudValMemory" class="meter-val">--</span>
                                     </div>
                                     <div class="progress-track">
@@ -833,13 +1016,13 @@
                     <div class="chart-card glass-panel" style="margin-top: 12px;">
                         <div class="timeline-header">
                             <div>
-                                <h3>[ CONTINUOUS_TELEMETRY_TIMELINE ]</h3>
-                                <p class="chart-description">TRAZADO PROGRESIVO EN VIVO | HAZ CLIC EN LA CURVA PARA NAVEGAR EL VIDEO</p>
+                                <h3>Línea de Tiempo Biométrica</h3>
+                                <p class="chart-description">Trazado en vivo — Haz clic en la curva para navegar el video</p>
                             </div>
                             <div class="channel-filter-group">
-                                <button class="channel-filter-btn active" data-channel="all">ALL (5)</button>
+                                <button class="channel-filter-btn active" data-channel="all">TODOS (5)</button>
                                 <button class="channel-filter-btn" data-channel="focus"><span class="leg-dot blue"></span> Focus</button>
-                                <button class="channel-filter-btn" data-channel="demand"><span class="leg-dot amber"></span> Cognitive Demand</button>
+                                <button class="channel-filter-btn" data-channel="demand"><span class="leg-dot amber"></span> Carga Cognitiva</button>
                                 <button class="channel-filter-btn" data-channel="engagement"><span class="leg-dot emerald"></span> Engagement</button>
                                 <button class="channel-filter-btn" data-channel="memory"><span class="leg-dot purple"></span> Memory</button>
                                 <button class="channel-filter-btn" data-channel="dps"><span class="leg-dot rose"></span> DPS Score</button>
