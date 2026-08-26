@@ -329,25 +329,25 @@ function renderAttentionKChart() {
         },
         annotations: [
             {
-                x: -0.32,
-                y: 7.3,
+                x: -0.30,
+                y: 1.08,
                 xref: 'x',
-                yref: 'y',
+                yref: 'paper',
                 text: '🔴 ZONA DE DESCARTE ACTIVO (K < 0)',
                 showarrow: false,
-                font: { family: 'JetBrains Mono, monospace', size: 11.5, color: '#dc2626' }
+                font: { family: 'JetBrains Mono, monospace', size: 12, color: '#dc2626' }
             },
             {
-                x: 0.07,
-                y: 7.3,
+                x: 0.08,
+                y: 1.08,
                 xref: 'x',
-                yref: 'y',
+                yref: 'paper',
                 text: '🟢 INTENCIÓN DE COMPRA (K > 0)',
                 showarrow: false,
-                font: { family: 'JetBrains Mono, monospace', size: 11.5, color: '#059669' }
+                font: { family: 'JetBrains Mono, monospace', size: 12, color: '#059669' }
             }
         ],
-        margin: { l: 230, r: 60, t: 40, b: 50 }
+        margin: { l: 230, r: 60, t: 55, b: 50 }
     };
 
     Plotly.newPlot('paradigmKChart', [trace], layout, { displayModeBar: false, responsive: true });
