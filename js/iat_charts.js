@@ -370,7 +370,7 @@ function renderSemanticDumbbellChart() {
     
     const controlVals = [13.0, 29.0, 35.2, 1.6, 10.4, 6.7, -27.0, -20.0];
     const primingVals = [29.7, 21.3, 30.2, 36.9, 30.4, 31.7, -10.8, -23.0];
-    const yVals = [0, 1, 2, 3, 4, 5, 6, 7];
+    const yVals = [7, 6, 5, 4, 3, 2, 1, 0]; // Orden de arriba a abajo idéntico a la tabla de impacto
 
     const shiftData = [];
     
