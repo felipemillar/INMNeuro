@@ -362,6 +362,8 @@ function setupBenchmarkToggle() {
     }
 }
 
+let currentSemanticDumbbellAnimation = null;
+
 function renderSemanticDumbbellChart() {
     const leftPoles = ['Tecnológico', 'Barato', 'Calidad', 'Futbol', 'Ecológico', 'Variedad', 'Demanda', 'Premium'];
     const rightPoles = ['Artesanal', 'Caro', 'Deficiencia', 'Maratón', 'Contaminante', 'Demanda', 'Oferta', 'Comun'];
@@ -419,24 +421,26 @@ function renderSemanticDumbbellChart() {
         const c_val = controlVals[i];
         const p_val = primingVals[i];
         const isPositiveShift = p_val >= c_val;
-        const initialDotColor = isPositiveShift ? '#2563eb' : '#ef4444';
+        const shiftColor = isPositiveShift ? '#2563eb' : '#ef4444';
+        const shiftLineColor = isPositiveShift ? 'rgba(37, 99, 235, 0.45)' : 'rgba(239, 68, 68, 0.45)';
+        const shiftTextColor = isPositiveShift ? '#2563eb' : '#dc2626';
         
         // Halo trace (Init: from 0 to c_val)
         shiftData.push({
             x: [0, c_val],
             y: [yVals[i], yVals[i]],
             mode: 'lines',
-            line: { color: 'rgba(100, 116, 139, 0.15)', width: 16 }, // Thick transparent grey halo
+            line: { color: 'rgba(100, 116, 139, 0.15)', width: 16 },
             showlegend: false,
             hoverinfo: 'none'
         });
 
-        // Trace for Shift Line connecting dots (Init: C_VAL to C_VAL, invisible)
+        // Trace for Shift Line connecting dots
         shiftData.push({
             x: [c_val, c_val],
             y: [yVals[i], yVals[i]],
             mode: 'lines',
-            line: { color: 'rgba(0, 0, 0, 0)', width: 4 },
+            line: { color: shiftLineColor, width: 0 },
             showlegend: false,
             hoverinfo: 'none'
         });
@@ -447,7 +451,7 @@ function renderSemanticDumbbellChart() {
             mode: 'markers+text',
             showlegend: false,
             marker: { color: '#64748b', size: 16, line: { color: '#0f172a', width: 2 }, opacity: 1.0 },
-            text: c_val.toFixed(1),
+            text: [c_val.toFixed(1)],
             textposition: 'bottom center',
             textfont: { family: 'JetBrains Mono', color: '#475569', size: 10 },
             hoverinfo: 'text',
@@ -459,10 +463,10 @@ function renderSemanticDumbbellChart() {
             x: [c_val], y: [yVals[i]],
             mode: 'markers+text',
             showlegend: false,
-            marker: { color: initialDotColor, size: 16, opacity: 0, line: { color: '#ffffff', width: 2 } },
-            text: c_val.toFixed(1),
+            marker: { color: shiftColor, size: 16, opacity: 0, line: { color: '#ffffff', width: 2 } },
+            text: [c_val.toFixed(1)],
             textposition: 'top center',
-            textfont: { color: 'rgba(0,0,0,0)' },
+            textfont: { family: 'JetBrains Mono', color: shiftTextColor, size: 10.5 },
             hoverinfo: 'text',
             hovertext: `${leftPoles[i]} vs ${rightPoles[i]}<br>Priming: ${p_val.toFixed(1)} (${isPositiveShift ? '+' : ''}${(p_val - c_val).toFixed(1)})`
         });
@@ -483,9 +487,9 @@ function renderSemanticDumbbellChart() {
         xaxis: {
             range: [50, -50], // Eje X simétrico (50 a -50) para que el cero quede exactamente en el centro
             showgrid: true,
-            gridcolor: 'rgba(0,0,0,0.05)', // Darker grid for light bg
+            gridcolor: 'rgba(0,0,0,0.05)',
             zeroline: true,
-            zerolinecolor: '#334155', // Solid dark vertical line for zero
+            zerolinecolor: '#334155',
             zerolinewidth: 2,
             tickfont: { family: 'JetBrains Mono', color: '#475569' },
             title: { text: 'Puntaje IAT (Fuerza de Asociación)', font: { family: 'JetBrains Mono', color: '#475569', size: 10 } }
@@ -527,69 +531,92 @@ function renderSemanticDumbbellChart() {
                 labels[0].classList.add('active');
             }
             
-            const updateFrames = [];
-            const traceIndices = [];
-            
-            for (let i = 0; i < leftPoles.length; i++) {
-                const c_val = controlVals[i];
-                const p_val = primingVals[i];
-                const isPositiveShift = p_val >= c_val;
-                
-                // Color azul para variaciones positivas (hacia la izquierda), rojo para negativas (hacia la derecha)
-                const lineColor = isPositiveShift ? 'rgba(37, 99, 235, 0.45)' : 'rgba(239, 68, 68, 0.45)';
-                const dotColor = isPositiveShift ? '#2563eb' : '#ef4444';
-                const textFontColor = isPositiveShift ? '#2563eb' : '#dc2626';
-                
-                // 4 dummy traces at indices 0, 1, 2, 3 (yaxis2 dummy + 3 legend dummies)
-                // Each attribute has 4 traces: Halo(0), Line(1), Control(2), Priming(3)
-                const baseIdx = 4 + (i * 4);
-                
-                if (isPrimingOn) {
-                    // Update Shift Line (Halo connecting Control to Priming)
-                    updateFrames.push({ x: [c_val, p_val], line: { color: lineColor, width: 14 } });
-                    traceIndices.push(baseIdx + 1);
-                    
-                    // Update Control Dot (Ghost)
-                    updateFrames.push({ marker: { opacity: 0.35, size: 16, color: '#64748b', line: { color: 'rgba(15,23,42,0.3)', width: 2 } } });
-                    traceIndices.push(baseIdx + 2);
-                    
-                    // Update Priming Dot with custom color (Blue for positive, Red for negative)
-                    updateFrames.push({ 
-                        x: [p_val], 
-                        marker: { opacity: 1.0, size: 16, color: dotColor, line: { color: '#ffffff', width: 2 } }, 
-                        text: [p_val.toFixed(1)],
-                        textfont: { family: 'JetBrains Mono', color: textFontColor, size: 10.5 }
-                    });
-                    traceIndices.push(baseIdx + 3);
-                    
-                } else {
-                    // Revert Shift Line
-                    updateFrames.push({ x: [c_val, c_val], line: { color: 'rgba(0, 0, 0, 0)', width: 4 } });
-                    traceIndices.push(baseIdx + 1);
-                    
-                    // Revert Control Dot
-                    updateFrames.push({ marker: { opacity: 1.0, size: 16, color: '#64748b', line: { color: '#0f172a', width: 2 } } });
-                    traceIndices.push(baseIdx + 2);
-                    
-                    // Revert Priming Dot
-                    updateFrames.push({ 
-                        x: [c_val], 
-                        marker: { opacity: 0, size: 16, color: dotColor, line: { color: '#ffffff', width: 2 } }, 
-                        text: [c_val.toFixed(1)],
-                        textfont: { color: 'rgba(0,0,0,0)' }
-                    });
-                    traceIndices.push(baseIdx + 3);
-                }
-            }
-            
-            Plotly.animate('iatSemanticDumbbellChart', {
-                data: updateFrames,
-                traces: traceIndices
-            }, {
-                transition: { duration: 800, easing: 'cubic-in-out' },
-                frame: { duration: 800 }
-            });
+            animateSemanticDumbbellChart(isPrimingOn, 650);
         });
     }
+}
+
+function animateSemanticDumbbellChart(isPrimingOn, duration = 650) {
+    const targetElem = document.getElementById('iatSemanticDumbbellChart');
+    if (!targetElem || !targetElem.data) return;
+
+    const leftPoles = ['Tecnológico', 'Barato', 'Calidad', 'Futbol', 'Ecológico', 'Variedad', 'Demanda', 'Premium'];
+    const controlVals = [13.0, 29.0, 35.2, 1.6, 10.4, 6.7, -27.0, -20.0];
+    const primingVals = [29.7, 21.3, 30.2, 36.9, 30.4, 31.7, -10.8, -23.0];
+
+    if (currentSemanticDumbbellAnimation) {
+        cancelAnimationFrame(currentSemanticDumbbellAnimation);
+    }
+
+    const startTime = performance.now();
+
+    function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+
+        for (let i = 0; i < leftPoles.length; i++) {
+            const c_val = controlVals[i];
+            const p_val = primingVals[i];
+            const isPositiveShift = p_val >= c_val;
+            
+            const lineColor = isPositiveShift ? 'rgba(37, 99, 235, 0.45)' : 'rgba(239, 68, 68, 0.45)';
+            const dotColor = isPositiveShift ? '#2563eb' : '#ef4444';
+            const textFontColor = isPositiveShift ? '#2563eb' : '#dc2626';
+            
+            const baseIdx = 4 + (i * 4);
+            const lineTrace = targetElem.data[baseIdx + 1];
+            const controlTrace = targetElem.data[baseIdx + 2];
+            const primingTrace = targetElem.data[baseIdx + 3];
+
+            if (!lineTrace || !controlTrace || !primingTrace) continue;
+
+            if (isPrimingOn) {
+                const currentX = c_val + (p_val - c_val) * ease;
+                
+                // Shift Line
+                lineTrace.x = [c_val, currentX];
+                lineTrace.line.color = lineColor;
+                lineTrace.line.width = 14;
+                
+                // Control Dot (Fade out slightly to 0.35)
+                controlTrace.marker.opacity = 1.0 - (0.65 * ease);
+                
+                // Priming Dot (Fade in to 1.0 at currentX with exact color)
+                primingTrace.x = [currentX];
+                primingTrace.marker.opacity = ease;
+                primingTrace.marker.color = dotColor;
+                primingTrace.text = [currentX.toFixed(1)];
+                primingTrace.textfont.color = textFontColor;
+            } else {
+                const currentX = p_val + (c_val - p_val) * ease;
+                
+                // Shift Line
+                lineTrace.x = [c_val, currentX];
+                lineTrace.line.color = lineColor;
+                lineTrace.line.width = 14 * (1 - ease);
+                
+                // Control Dot (Fade in back to 1.0)
+                controlTrace.marker.opacity = 0.35 + (0.65 * ease);
+                
+                // Priming Dot (Fade out back to 0)
+                primingTrace.x = [currentX];
+                primingTrace.marker.opacity = 1.0 - ease;
+                primingTrace.marker.color = dotColor;
+                primingTrace.text = [currentX.toFixed(1)];
+                primingTrace.textfont.color = textFontColor;
+            }
+        }
+
+        Plotly.redraw('iatSemanticDumbbellChart');
+
+        if (progress < 1) {
+            currentSemanticDumbbellAnimation = requestAnimationFrame(step);
+        } else {
+            currentSemanticDumbbellAnimation = null;
+        }
+    }
+
+    currentSemanticDumbbellAnimation = requestAnimationFrame(step);
 }
 
